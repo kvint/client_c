@@ -12,7 +12,11 @@ import feathers.layout.AnchorLayoutData;
 
 import starling.core.Starling;
 
-public class UITheme extends ComponentsTheme {
+	import view.tabs.ChatTabView;
+
+	import view.tabs.ChatTabsView;
+
+	public class UITheme extends ComponentsTheme {
 
 	private static var _instance		:UITheme;
 
@@ -40,6 +44,8 @@ public class UITheme extends ComponentsTheme {
 		setInitializerForClass(GameView, gameViewInitializer);
 		setInitializerForClass(ContentLayerView, contentLayerViewInitializer);
 		setInitializerForClass(GameScreen, gameScreenViewInitializer);
+
+		setInitializerForClass(ChatTabView, chatTabViewInitializer);
 	}
 
 	private function gameViewInitializer(view:GameView):void
@@ -68,12 +74,12 @@ public class UITheme extends ComponentsTheme {
 
 	private function gameScreenViewInitializer(screen:GameScreen):void
 	{
-		var btn:AnchorLayoutData = new AnchorLayoutData();
 
-		btn.percentWidth = 100;
-		btn.percentHeight = 100;
+	}
 
-		screen.btn.layoutData = btn;
+	private function chatTabViewInitializer(view:ChatTabView):void
+	{
+		tabInitializer(view);
 	}
 
 }

@@ -20,18 +20,8 @@ public class GameScreen extends Screen
 
 	public static const NAME		:String 		= 'LoginScreen';
 
-	private var _btn:Button = new Button();
-
 	override protected function initialize():void
 	{
-		btn.label = "HUI";
-
-		addChild(btn);
-	}
-
-	public function get btn():Button
-	{
-		return _btn;
 	}
 }
 }
