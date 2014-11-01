@@ -1,0 +1,3 @@
+[submodule "ChatClient"]
+	path = ChatClient
+	url = git@github.com:kvint/ChatClient.git
