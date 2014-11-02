@@ -28,7 +28,6 @@ package com.scifi.view.screens.game {
 	override public function initializeComplete():void
 	{
 		chat.controller.connect("kvinty@jabber.ru", "2gret37nidro");
-		screen.addChild(chat.view);
 	}
 
 }

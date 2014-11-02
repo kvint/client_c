@@ -35,6 +35,8 @@ public class StarlingStageMediator extends StarlingMediator {
 	private function app_onStarted(event:ModelEvent):void
 	{
 		view.init();
+
+		fitViewToScreen();
 	}
 
 	private function stage_onResize(event:Event):void

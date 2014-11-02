@@ -108,15 +108,15 @@ public class App extends Sprite
 	{
 		_starling.removeEventListener(starling.events.Event.ROOT_CREATED, starling_onRootCreated);
 
-		addEventListener(flash.events.Event.RESIZE, handleNativeStageResize);
+		stage.addEventListener(flash.events.Event.RESIZE, handleNativeStageResize);
 
 		GameContext.instance.dispatchModelEvent(ModelEvent.APP_INITIALIZE);
 	}
 
 	private function handleNativeStageResize(event:flash.events.Event):void
 	{
-		var width:Number = Math.max(stage.stageWidth, StageConfig.SCREEN_MIN_WIDTH);
-		var height:Number = Math.max(stage.stageHeight, StageConfig.SCREEN_MIN_HEIGHT);
+		var width:Number = stage.stageWidth;
+		var height:Number = stage.stageHeight;
 
 		_starling.viewPort = new Rectangle(0, 0, width, height);
 

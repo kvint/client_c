@@ -12,9 +12,8 @@ import feathers.layout.AnchorLayoutData;
 
 import starling.core.Starling;
 
+	import view.ChatView;
 	import view.tabs.ChatTabView;
-
-	import view.tabs.ChatTabsView;
 
 	public class UITheme extends ComponentsTheme {
 
@@ -46,35 +45,46 @@ import starling.core.Starling;
 		setInitializerForClass(GameScreen, gameScreenViewInitializer);
 
 		setInitializerForClass(ChatTabView, chatTabViewInitializer);
+		setInitializerForClass(ChatView, chatViewInitializer);
 	}
 
-	private function gameViewInitializer(view:GameView):void
+	private function chatViewInitializer(chatView:ChatView):void {
+		chatView.layout = new AnchorLayout();
+		var tabsView:AnchorLayoutData = new AnchorLayoutData();
+		tabsView.percentWidth = 100;
+		tabsView.bottom = 0;
+		chatView.tabsView.layoutData = tabsView;
+		chatView.width = 400;
+		chatView.height = 400;
+	}
+
+	private function gameViewInitializer(gameView:GameView):void
 	{
-		view.layout = new AnchorLayout();
+		gameView.layout = new AnchorLayout();
 
 		var contentLayer:AnchorLayoutData = new AnchorLayoutData();
 
 		contentLayer.percentWidth = 100;
 		contentLayer.percentHeight = 100;
 
-		view.contentLayer.layoutData = contentLayer;
+		gameView.contentLayer.layoutData = contentLayer;
 	}
 
-	private function contentLayerViewInitializer(view:ContentLayerView):void
+	private function contentLayerViewInitializer(contentLayerView:ContentLayerView):void
 	{
-		view.layout = new AnchorLayout();
+		contentLayerView.layout = new AnchorLayout();
 
 		var screensManager:AnchorLayoutData = new AnchorLayoutData();
 
 		screensManager.percentWidth = 100;
 		screensManager.percentHeight = 100;
 
-		view.screensManager.layoutData = screensManager;
+		contentLayerView.screensManager.layoutData = screensManager;
 	}
 
 	private function gameScreenViewInitializer(screen:GameScreen):void
 	{
-
+		screen.layout = new AnchorLayout();
 	}
 
 	private function chatTabViewInitializer(view:ChatTabView):void
