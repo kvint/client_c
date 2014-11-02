@@ -13,7 +13,9 @@ import feathers.layout.AnchorLayoutData;
 import starling.core.Starling;
 
 	import view.ChatView;
-	import view.communicator.CommunicatorView;
+	import view.communicator.DefaultCommunicatorView;
+	import view.communicator.DirectCommunicatorView;
+	import view.communicator.WritableCommunicatorView;
 	import view.tabs.ChatTabView;
 
 	public class UITheme extends ComponentsTheme {
@@ -47,10 +49,10 @@ import starling.core.Starling;
 
 		setInitializerForClass(ChatTabView, chatTabViewInitializer);
 		setInitializerForClass(ChatView, chatViewInitializer);
-		setInitializerForClass(CommunicatorView, chatCommunicatorInitializer);
+		setInitializerForClass(DirectCommunicatorView, chatCommunicatorInitializer);
 	}
 
-	private function chatCommunicatorInitializer(communicatorView:CommunicatorView):void {
+	private function chatCommunicatorInitializer(communicatorView:WritableCommunicatorView):void {
 
 		communicatorView.layout = new AnchorLayout();
 
