@@ -26,7 +26,7 @@ import robotlegs.extensions.starlingViewMap.StarlingViewMapExtension;
 import starling.core.Starling;
 import starling.events.Event;
 
-[SWF(width="1200", height="750", frameRate="60", backgroundColor="#303335")]
+[SWF(width="400", height="500", frameRate="60", backgroundColor="#303335")]
 public class App extends Sprite
 {
 	private static const log				:ILogger 			= getLogger(App);
