@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d19d1c0-d4ac-4952-8c4c-cffeeb426c4d" name="Default" comment="">
+    <list default="true" id="4d19d1c0-d4ac-4952-8c4c-cffeeb426c4d" name="Default" comment="direct fix">
+      <change type="DELETED" beforePath="D:\client_c\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\copyright\profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\flexCompiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\client_c\.idea\workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient" afterPath="$PROJECT_DIR$/ChatClient" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" afterPath="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scifi/main/App.as" afterPath="$PROJECT_DIR$/Scifi/main/App.as" />
     </list>
     <list id="98601c54-981e-479d-9c5c-40ad5d2b0428" name="nocommit" comment="" />
     <ignored path="client.iws" />
@@ -31,11 +41,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DirectCommunicatorMediator.as" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DirectCommunicatorMediator.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3107527" vertical-offset="0" max-vertical-offset="930">
-              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40270728" vertical-offset="0" max-vertical-offset="591">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -125,18 +145,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RosterView.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChatClient/src/view/roster/RosterView.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-              <folding>
-                <element signature="e#73#103#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -146,13 +154,11 @@
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ChatClient" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameMediator.as" />
-        <option value="$PROJECT_DIR$/Scifi/main/App.as" />
         <option value="$PROJECT_DIR$/Scifi/main/com/scifi/view/starling/StarlingStageMediator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/events/DataEvent.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/events/CommunicatorEvent.as" />
@@ -202,6 +208,8 @@
         <option value="$PROJECT_DIR$/ChatClient/src/controller/ChatController.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/view/roster/RosterMediator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" />
+        <option value="$PROJECT_DIR$/Scifi/main/App.as" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -466,6 +474,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="roster" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client_c" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="communicator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -824,7 +854,7 @@
       <workItem from="1414872395876" duration="10000" />
       <workItem from="1414872427901" duration="28163000" />
       <workItem from="1415003287689" duration="4347000" />
-      <workItem from="1415020563314" duration="7384000" />
+      <workItem from="1415020563314" duration="7683000" />
     </task>
     <task id="LOCAL-00001" summary="* Battle slot component progress">
       <created>1414022142143</created>
@@ -866,11 +896,15 @@
       <created>1415027458101</created>
       <updated>1415027458101</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="direct fix">
+      <created>1415027959252</created>
+      <updated>1415027959252</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81468000" />
+    <option name="totallyTimeSpent" value="81767000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -900,7 +934,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24167873" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24878837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57202506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -915,7 +949,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15208334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -953,7 +987,8 @@
     <MESSAGE value="communication view resize" />
     <MESSAGE value="first message sended" />
     <MESSAGE value="basic roster support" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic roster support" />
+    <MESSAGE value="direct fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="direct fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -965,21 +1000,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/ICommunicatorView.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClient/xiff/org/igniterealtime/xiff/core/EscapedJID.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
-          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChatClient/xiff/org/igniterealtime/xiff/data/XMPPStanza.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3549" max-vertical-offset="7785">
@@ -1362,10 +1382,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Scifi/main/App.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32903227" vertical-offset="357" max-vertical-offset="1938">
+          <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3107527" vertical-offset="0" max-vertical-offset="930">
-          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40270728" vertical-offset="0" max-vertical-offset="591">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
