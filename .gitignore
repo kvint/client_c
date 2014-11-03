@@ -2,6 +2,7 @@
 .DS_Store
 # Build and Release Folders
 bin/
+out/
 .idea/
 bin-debug/
 bin-release/
