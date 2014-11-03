@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d19d1c0-d4ac-4952-8c4c-cffeeb426c4d" name="Default" comment="first message sended">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ChatClient/src/view/roster/RosterMediator.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ChatClient/src/view/roster/RosterView.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/controller/BaseChatController.as" afterPath="$PROJECT_DIR$/ChatClient/src/controller/BaseChatController.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/config/ChatConfig.as" afterPath="$PROJECT_DIR$/ChatClient/src/config/ChatConfig.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/controller/ChatController.as" afterPath="$PROJECT_DIR$/ChatClient/src/controller/ChatController.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/model/ChatModel.as" afterPath="$PROJECT_DIR$/ChatClient/src/model/ChatModel.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/ChatService.as" afterPath="$PROJECT_DIR$/ChatClient/src/ChatService.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreen.as" afterPath="$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreen.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreenMediator.as" afterPath="$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreenMediator.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/IChatService.as" afterPath="$PROJECT_DIR$/ChatClient/src/IChatService.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scifi/Scifi.iml" afterPath="$PROJECT_DIR$/Scifi/Scifi.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+    <list default="true" id="4d19d1c0-d4ac-4952-8c4c-cffeeb426c4d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient" afterPath="$PROJECT_DIR$/ChatClient" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" afterPath="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="98601c54-981e-479d-9c5c-40ad5d2b0428" name="nocommit" comment="" />
@@ -42,11 +31,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="DirectCommunicatorMediator.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3107527" vertical-offset="0" max-vertical-offset="930">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ChatController.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChatClient/src/controller/ChatController.as">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1360">
-              <caret line="77" column="80" selection-start-line="77" selection-start-column="64" selection-end-line="77" selection-end-column="80" />
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,8 +54,8 @@
       <file leaf-file-name="GameScreenMediator.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreenMediator.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="515" max-vertical-offset="1445">
-              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="566" max-vertical-offset="1445">
+              <caret line="55" column="54" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
               <folding>
                 <element signature="e#193#229#0" expanded="true" />
               </folding>
@@ -64,24 +63,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatTabsMediator.as" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ChatTabsMediator.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChatClient/src/view/tabs/ChatTabsMediator.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3967742" vertical-offset="5" max-vertical-offset="935">
-              <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="935">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatModel.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChatClient/src/model/ChatModel.as">
+      <file leaf-file-name="WritableCommunicatorMediator.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/WritableCommunicatorMediator.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,16 +120,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="2007" max-vertical-offset="3791">
               <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseChatController.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChatClient/src/controller/BaseChatController.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2716" max-vertical-offset="6443">
-              <caret line="212" column="27" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -196,7 +183,6 @@
         <option value="$PROJECT_DIR$/ChatClient/src/model/communicators/LogCommunicator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/view/communicator/LogCommunicatorMediator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/view/communicator/WritableCommunicatorMediator.as" />
-        <option value="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/model/communicators/ICommunicator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/model/communicators/DefaultCommunicator.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/view/communicator/HistoryCommunicatorView.as" />
@@ -215,6 +201,7 @@
         <option value="$PROJECT_DIR$/ChatClient/src/view/roster/RosterView.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/controller/ChatController.as" />
         <option value="$PROJECT_DIR$/ChatClient/src/view/roster/RosterMediator.as" />
+        <option value="$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as" />
       </list>
     </option>
   </component>
@@ -555,6 +542,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="LayoutCode.rearrangeEntriesECMA Script Level 4" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/client_c/ChatClient/src/controller/ChatController.as" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -836,7 +824,7 @@
       <workItem from="1414872395876" duration="10000" />
       <workItem from="1414872427901" duration="28163000" />
       <workItem from="1415003287689" duration="4347000" />
-      <workItem from="1415020563314" duration="6876000" />
+      <workItem from="1415020563314" duration="7384000" />
     </task>
     <task id="LOCAL-00001" summary="* Battle slot component progress">
       <created>1414022142143</created>
@@ -874,11 +862,15 @@
       <created>1414895414880</created>
       <updated>1414895414880</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="basic roster support">
+      <created>1415027458101</created>
+      <updated>1415027458101</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80960000" />
+    <option name="totallyTimeSpent" value="81468000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -960,11 +952,12 @@
     <MESSAGE value="resize" />
     <MESSAGE value="communication view resize" />
     <MESSAGE value="first message sended" />
-    <option name="LAST_COMMIT_MESSAGE" value="first message sended" />
+    <MESSAGE value="basic roster support" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic roster support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="89" />
+      <option name="time" value="91" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1096,13 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/WritableCommunicatorMediator.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/item/HistoryItemRenderer.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37701976" vertical-offset="0" max-vertical-offset="557">
@@ -1122,14 +1108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="357">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-          <caret line="21" column="72" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="72" />
           <folding />
         </state>
       </provider>
@@ -1316,14 +1294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClient/xiff/org/igniterealtime/xiff/core/AbstractJID.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="3791">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChatClient/xiff/org/igniterealtime/xiff/core/UnescapedJID.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="1037">
@@ -1340,16 +1310,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreenMediator.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="515" max-vertical-offset="1445">
-          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-          <folding>
-            <element signature="e#193#229#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChatClient/src/view/roster/RosterMediator.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
@@ -1360,18 +1320,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClient/src/controller/ChatController.as">
+    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/tabs/ChatTabsMediator.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1360">
-          <caret line="77" column="80" selection-start-line="77" selection-start-column="64" selection-end-line="77" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="935">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/tabs/ChatTabsMediator.as">
+    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/WritableCommunicatorMediator.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3967742" vertical-offset="5" max-vertical-offset="935">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scifi/main/com/scifi/view/screens/game/GameScreenMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="566" max-vertical-offset="1445">
+          <caret line="55" column="54" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+          <folding>
+            <element signature="e#193#229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatClient/xiff/org/igniterealtime/xiff/core/AbstractJID.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="3791">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatClient/src/controller/ChatController.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1360">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatClient/src/view/communicator/DirectCommunicatorMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3107527" vertical-offset="0" max-vertical-offset="930">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding />
         </state>
       </provider>
