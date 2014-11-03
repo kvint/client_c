@@ -128,6 +128,10 @@ import starling.core.Starling;
 
 	private function gameScreenViewInitializer(screen:GameScreen):void
 	{
+		var chatView:AnchorLayoutData = new AnchorLayoutData();
+		chatView.bottom = 0;
+		screen.chatView.layoutData = chatView;
+
 		screen.layout = new AnchorLayout();
 	}
 

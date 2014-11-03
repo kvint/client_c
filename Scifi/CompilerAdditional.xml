@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <flex-config>
+    <advanced-telemetry>true</advanced-telemetry>
 <compiler>
     <define append="true">
         <name>CONFIG::debug</name>
