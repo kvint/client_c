@@ -74,6 +74,7 @@
     <orderEntry type="library" exported="" name="robotlegs2-starling-viewmap" level="project" />
     <orderEntry type="library" exported="" name="loanshark" level="project" />
     <orderEntry type="module" module-name="ChatClient" exported="" />
+    <orderEntry type="module" module-name="ChatClient" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
