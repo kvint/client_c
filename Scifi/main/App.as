@@ -87,7 +87,7 @@ public class App extends Sprite
 
 	private function initStarling():void
 	{
-		//Starling.handleLostContext = true;
+		Starling.handleLostContext = true;
 
 		_starling = new Starling(StarlingStageView, stage);
 		_starling.showStats = true;
