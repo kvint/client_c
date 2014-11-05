@@ -9,12 +9,12 @@ package {
 	import org.igniterealtime.xiff.data.IQ;
 
 	import org.igniterealtime.xiff.data.Message;
-	import org.igniterealtime.xiff.data.archive.ArchiveExtension;
+	import org.igniterealtime.xiff.data.archive.ListStanza;
 
 	public class Test extends Sprite {
 		public function Test() {
 			var test:IQ = new IQ(null, IQ.TYPE_GET);
-			test.addExtension(new ArchiveExtension())
+			test.addExtension(new ListStanza())
 			trace(test);
 		}
 	}

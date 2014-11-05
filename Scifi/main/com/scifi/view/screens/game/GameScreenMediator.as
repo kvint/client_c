@@ -69,14 +69,14 @@ package com.scifi.view.screens.game {
 		private function btn_handler(event:Event):void {
 			switchBtns();
 			switch(event.currentTarget) {
-				case screen.btn1:
-					chat.controller.connect("kvinty@localhost", "2gret37nidro");
-					break;
 				case screen.btn2:
 					chat.controller.connect("external@localhost", "2gret37nidro");
 					break;
+				case screen.btn1:
+					chat.controller.connect("bob@localhost", "2gret37nidro");
+					break;
 				case screen.btn3:
-					chat.controller.connect("kvinty2@localhost", "2gret37nidro");
+					chat.controller.connect("joe@localhost", "2gret37nidro");
 					break;
 				case screen.history:
 					chat.controller.test();

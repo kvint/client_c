@@ -30,9 +30,9 @@ package com.scifi.view.screens.game {
 		private var _history:Button = new Button();
 
 		override protected function initialize():void {
-			btn1.label = "kvinty";
-			btn2.label = "external";
-			btn3.label = "kvinty2";
+			btn1.label = "external";
+			btn2.label = "bob";
+			btn3.label = "joe";
 			history.label = "history";
 			addChild(btn1);
 			addChild(btn2);
