@@ -34,7 +34,9 @@ package com.scifi.view.screens.game {
 			screen.btn1.addEventListener(Event.TRIGGERED, btn_handler);
 			screen.btn2.addEventListener(Event.TRIGGERED, btn_handler);
 			screen.btn3.addEventListener(Event.TRIGGERED, btn_handler);
+			screen.history.addEventListener(Event.TRIGGERED, btn_handler);
 			chat.model.addEventListener(LoginEvent.LOGIN, onLogin);
+			screen.history.isEnabled = false;
 
 			layout();
 		}
@@ -44,15 +46,19 @@ package com.scifi.view.screens.game {
 			var btn1:AnchorLayoutData = new AnchorLayoutData();
 			var btn2:AnchorLayoutData = new AnchorLayoutData();
 			var btn3:AnchorLayoutData = new AnchorLayoutData();
+			var history:AnchorLayoutData = new AnchorLayoutData();
 			var rosterView:AnchorLayoutData = new AnchorLayoutData();
 			btn1.left = btn2.left = btn3.left = 0;
 			btn2.leftAnchorDisplayObject = screen.btn1;
 			btn3.leftAnchorDisplayObject = screen.btn2;
 			rosterView.left = 0;
 			rosterView.leftAnchorDisplayObject = screen.btn3;
+			history.left = 0;
+			history.leftAnchorDisplayObject = screen.rosterView;
 			screen.btn1.layoutData = btn1;
 			screen.btn2.layoutData = btn2;
 			screen.btn3.layoutData = btn3;
+			screen.history.layoutData = history;
 			screen.rosterView.layoutData = rosterView;
 		}
 
@@ -61,7 +67,7 @@ package com.scifi.view.screens.game {
 		}
 
 		private function btn_handler(event:Event):void {
-			hideBtns();
+			switchBtns();
 			switch(event.currentTarget) {
 				case screen.btn1:
 					chat.controller.connect("kvinty@localhost", "2gret37nidro");
@@ -72,10 +78,14 @@ package com.scifi.view.screens.game {
 				case screen.btn3:
 					chat.controller.connect("kvinty2@localhost", "2gret37nidro");
 					break;
+				case screen.history:
+					chat.controller.test();
+					break;
 			}
 		}
 
-		private function hideBtns():void {
+		private function switchBtns():void {
+			screen.history.isEnabled = true;
 			screen.btn1.isEnabled = false;
 			screen.btn2.isEnabled = false;
 			screen.btn3.isEnabled = false;

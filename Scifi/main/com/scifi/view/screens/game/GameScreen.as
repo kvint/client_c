@@ -27,15 +27,18 @@ package com.scifi.view.screens.game {
 		private var _btn1:Button = new Button();
 		private var _btn2:Button = new Button();
 		private var _btn3:Button = new Button();
+		private var _history:Button = new Button();
 
 		override protected function initialize():void {
 			btn1.label = "kvinty";
 			btn2.label = "external";
 			btn3.label = "kvinty2";
+			history.label = "history";
 			addChild(btn1);
 			addChild(btn2);
 			addChild(btn3);
 			addChild(rosterView);
+			addChild(history);
 		}
 
 		public function get chatView():ChatView {
@@ -56,6 +59,14 @@ package com.scifi.view.screens.game {
 
 		public function get rosterView():RosterView {
 			return _rosterView;
+		}
+
+		public function get history():Button {
+			return _history;
+		}
+
+		public function set history(value:Button):void {
+			_history = value;
 		}
 	}
 }

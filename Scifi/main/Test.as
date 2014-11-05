@@ -4,15 +4,18 @@
 package {
 	import flash.display.Sprite;
 
+	import org.igniterealtime.xiff.core.UnescapedJID;
+
+	import org.igniterealtime.xiff.data.IQ;
+
 	import org.igniterealtime.xiff.data.Message;
+	import org.igniterealtime.xiff.data.archive.ArchiveExtension;
 
 	public class Test extends Sprite {
 		public function Test() {
-			var message:Message = new Message();
-			message.receipt = Message.RECEIPT_RECEIVED;
-			trace(message.xml.toXMLString());
-			message.receipt = null;
-			trace(message.xml.toXMLString());
+			var test:IQ = new IQ(null, IQ.TYPE_GET);
+			test.addExtension(new ArchiveExtension())
+			trace(test);
 		}
 	}
 }
