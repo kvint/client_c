@@ -24,6 +24,8 @@
  */
 package com.scifi.view.theme {
 
+import com.scifi.view.screens.game.GameView;
+
 import feathers.themes.MetalWorksDesktopTheme;
 
 import starling.core.Starling;
@@ -55,8 +57,15 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 	{
 		super.initializeStyleProviders();
 
+		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
+
 //		getStyleProviderForClass(Tree).defaultStyleFunction 							= setTreeStyles;
 //		getStyleProviderForClass(List).setFunctionForStyleName(Tree.DEFAULT_CHILD_NAME_LIST, treeListInitializer);
+	}
+
+	private function setGameViewStyles(view:GameView):void
+	{
+
 	}
 
 	/*private function setContentLayerViewStyles(view:ContentLayerView):void

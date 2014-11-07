@@ -5,11 +5,7 @@ package com.scifi.config
 {
 
 import com.scifi.view.screens.game.GameMediator;
-import com.scifi.view.screens.game.GameScreen;
-import com.scifi.view.screens.game.GameScreenMediator;
 import com.scifi.view.screens.game.GameView;
-import com.scifi.view.screens.managers.ScreensManager;
-import com.scifi.view.screens.managers.ScreensManagerImpl;
 import com.scifi.view.starling.StarlingStageMediator;
 import com.scifi.view.starling.StarlingStageView;
 
@@ -33,15 +29,8 @@ public class ViewConfig implements IConfig
 
 	private function mapView():void
 	{
-		injector.map(ScreensManager).toValue(ScreensManagerImpl.instance);
-
 		mediatorMap.map(StarlingStageView).toMediator(StarlingStageMediator);
-
 		mediatorMap.map(GameView).toMediator(GameMediator);
-
-		mediatorMap.map(GameScreen).toMediator(GameScreenMediator);
-
-
 	}
 
 }

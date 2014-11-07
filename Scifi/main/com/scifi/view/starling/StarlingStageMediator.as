@@ -4,9 +4,12 @@
 package com.scifi.view.starling {
 
 import com.scifi.model.ModelEvent;
+
 import org.as3commons.logging.api.ILogger;
 import org.as3commons.logging.api.getLogger;
+
 import robotlegs.extensions.starlingViewMap.impl.StarlingMediator;
+
 import starling.core.Starling;
 import starling.events.Event;
 
