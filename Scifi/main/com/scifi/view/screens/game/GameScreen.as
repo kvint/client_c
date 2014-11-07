@@ -8,16 +8,16 @@
 
 package com.scifi.view.screens.game {
 
-	import feathers.controls.Button;
-	import feathers.controls.Screen;
+import feathers.controls.Button;
+import feathers.controls.Screen;
 
-	import org.as3commons.logging.api.ILogger;
-	import org.as3commons.logging.api.getLogger;
+import org.as3commons.logging.api.ILogger;
+import org.as3commons.logging.api.getLogger;
 
-	import view.ChatView;
-	import view.roster.RosterView;
+import view.chat.ChatView;
+import view.chat.roster.RosterView;
 
-	public class GameScreen extends Screen {
+public class GameScreen extends Screen {
 		private static const log:ILogger = getLogger(GameScreen);
 
 		public static const NAME:String = 'LoginScreen';
