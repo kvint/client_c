@@ -90,7 +90,7 @@ public class App extends Sprite
 		Starling.handleLostContext = true;
 
 		_starling = new Starling(StarlingStageView, stage);
-		_starling.showStats = true;
+//		_starling.showStats = true;
 		CONFIG::debug //uncomment in case of errors
 		{
 			//_starling.context.enableErrorChecking = true;
