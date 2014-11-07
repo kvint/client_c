@@ -22,7 +22,7 @@ package com.scifi.view.screens.game {
 
 		public static const NAME:String = 'LoginScreen';
 
-		private var _chatView:ChatView = ChatService.instance.view;
+		private var _chatView:ChatView = ChatClient.instance.view;
 		private var _rosterView:RosterView = new RosterView();
 		private var _btn1:Button = new Button();
 		private var _btn2:Button = new Button();
