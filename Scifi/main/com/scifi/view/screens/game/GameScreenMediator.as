@@ -8,6 +8,8 @@
 
 package com.scifi.view.screens.game {
 
+	import controller.BaseChatController;
+
 	import feathers.layout.AnchorLayout;
 	import feathers.layout.AnchorLayoutData;
 
@@ -37,6 +39,8 @@ package com.scifi.view.screens.game {
 			screen.history.addEventListener(Event.TRIGGERED, btn_handler);
 			chat.model.addEventListener(LoginEvent.LOGIN, onLogin);
 			screen.history.isEnabled = false;
+
+			BaseChatController.serverName = "10.0.1.4";
 
 			layout();
 		}
@@ -70,13 +74,13 @@ package com.scifi.view.screens.game {
 			switchBtns();
 			switch(event.currentTarget) {
 				case screen.btn1:
-					chat.controller.connect("external@10.0.1.4", "2gret37nidro");
+					chat.controller.connect("external", "2gret37nidro");
 					break;
 				case screen.btn2:
-					chat.controller.connect("bob@10.0.1.4", "2gret37nidro");
+					chat.controller.connect("bob", "2gret37nidro");
 					break;
 				case screen.btn3:
-					chat.controller.connect("joe@10.0.1.4", "2gret37nidro");
+					chat.controller.connect("joe", "2gret37nidro");
 					break;
 				case screen.history:
 					chat.controller.test();
