@@ -33,7 +33,7 @@ import feathers.themes.MetalWorksDesktopTheme;
 
 import starling.core.Starling;
 
-import view.chat.ChatView;
+import com.scifi.view.chat.ChatView;
 
 public class ChatTheme extends MetalWorksDesktopTheme {
 

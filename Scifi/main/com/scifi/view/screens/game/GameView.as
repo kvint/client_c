@@ -11,19 +11,24 @@ import feathers.skins.IStyleProvider;
 import org.as3commons.logging.api.ILogger;
 import org.as3commons.logging.api.getLogger;
 
-import view.chat.ChatView;
-import view.chat.roster.RosterView;
+import com.scifi.view.chat.ChatView;
+import com.scifi.view.chat.roster.RosterView;
 
 public class GameView extends LayoutGroup {
 
 	private static const log			:ILogger 		= getLogger(GameView);
 
-	private var _chatView				:ChatView 		= ChatClient.instance.view;
+	private var _chatView				:ChatView 		= new ChatView();
 	private var _rosterView				:RosterView 	= new RosterView();
 
 	private var _actionsButtons			:ButtonGroup 	= new ButtonGroup();
 
 	public static var globalStyleProvider:IStyleProvider;
+
+	public function GameView()
+	{
+		super();
+	}
 
 	override protected function get defaultStyleProvider():IStyleProvider
 	{
