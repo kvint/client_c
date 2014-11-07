@@ -26,21 +26,16 @@ package com.scifi.view.theme {
 
 import com.scifi.view.screens.game.GameView;
 
+import feathers.layout.AnchorLayout;
+import feathers.layout.AnchorLayoutData;
+
 import feathers.themes.MetalWorksDesktopTheme;
 
 import starling.core.Starling;
 
+import view.chat.ChatView;
+
 public class ChatTheme extends MetalWorksDesktopTheme {
-
-	override protected function initializeTextures():void
-	{
-		super.initializeTextures();
-	}
-
-	override protected function initializeDimensions():void
-	{
-		super.initializeDimensions();
-	}
 
 	override protected function initializeStage():void
 	{
@@ -48,16 +43,12 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 		Starling.current.nativeStage.color = 0x000000;
 	}
 
-	override protected function initializeFonts():void
-	{
-		super.initializeFonts();
-	}
-
 	override protected function initializeStyleProviders():void
 	{
 		super.initializeStyleProviders();
 
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
+		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
 
 //		getStyleProviderForClass(Tree).defaultStyleFunction 							= setTreeStyles;
 //		getStyleProviderForClass(List).setFunctionForStyleName(Tree.DEFAULT_CHILD_NAME_LIST, treeListInitializer);
@@ -65,7 +56,27 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 
 	private function setGameViewStyles(view:GameView):void
 	{
+		var q = 1;
+	}
 
+	private function setChatViewStyles(view:ChatView):void
+	{
+		view.layout = new AnchorLayout();
+
+		var containerView:AnchorLayoutData = new AnchorLayoutData();
+
+		containerView.percentWidth = 100;
+		containerView.bottomAnchorDisplayObject = view.tabsView;
+		containerView.bottom = 0;
+
+		view.containerView.layoutData = containerView;
+
+		var tabsView:AnchorLayoutData = new AnchorLayoutData();
+
+		tabsView.percentWidth = 100;
+		tabsView.bottom = 0;
+
+		view.tabsView.layoutData = tabsView;
 	}
 
 	/*private function setContentLayerViewStyles(view:ContentLayerView):void

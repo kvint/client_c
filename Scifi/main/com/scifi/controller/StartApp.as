@@ -25,8 +25,6 @@ public class StartApp extends Command {
 
 	override public function execute():void
 	{
-		new ChatTheme();
-
 		eventDispatcher.dispatchEvent(new ModelEvent(ModelEvent.APP_START));
 	}
 

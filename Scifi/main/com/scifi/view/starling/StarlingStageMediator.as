@@ -4,6 +4,7 @@
 package com.scifi.view.starling {
 
 import com.scifi.model.ModelEvent;
+import com.scifi.view.theme.ChatTheme;
 
 import org.as3commons.logging.api.ILogger;
 import org.as3commons.logging.api.getLogger;
@@ -37,6 +38,8 @@ public class StarlingStageMediator extends StarlingMediator {
 
 	private function app_onStarted(event:ModelEvent):void
 	{
+		new ChatTheme();
+
 		view.init();
 
 		fitViewToScreen();
