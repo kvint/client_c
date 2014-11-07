@@ -13,12 +13,13 @@ package {
 	import org.igniterealtime.xiff.data.Message;
 	import org.igniterealtime.xiff.data.archive.ListStanza;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.data.rsm.Set;
 
 	public class Test extends Sprite {
 		public function Test() {
-			var c:CommunicatorProvider = new CommunicatorProvider();
-			trace(c.getCommunicator(new Message()))
-			trace(c.getCommunicator(new RosterItemVO(null)));
+			var sett:Set = new Set();
+			sett.max = 100;
+			trace(sett);
 		}
 	}
 }

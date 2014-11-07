@@ -2,25 +2,15 @@
  * Created by kvint on 02.11.14.
  */
 package com.scifi.view.chat.communicator.types {
-import com.scifi.view.chat.communicator.*;
 	import controller.ChatController;
 
-	import events.ChatEvent;
 	import events.CommunicatorEvent;
 
 	import feathers.data.ListCollection;
-	import feathers.events.CollectionEventType;
-
-	import flash.utils.setTimeout;
 
 	import model.data.ChatMessage;
 
 	import org.igniterealtime.xiff.data.Message;
-	import org.igniterealtime.xiff.events.MessageEvent;
-
-	import starling.events.Event;
-
-	import utils.MessageUtils;
 
 	public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator {
 
