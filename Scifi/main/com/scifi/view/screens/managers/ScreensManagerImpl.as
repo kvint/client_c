@@ -31,7 +31,7 @@ public class ScreensManagerImpl extends ScreenNavigator implements ScreensManage
 		super();
 	}
 
-	override public function showScreen(id:String):DisplayObject
+	override public function showScreen(id:String, transition:Function = null):DisplayObject
 	{
 		if (activeScreenID == id)
 			return activeScreen;
@@ -62,5 +62,6 @@ public class ScreensManagerImpl extends ScreenNavigator implements ScreensManage
 	{
 		return _previousActiveScreenID;
 	}
+
 }
 }
