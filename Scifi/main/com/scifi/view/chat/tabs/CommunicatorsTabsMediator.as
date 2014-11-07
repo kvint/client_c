@@ -7,6 +7,8 @@ import events.ChatModelEvent;
 
 import feathers.data.ListCollection;
 
+import model.communicators.DefaultCommunicator;
+
 import model.communicators.ICommunicator;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
@@ -49,6 +51,7 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 	protected function tabInitializer(tab:CommunicatorTabView, communicator:ICommunicator):void
 	{
+		tab.label = communicator.label;
 		tab.provider.data = communicator;
 	}
 
@@ -57,6 +60,9 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 		var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
 		for (var idx:int = 0; idx < iCommunicators.length; idx++)
 			addTab(iCommunicators[idx]);
+
+//		for (var idx:int = 0; idx < 10; idx++)
+//			view.dataProvider.addItem(new DefaultCommunicator());
 	}
 
 	private function addTab(provider:ICommunicator):void

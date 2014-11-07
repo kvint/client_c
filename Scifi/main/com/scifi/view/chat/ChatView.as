@@ -3,11 +3,11 @@
  */
 package com.scifi.view.chat
 {
-import feathers.controls.LayoutGroup;
-import feathers.skins.IStyleProvider;
-
 import com.scifi.view.chat.communicator.CommunicatorContainerView;
 import com.scifi.view.chat.tabs.CommunicatorsTabsView;
+
+import feathers.controls.LayoutGroup;
+import feathers.skins.IStyleProvider;
 
 public class ChatView extends LayoutGroup
 {
@@ -37,5 +37,6 @@ public class ChatView extends LayoutGroup
 	{
 		return _tabsView;
 	}
+
 }
 }

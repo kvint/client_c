@@ -4,7 +4,6 @@ import com.junkbyte.console.Cc;
 import com.scifi.GameConfig;
 import com.scifi.GameContext;
 import com.scifi.model.ModelEvent;
-import com.scifi.view.config.StageConfig;
 import com.scifi.view.starling.StarlingStageView;
 
 import flash.display.Sprite;
@@ -31,23 +30,12 @@ public class App extends Sprite
 {
 	private static const log				:ILogger 			= getLogger(App);
 
-	private static const BACKGROUND_COLOR	:int 				= 0x000000;
-
-	private static var _instance			:App;
-
 	private var _starling					:Starling;
 
 	private var _context					:IContext;
 
-	public static function get instance():App
-	{
-		return _instance;
-	}
-
 	public function App()
 	{
-		_instance = this;
-
 		loaderInfo.addEventListener(flash.events.Event.COMPLETE, loaderInfo_onComplete);
 	}
 
@@ -87,16 +75,19 @@ public class App extends Sprite
 
 	private function initStarling():void
 	{
-		Starling.handleLostContext = true;
+//		Starling.handleLostContext = true;
 
 		_starling = new Starling(StarlingStageView, stage);
-//		_starling.showStats = true;
+
+		Starling.current.showStats = true;
+
 		CONFIG::debug //uncomment in case of errors
 		{
 			//_starling.context.enableErrorChecking = true;
 		}
 
 		Cc.store("starling", _starling);
+
 		_starling.antiAliasing = 1;// no need for 2D content
 
 		_starling.addEventListener(starling.events.Event.ROOT_CREATED, starling_onRootCreated);
@@ -115,13 +106,10 @@ public class App extends Sprite
 
 	private function handleNativeStageResize(event:flash.events.Event):void
 	{
-		var width:Number = stage.stageWidth;
-		var height:Number = stage.stageHeight;
+		_starling.viewPort = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
 
-		_starling.viewPort = new Rectangle(0, 0, width, height);
-
-		_starling.stage.stageWidth = width;
-		_starling.stage.stageHeight = height;
+		_starling.stage.stageWidth = stage.stageWidth;
+		_starling.stage.stageHeight = stage.stageHeight;
 	}
 
 	private function onEnterFrame(event:flash.events.Event):void

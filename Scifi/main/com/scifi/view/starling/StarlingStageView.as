@@ -8,10 +8,11 @@ import starling.display.Sprite;
 
 public class StarlingStageView extends Sprite {
 
-	private var _gameView		:GameView 		= new GameView();
+	private var _gameView		:GameView;
 
 	public function init():void
 	{
+		_gameView = new GameView();
 		addChild(gameView);
 	}
 

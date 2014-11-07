@@ -24,16 +24,17 @@
  */
 package com.scifi.view.theme {
 
+import com.scifi.view.chat.ChatView;
 import com.scifi.view.screens.game.GameView;
+import com.scifi.view.utils.UIUtils;
+
+import feathers.display.Scale9Image;
 
 import feathers.layout.AnchorLayout;
 import feathers.layout.AnchorLayoutData;
-
 import feathers.themes.MetalWorksDesktopTheme;
 
 import starling.core.Starling;
-
-import com.scifi.view.chat.ChatView;
 
 public class ChatTheme extends MetalWorksDesktopTheme {
 
@@ -49,14 +50,20 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
 		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
-
-//		getStyleProviderForClass(Tree).defaultStyleFunction 							= setTreeStyles;
-//		getStyleProviderForClass(List).setFunctionForStyleName(Tree.DEFAULT_CHILD_NAME_LIST, treeListInitializer);
 	}
 
 	private function setGameViewStyles(view:GameView):void
 	{
-		var q = 1;
+		view.backgroundSkin = new Scale9Image(UIUtils.getScale9RectTexture(6, 6, 0xf332233));
+
+		view.layout = new AnchorLayout();
+
+		var chatView:AnchorLayoutData = new AnchorLayoutData();
+
+		chatView.percentWidth = 100;
+		chatView.bottom = 0;
+
+		view.chatView.layoutData = chatView;
 	}
 
 	private function setChatViewStyles(view:ChatView):void
@@ -69,7 +76,7 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 		containerView.bottomAnchorDisplayObject = view.tabsView;
 		containerView.bottom = 0;
 
-		view.containerView.layoutData = containerView;
+//		view.containerView.layoutData = containerView;
 
 		var tabsView:AnchorLayoutData = new AnchorLayoutData();
 
@@ -78,19 +85,6 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 
 		view.tabsView.layoutData = tabsView;
 	}
-
-	/*private function setContentLayerViewStyles(view:ContentLayerView):void
-	{
-		view.layout = new AnchorLayout();
-
-		var topBarView:AnchorLayoutData = new AnchorLayoutData();
-
-		topBarView.left = 0;
-		topBarView.top = 0;
-		topBarView.right = 0;
-
-		view.topBarView.layoutData = topBarView;
-	}*/
 
 }
 }

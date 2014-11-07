@@ -24,10 +24,6 @@ public class StarlingStageMediator extends StarlingMediator {
 	override public function initialize():void
 	{
 		addContextListener(ModelEvent.APP_START, app_onStarted);
-
-		mapStarlingEvent(Starling.current.stage, Event.RESIZE, stage_onResize);
-
-		fitViewToScreen();
 	}
 
 	private function fitViewToScreen():void
@@ -42,6 +38,7 @@ public class StarlingStageMediator extends StarlingMediator {
 
 		view.init();
 
+		mapStarlingEvent(Starling.current.stage, Event.RESIZE, stage_onResize);
 		fitViewToScreen();
 	}
 
