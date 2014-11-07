@@ -1,3 +1,7 @@
 [submodule "ChatClient"]
 	path = ChatClient
 	url = git@github.com:kvint/ChatClient.git
+[submodule "tweener"]
+	path = tweener
+	url = git@github.com:kvint/tweener.git
+	branch = master
