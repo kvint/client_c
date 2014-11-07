@@ -69,7 +69,7 @@ import com.scifi.view.chat.communicator.*;
 			historyView.list.dataProvider.addItem(message);
 		}
 		protected function get historyView():HistoryCommunicatorView{
-			return view as HistoryCommunicatorView;
+			return communicatorView as HistoryCommunicatorView;
 		}
 
 		override public function destroy():void {

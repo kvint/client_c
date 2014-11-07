@@ -1,34 +1,31 @@
 /**
  * Created by kvint on 02.11.14.
  */
-package com.scifi.view.chat.communicator.types {
-import com.scifi.view.chat.communicator.*;
-	import flash.ui.Keyboard;
+package com.scifi.view.chat.communicator.types
+{
+import feathers.events.FeathersEventType;
 
-	import starling.events.KeyboardEvent;
+public class WritableCommunicatorMediator extends HistoryCommunicatorMediator
+{
+	override public function initializeComplete():void
+	{
+		super.initializeComplete();
 
-import com.scifi.view.chat.communicator.types.HistoryCommunicatorMediator;
-
-public class WritableCommunicatorMediator extends HistoryCommunicatorMediator {
-		override public function initializeComplete():void {
-			super.initializeComplete();
-			writableView.input.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-		}
-
-		private function onKeyDown(event:KeyboardEvent):void {
-			if(writableView.input.text.length){
-				if(event.keyCode == Keyboard.ENTER){
-					onSend();
-				}
-			}
-		}
-
-		protected function onSend():void {
-
-		}
-
-		protected function get writableView():WritableCommunicatorView {
-			return view as WritableCommunicatorView;
-		}
+		mapStarlingEvent(writableView.messageInput, FeathersEventType.ENTER, messageInput_onEnter);
 	}
+
+	private function messageInput_onEnter():void
+	{
+		sendMessage();
+	}
+
+	protected function sendMessage():void
+	{
+	}
+
+	protected function get writableView():WritableCommunicatorView
+	{
+		return communicatorView as WritableCommunicatorView;
+	}
+}
 }

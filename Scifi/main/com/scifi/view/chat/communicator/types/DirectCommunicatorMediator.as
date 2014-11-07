@@ -1,31 +1,43 @@
 /**
  * Created by kvint on 02.11.14.
  */
-package com.scifi.view.chat.communicator.types {
-import com.scifi.view.chat.communicator.*;
-	import events.ChatEvent;
+package com.scifi.view.chat.communicator.types
+{
+import com.scifi.view.chat.communicator.ICommunicatorView;
 
-	import model.communicators.DirectCommunicator;
-	import model.communicators.ICommunicator;
-	import model.data.ChatMessage;
+import model.communicators.DirectCommunicator;
+import model.data.ChatMessage;
 
-	import org.igniterealtime.xiff.data.Message;
+import org.igniterealtime.xiff.data.Message;
 
-	public class DirectCommunicatorMediator extends WritableCommunicatorMediator{
-		public function DirectCommunicatorMediator() {
-		}
+public class DirectCommunicatorMediator extends WritableCommunicatorMediator
+{
+	[Inject]
+	public var view:DirectCommunicatorView;
 
-		protected function get directCommunicatorData():DirectCommunicator {
-			return communicatorData as DirectCommunicator;
-		}
-		override protected function onSend():void {
-			var message:ChatMessage = new ChatMessage(directCommunicatorData.participant.escaped);
-			message.type = Message.TYPE_CHAT;
-			message.from = chatModel.currentUser.jid.escaped;
-			message.body = writableView.input.text;
-			var iCommunicator:DirectCommunicator = chatModel.provider.getCommunicator(message) as DirectCommunicator;
-			iCommunicator.sendMessage(message);
-			writableView.input.text = "";
-		}
+	override protected function sendMessage():void
+	{
+		var message:ChatMessage = new ChatMessage(directCommunicatorData.participant.escaped);
+
+		message.type = Message.TYPE_CHAT;
+		message.from = chatModel.currentUser.jid.escaped;
+		message.body = writableView.messageInput.text;
+
+		var iCommunicator:DirectCommunicator = chatModel.provider.getCommunicator(message) as DirectCommunicator;
+
+		iCommunicator.sendMessage(message);
+
+		writableView.messageInput.text = null;
 	}
+
+	protected function get directCommunicatorData():DirectCommunicator
+	{
+		return communicatorData as DirectCommunicator;
+	}
+
+	override protected function get communicatorView():ICommunicatorView
+	{
+		return view;
+	}
+}
 }

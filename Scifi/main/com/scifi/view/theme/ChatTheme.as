@@ -28,6 +28,8 @@ import com.scifi.view.chat.ChatView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
+import feathers.controls.TabBar;
+
 import feathers.display.Scale9Image;
 
 import feathers.layout.AnchorLayout;
@@ -50,6 +52,15 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
 		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
+
+		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
+	}
+
+	private function setChatViewCommunicatorsTabsStyles(tabs:TabBar):void
+	{
+		setTabBarStyles(tabs);
+
+		tabs.horizontalAlign = TabBar.HORIZONTAL_ALIGN_CENTER;
 	}
 
 	private function setGameViewStyles(view:GameView):void
@@ -61,7 +72,7 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 		var chatView:AnchorLayoutData = new AnchorLayoutData();
 
 		chatView.percentWidth = 100;
-		chatView.bottom = 0;
+		chatView.percentHeight = 100;
 
 		view.chatView.layoutData = chatView;
 	}
@@ -76,7 +87,7 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 		containerView.bottomAnchorDisplayObject = view.tabsView;
 		containerView.bottom = 0;
 
-//		view.containerView.layoutData = containerView;
+		view.containerView.layoutData = containerView;
 
 		var tabsView:AnchorLayoutData = new AnchorLayoutData();
 

@@ -9,13 +9,19 @@ import feathers.skins.IStyleProvider;
 
 import model.communicators.ICommunicator;
 
+import org.as3commons.logging.api.ILogger;
+
+import org.as3commons.logging.api.getLogger;
+
 import starling.display.DisplayObject;
 
 import com.scifi.view.utils.SimpleViewFactory;
 
 public class CommunicatorContainerView extends LayoutGroup
 {
-	private var _communicatorFactory	:SimpleViewFactory		 = new SimpleViewFactory();
+	private static const log			:ILogger 				= getLogger(CommunicatorContainerView);
+
+	private var _communicatorFactory	:SimpleViewFactory		= new SimpleViewFactory();
 
 	private var _communicatorView		:ICommunicatorView;
 	private var _communicatorProvider	:ICommunicator;

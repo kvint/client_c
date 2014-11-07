@@ -57,12 +57,12 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
+		/*var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
 		for (var idx:int = 0; idx < iCommunicators.length; idx++)
-			addTab(iCommunicators[idx]);
+			addTab(iCommunicators[idx]);*/
 
-//		for (var idx:int = 0; idx < 10; idx++)
-//			view.dataProvider.addItem(new DefaultCommunicator());
+		for (var idx:int = 0; idx < 2; idx++)
+			view.dataProvider.addItem(new DefaultCommunicator());
 	}
 
 	private function addTab(provider:ICommunicator):void

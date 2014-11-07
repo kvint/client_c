@@ -79,7 +79,7 @@ public class App extends Sprite
 
 		_starling = new Starling(StarlingStageView, stage);
 
-		Starling.current.showStats = true;
+//		Starling.current.showStats = true;
 
 		CONFIG::debug //uncomment in case of errors
 		{

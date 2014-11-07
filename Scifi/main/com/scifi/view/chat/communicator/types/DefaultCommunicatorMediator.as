@@ -16,22 +16,22 @@ import com.scifi.view.chat.communicator.*;
 
 		override public function initializeComplete():void {
 			super.initializeComplete();
-			view.provider.subscribe(onViewDataChanged);
+			communicatorView.provider.subscribe(onViewDataChanged);
 		}
 
 		protected function onViewDataChanged():void {
 
 		}
 		protected function get communicatorData():ICommunicator {
-			return view.provider.data as ICommunicator;
+			return communicatorView.provider.data as ICommunicator;
 		}
 
-		protected function get view():ICommunicatorView {
+		protected function get communicatorView():ICommunicatorView {
 			return viewComponent as ICommunicatorView;
 		}
 
 		override public function destroy():void {
-			view.provider.unsubscribe(onViewDataChanged);
+			communicatorView.provider.unsubscribe(onViewDataChanged);
 			super.destroy();
 		}
 	}
