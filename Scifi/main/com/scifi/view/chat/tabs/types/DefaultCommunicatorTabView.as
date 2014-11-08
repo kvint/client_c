@@ -19,12 +19,13 @@ public class DefaultCommunicatorTabView extends ToggleButton implements ICommuni
 
 	override protected function get defaultStyleProvider():IStyleProvider
 	{
-	    return globalStyleProvider;
+		return globalStyleProvider;
 	}
 
 	public function get provider():IViewDataProvider
 	{
 		return _provider;
 	}
+
 }
 }

@@ -38,6 +38,7 @@ import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
 import feathers.controls.ButtonGroup;
+import feathers.controls.Label;
 import feathers.controls.List;
 import feathers.controls.TabBar;
 import feathers.display.Scale9Image;
@@ -54,6 +55,7 @@ import flash.text.engine.FontWeight;
 import flash.text.engine.RenderingMode;
 
 import starling.core.Starling;
+import starling.display.Quad;
 
 public class ChatTheme extends MetalWorksDesktopTheme
 {
@@ -91,6 +93,21 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
+		getStyleProviderForClass(Label).setFunctionForStyleName(DirectCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
+		getStyleProviderForClass(Label).setFunctionForStyleName(DirectCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
+	}
+
+	private function setCommunicatorTabCountLabelStyles(label:Label):void
+	{
+		setLabelStyles(label);
+
+		label.backgroundSkin = new Scale9Image(UIUtils.getScale9RectTexture(6, 6, 0x222222));
+		label.padding = extraSmallGutterSize;
+	}
+
+	private function setCommunicatorTabNameLabelStyles(label:Label):void
+	{
+		setLabelStyles(label);
 	}
 
 	private function setDefaultCommunicatorStyles(view:DefaultCommunicatorView):void
