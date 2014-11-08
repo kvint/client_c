@@ -20,6 +20,8 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 	override public function initializeComplete():void
 	{
 		super.initializeComplete();
+
+		historyView.eventsList.dataProvider = new ListCollection();
 		historyView.eventsList.isSelectable = false;
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ChatMessage):String
 		{
@@ -33,7 +35,9 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		};
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onMessageAdded);
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onMessageUpdated);
+
 		initHistory();
+		scrollToEnd();
 	}
 
 	protected function initHistory():void
@@ -44,7 +48,13 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 			var message:ChatMessage = history[i];
 			markMessageAsReceived(message);
 		}
-		historyView.eventsList.dataProvider = new ListCollection(history);
+		historyView.eventsList.dataProvider.data = history;
+	}
+
+	protected function scrollToEnd():void
+	{
+		historyView.eventsList.validate();
+		historyView.eventsList.verticalScrollPosition = historyView.eventsList.maxVerticalScrollPosition;
 	}
 
 	private function onMessageUpdated(event:CommunicatorEvent):void
@@ -58,6 +68,7 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		var message:ChatMessage = event.data as ChatMessage;
 		markMessageAsReceived(message);
 		addToHistory(message);
+		scrollToEnd();
 	}
 
 	protected function markMessageAsReceived(message:ChatMessage):void
