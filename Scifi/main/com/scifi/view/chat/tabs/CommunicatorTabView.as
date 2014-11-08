@@ -8,19 +8,14 @@ import feathers.controls.ToggleButton;
 import utils.providers.IViewDataProvider;
 import utils.providers.ViewDataProvider;
 
-public class CommunicatorTabView extends ToggleButton
+public class CommunicatorTabView extends ToggleButton implements ICommunicatorTabView
 {
-
 	private var _provider:IViewDataProvider = new ViewDataProvider();
-
-	public function CommunicatorTabView()
-	{
-		super();
-	}
 
 	public function get provider():IViewDataProvider
 	{
 		return _provider;
 	}
+
 }
 }

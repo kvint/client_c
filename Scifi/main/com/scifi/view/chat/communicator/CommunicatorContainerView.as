@@ -86,10 +86,7 @@ public class CommunicatorContainerView extends LayoutGroup
 		}
 
 		if (communicatorView)
-		{
 			addChild(communicatorView as DisplayObject);
-			communicatorView
-		}
 	}
 
 	protected function layoutContent():void

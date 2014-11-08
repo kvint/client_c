@@ -31,11 +31,13 @@ import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
 import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
 import com.scifi.view.chat.roster.RosterView;
+import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
+import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
+import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
 import feathers.controls.ButtonGroup;
-
 import feathers.controls.List;
 import feathers.controls.TabBar;
 import feathers.display.Scale9Image;
@@ -44,15 +46,34 @@ import feathers.layout.AnchorLayoutData;
 import feathers.layout.VerticalLayout;
 import feathers.themes.MetalWorksDesktopTheme;
 
+import flash.text.engine.CFFHinting;
+import flash.text.engine.FontDescription;
+import flash.text.engine.FontLookup;
+import flash.text.engine.FontPosture;
+import flash.text.engine.FontWeight;
+import flash.text.engine.RenderingMode;
+
 import starling.core.Starling;
 
 public class ChatTheme extends MetalWorksDesktopTheme
 {
+	[Embed(source="assets/Play-Regular.ttf", fontFamily="Play", fontWeight="normal", mimeType="application/x-font", embedAsCFF="true")]
+	public static var FONT_PLAY_REGULAR:Class;
+
+	public static const CUSTOM_FONT_NAME:String = "Play";
 
 	override protected function initializeStage():void
 	{
 		Starling.current.stage.color = 0x000000;
 		Starling.current.nativeStage.color = 0x000000;
+	}
+
+	override protected function initializeFonts():void
+	{
+		super.initializeFonts();
+
+		regularFontDescription = new FontDescription(CUSTOM_FONT_NAME, FontWeight.NORMAL, FontPosture.NORMAL, FontLookup.EMBEDDED_CFF, RenderingMode.CFF, CFFHinting.NONE);
+		boldFontDescription = new FontDescription(CUSTOM_FONT_NAME, FontWeight.BOLD, FontPosture.NORMAL, FontLookup.EMBEDDED_CFF, RenderingMode.CFF, CFFHinting.NONE);
 	}
 
 	override protected function initializeStyleProviders():void
@@ -66,6 +87,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(HistoryCommunicatorView).defaultStyleFunction = setHistoryCommunicatorStyles;
 		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
 		getStyleProviderForClass(DirectCommunicatorView).defaultStyleFunction = setDirectCommunicatorStyles;
+		getStyleProviderForClass(DirectCommunicatorTabView).defaultStyleFunction = setDirectCommunicatorTabStyles;
 
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
@@ -114,9 +136,24 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		setWritableCommunicatorStyles(view);
 	}
 
+	private function setDefaultCommunicatorTabStyles(view:DefaultCommunicatorTabView):void
+	{
+		setButtonStyles(view);
+	}
+
+	private function setDirectCommunicatorTabStyles(view:DirectCommunicatorTabView):void
+	{
+		setDefaultCommunicatorTabStyles(view);
+	}
+
 	private function setChatViewCommunicatorsTabsStyles(tabs:TabBar):void
 	{
 		setTabBarStyles(tabs);
+
+		tabs.tabFactory = function ():CommunicatorTabContainerView
+		{
+			return new CommunicatorTabContainerView();
+		};
 
 		tabs.horizontalAlign = TabBar.HORIZONTAL_ALIGN_CENTER;
 	}

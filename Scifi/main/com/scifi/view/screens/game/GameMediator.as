@@ -49,7 +49,8 @@ public class GameMediator extends FeathersMediator {
 			{ label: "external", triggered: a1 },
 			{ label: "bob", triggered: a2 },
 			{ label: "joe", triggered: a3 },
-			{ label: "history", triggered: a4 }
+			{ label: "azik", triggered: a4 },
+			{ label: "history", triggered: a5 }
 		]);
 
 		view.loginButtons.dataProvider = collection;
@@ -65,6 +66,9 @@ public class GameMediator extends FeathersMediator {
 		chat.controller.connect("joe", "2gret37nidro");
 	}
 	private function a4():void {
+		chat.controller.connect("azik", "xf3z54dlc");
+	}
+	private function a5():void {
 		chat.controller.test();
 	}
 

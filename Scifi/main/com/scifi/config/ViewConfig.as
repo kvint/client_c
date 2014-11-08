@@ -10,10 +10,10 @@ import com.scifi.view.chat.communicator.types.DirectCommunicatorMediator;
 import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
 import com.scifi.view.chat.roster.RosterMediator;
 import com.scifi.view.chat.roster.RosterView;
-import com.scifi.view.chat.tabs.CommunicatorTabMediator;
-import com.scifi.view.chat.tabs.CommunicatorTabView;
 import com.scifi.view.chat.tabs.CommunicatorsTabsMediator;
 import com.scifi.view.chat.tabs.CommunicatorsTabsView;
+import com.scifi.view.chat.tabs.types.DirectCommunicatorTabMediator;
+import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 import com.scifi.view.screens.game.GameMediator;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.starling.StarlingStageMediator;
@@ -44,8 +44,8 @@ public class ViewConfig implements IConfig
 
 		mediatorMap.map(ChatView).toMediator(ChatMediator);
 		mediatorMap.map(CommunicatorsTabsView).toMediator(CommunicatorsTabsMediator);
-		mediatorMap.map(CommunicatorTabView).toMediator(CommunicatorTabMediator);
 		mediatorMap.map(DirectCommunicatorView).toMediator(DirectCommunicatorMediator);
+		mediatorMap.map(DirectCommunicatorTabView).toMediator(DirectCommunicatorTabMediator);
 		mediatorMap.map(RosterView).toMediator(RosterMediator);
 	}
 
