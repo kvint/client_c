@@ -24,6 +24,11 @@ public class CommunicatorTabContainerView extends ToggleButton
 	private var _tabView:ICommunicatorView;
 	private var _viewFactoryClass:Class;
 
+	public function CommunicatorTabContainerView()
+	{
+		isQuickHitAreaEnabled = false;
+	}
+
 	override protected function draw():void
 	{
 		super.draw();
