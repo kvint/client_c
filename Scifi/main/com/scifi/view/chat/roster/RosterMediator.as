@@ -38,7 +38,7 @@ package com.scifi.view.chat.roster {
 			super.initializeComplete();
 			_view = viewComponent as RosterView;
 			_view.list.itemRendererProperties.labelFunction = function(data:RosterItemVO):String {
-				return data.nickname;
+				return data.jid.node;
 			}
 			_view.list.addEventListener(Event.CHANGE, listChangeHandler);
 			chatModel.addEventListener(RosterEvent.ROSTER_LOADED, onRosterLoaded);
