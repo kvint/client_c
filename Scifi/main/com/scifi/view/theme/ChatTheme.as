@@ -22,23 +22,29 @@
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.scifi.view.theme {
+package com.scifi.view.theme
+{
 
 import com.scifi.view.chat.ChatView;
+import com.scifi.view.chat.communicator.types.DefaultCommunicatorView;
+import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
+import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
+import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
+import feathers.controls.List;
 import feathers.controls.TabBar;
-
 import feathers.display.Scale9Image;
-
 import feathers.layout.AnchorLayout;
 import feathers.layout.AnchorLayoutData;
+import feathers.layout.VerticalLayout;
 import feathers.themes.MetalWorksDesktopTheme;
 
 import starling.core.Starling;
 
-public class ChatTheme extends MetalWorksDesktopTheme {
+public class ChatTheme extends MetalWorksDesktopTheme
+{
 
 	override protected function initializeStage():void
 	{
@@ -53,7 +59,54 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
 		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
 
+		getStyleProviderForClass(HistoryCommunicatorView).defaultStyleFunction = setHistoryCommunicatorStyles;
+		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
+		getStyleProviderForClass(DirectCommunicatorView).defaultStyleFunction = setDirectCommunicatorStyles;
+
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
+		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
+	}
+
+	private function setDefaultCommunicatorStyles(view:DefaultCommunicatorView):void
+	{
+		view.layout = new AnchorLayout();
+	}
+
+	private function setHistoryCommunicatorStyles(view:HistoryCommunicatorView):void
+	{
+		setDefaultCommunicatorStyles(view);
+
+		var eventsList:AnchorLayoutData = new AnchorLayoutData();
+
+		eventsList.percentWidth = 100;
+		eventsList.percentHeight = 100;
+
+		view.eventsList.layoutData = eventsList;
+	}
+
+	private function setWritableCommunicatorStyles(view:WritableCommunicatorView):void
+	{
+		setDefaultCommunicatorStyles(view);
+
+		var eventsList:AnchorLayoutData = new AnchorLayoutData();
+
+		eventsList.percentWidth = 100;
+		eventsList.bottomAnchorDisplayObject = view.messageInput;
+		eventsList.bottom = 0;
+
+		view.eventsList.layoutData = eventsList;
+
+		var messageInput:AnchorLayoutData = new AnchorLayoutData();
+
+		messageInput.percentWidth = 100;
+		messageInput.bottom = 0;
+
+		view.messageInput.layoutData = messageInput;
+	}
+
+	private function setDirectCommunicatorStyles(view:DirectCommunicatorView):void
+	{
+		setWritableCommunicatorStyles(view);
 	}
 
 	private function setChatViewCommunicatorsTabsStyles(tabs:TabBar):void
@@ -61,6 +114,19 @@ public class ChatTheme extends MetalWorksDesktopTheme {
 		setTabBarStyles(tabs);
 
 		tabs.horizontalAlign = TabBar.HORIZONTAL_ALIGN_CENTER;
+	}
+
+	private function setCommunicatorsEventsListStyles(list:List):void
+	{
+		setListStyles(list);
+
+		const layout:VerticalLayout = new VerticalLayout();
+
+		layout.hasVariableItemDimensions = true;
+		layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+		layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_BOTTOM;
+
+		list.layout = layout;
 	}
 
 	private function setGameViewStyles(view:GameView):void

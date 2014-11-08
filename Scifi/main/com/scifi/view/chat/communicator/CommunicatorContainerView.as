@@ -80,7 +80,10 @@ public class CommunicatorContainerView extends LayoutGroup
 			communicatorView.removeFromParent();
 
 		if (communicatorProvider)
+		{
 			_communicatorView = communicatorFactory.createView(communicatorProvider.type) as ICommunicatorView;
+			communicatorView.provider.data = communicatorProvider;
+		}
 
 		if (communicatorView)
 		{

@@ -26,9 +26,6 @@ public class ChatMediator extends FeathersMediator
 	override public function initializeComplete():void
 	{
 		view.containerView.communicatorFactory.setViewClass(DirectCommunicatorView, CommunicatorType.DIRECT);
-		view.containerView.communicatorFactory.setViewClass(HistoryCommunicatorView, CommunicatorType.DIRECT);
-		view.containerView.communicatorFactory.setViewClass(DefaultCommunicatorView, CommunicatorType.TEAM);
-		view.containerView.communicatorFactory.setViewClass(DefaultCommunicatorView, CommunicatorType.GLOBAL);
 
 		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_onCommunicatorActivated)
 	}

@@ -7,8 +7,6 @@ import events.ChatModelEvent;
 
 import feathers.data.ListCollection;
 
-import model.communicators.DefaultCommunicator;
-
 import model.communicators.ICommunicator;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
@@ -57,12 +55,9 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		/*var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
+		var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
 		for (var idx:int = 0; idx < iCommunicators.length; idx++)
-			addTab(iCommunicators[idx]);*/
-
-		for (var idx:int = 0; idx < 2; idx++)
-			view.dataProvider.addItem(new DefaultCommunicator());
+			addTab(iCommunicators[idx]);
 	}
 
 	private function addTab(provider:ICommunicator):void
@@ -73,7 +68,7 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 	private function view_onChange():void
 	{
 		var communicator:ICommunicator = view.selectedItem as ICommunicator;
-		communicator.activate();
+		chat.controller.activateCommunicator(communicator);
 	}
 
 	private function model_handleEvent(event:ChatModelEvent):void
@@ -84,14 +79,8 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 				addTab(event.data as ICommunicator);
 				break;
 			case ChatModelEvent.COMMUNICATOR_ACTIVATED:
-				for (var idx:int = 0; idx < view.dataProvider.length; idx++)
-				{
-					var provider:ICommunicator = view.dataProvider.getItemAt(idx) as ICommunicator;
-					;
-
-					if (event.data == provider)
-						view.selectedIndex = idx;
-				}
+				var index:int = view.dataProvider.getItemIndex(event.data);
+				view.selectedIndex = index;
 				break;
 		}
 	}

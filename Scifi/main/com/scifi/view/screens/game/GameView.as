@@ -33,7 +33,7 @@ package com.scifi.view.screens.game {
 	{
 		addChild(chatView);
 		addChild(actionsButtons);
-		addChild(rosterView);
+//		addChild(rosterView);
 	}
 
 	public function get rosterView():RosterView {

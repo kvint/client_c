@@ -3,28 +3,29 @@
  */
 package com.scifi.view.chat.communicator.types
 {
-import feathers.controls.List;
 import feathers.controls.TextInput;
+import feathers.skins.IStyleProvider;
 
 public class WritableCommunicatorView extends HistoryCommunicatorView
 {
-	private var _eventsList:List = new List();
 	private var _messageInput:TextInput = new TextInput();
+
+	public static var globalStyleProvider:IStyleProvider;
+
+	override protected function get defaultStyleProvider():IStyleProvider
+	{
+	    return globalStyleProvider;
+	}
 
 	override protected function initialize():void
 	{
-		addChild(eventsList);
+		super.initialize();
 		addChild(messageInput);
 	}
 
 	public function get messageInput():TextInput
 	{
 		return _messageInput;
-	}
-
-	public function get eventsList():List
-	{
-		return _eventsList;
 	}
 }
 }
