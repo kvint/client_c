@@ -39,6 +39,9 @@ public class CommunicatorTabContainerView extends ToggleButton
 		var sizeInvalid:Boolean = isInvalid(INVALIDATION_FLAG_SIZE);
 		var layoutInvalid:Boolean = isInvalid(INVALIDATION_FLAG_LAYOUT);
 
+		if (stateInvalid)
+			log.debug(isSelected);
+
 		if (dataInvalid)
 			updateTabView();
 
