@@ -5,6 +5,10 @@ package com.scifi.view.chat.communicator.types
 {
 import feathers.events.FeathersEventType;
 
+import org.as3commons.lang.StringUtils;
+
+import org.as3commons.lang.StringUtils;
+
 public class WritableCommunicatorMediator extends HistoryCommunicatorMediator
 {
 	override public function initializeComplete():void
@@ -16,6 +20,11 @@ public class WritableCommunicatorMediator extends HistoryCommunicatorMediator
 
 	private function messageInput_onEnter():void
 	{
+		var body:String = StringUtils.trim(writableView.messageInput.text);
+
+		if (!body || body == "")
+			return;
+
 		sendMessage();
 	}
 

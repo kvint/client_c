@@ -52,7 +52,7 @@ public class GameMediator extends FeathersMediator {
 			{ label: "history", triggered: a4 }
 		]);
 
-		view.actionsButtons.dataProvider = collection;
+		view.loginButtons.dataProvider = collection;
 	}
 
 	private function a1():void {

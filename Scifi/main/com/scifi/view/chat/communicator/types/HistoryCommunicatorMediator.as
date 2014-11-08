@@ -20,6 +20,7 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 	override public function initializeComplete():void
 	{
 		super.initializeComplete();
+		historyView.eventsList.isSelectable = false;
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ChatMessage):String
 		{
 			var str:String = "";

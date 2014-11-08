@@ -30,8 +30,11 @@ import com.scifi.view.chat.communicator.types.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
 import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
+import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
+
+import feathers.controls.ButtonGroup;
 
 import feathers.controls.List;
 import feathers.controls.TabBar;
@@ -58,6 +61,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
 		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
+		getStyleProviderForClass(RosterView).defaultStyleFunction = setRosterViewStyles;
 
 		getStyleProviderForClass(HistoryCommunicatorView).defaultStyleFunction = setHistoryCommunicatorStyles;
 		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
@@ -90,6 +94,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		var eventsList:AnchorLayoutData = new AnchorLayoutData();
 
+		eventsList.top = 0;
 		eventsList.percentWidth = 100;
 		eventsList.bottomAnchorDisplayObject = view.messageInput;
 		eventsList.bottom = 0;
@@ -135,10 +140,32 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		view.layout = new AnchorLayout();
 
+		var loginButtons:AnchorLayoutData = new AnchorLayoutData();
+
+		loginButtons.percentWidth = 100;
+
+		view.loginButtons.layoutData = loginButtons;
+
+		view.loginButtons.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+
+		var rosterView:AnchorLayoutData = new AnchorLayoutData();
+
+		rosterView.topAnchorDisplayObject = view.loginButtons;
+		rosterView.top = 0;
+		rosterView.right = 0;
+
+		view.rosterView.layoutData = rosterView;
+
+		view.rosterView.width = 100;
+
 		var chatView:AnchorLayoutData = new AnchorLayoutData();
 
-		chatView.percentWidth = 100;
-		chatView.percentHeight = 100;
+		chatView.left = 0;
+		chatView.topAnchorDisplayObject = view.loginButtons;
+		chatView.top = 0;
+		chatView.rightAnchorDisplayObject = view.rosterView;
+		chatView.right = 0;
+		chatView.bottom = 0;
 
 		view.chatView.layoutData = chatView;
 	}
@@ -149,6 +176,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		var containerView:AnchorLayoutData = new AnchorLayoutData();
 
+		containerView.top = 0;
 		containerView.percentWidth = 100;
 		containerView.bottomAnchorDisplayObject = view.tabsView;
 		containerView.bottom = 0;
@@ -161,6 +189,17 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		tabsView.bottom = 0;
 
 		view.tabsView.layoutData = tabsView;
+	}
+
+	private function setRosterViewStyles(view:RosterView):void
+	{
+		view.layout = new AnchorLayout();
+
+		var list:AnchorLayoutData = new AnchorLayoutData();
+
+		list.percentWidth = 100;
+
+		view.list.layoutData = list;
 	}
 
 }

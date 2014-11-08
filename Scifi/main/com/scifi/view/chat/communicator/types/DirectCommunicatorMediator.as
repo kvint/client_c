@@ -28,6 +28,7 @@ public class DirectCommunicatorMediator extends WritableCommunicatorMediator
 		iCommunicator.sendMessage(message);
 
 		writableView.messageInput.text = "";
+		writableView.messageInput.selectRange(0, 0);
 	}
 
 	protected function get directCommunicatorData():DirectCommunicator
