@@ -6,6 +6,8 @@ package {
 
 	import model.communicators.CommunicatorProvider;
 
+	import org.igniterealtime.xiff.core.AbstractJID;
+
 	import org.igniterealtime.xiff.core.UnescapedJID;
 
 	import org.igniterealtime.xiff.data.IQ;
@@ -17,9 +19,8 @@ package {
 
 	public class Test extends Sprite {
 		public function Test() {
-			var sett:Set = new Set();
-			sett.max = 100;
-			trace(sett);
+			var jid:AbstractJID = new AbstractJID("azik");
+			jid;
 		}
 	}
 }
