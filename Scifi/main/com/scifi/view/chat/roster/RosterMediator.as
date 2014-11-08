@@ -7,12 +7,14 @@ package com.scifi.view.chat.roster {
 	import events.ChatModelEvent;
 
 	import feathers.controls.List;
+	import feathers.controls.renderers.DefaultListItemRenderer;
 	import feathers.data.ListCollection;
 
 	import model.ChatModel;
 	import model.communicators.ICommunicator;
 
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.im.RosterItem;
 
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
 
@@ -35,6 +37,9 @@ package com.scifi.view.chat.roster {
 		override public function initializeComplete():void {
 			super.initializeComplete();
 			_view = viewComponent as RosterView;
+			_view.list.itemRendererProperties.labelFunction = function(data:RosterItemVO):String {
+				return data.nickname;
+			}
 			_view.list.addEventListener(Event.CHANGE, listChangeHandler);
 			chatModel.addEventListener(RosterEvent.ROSTER_LOADED, onRosterLoaded);
 			displayRoster();

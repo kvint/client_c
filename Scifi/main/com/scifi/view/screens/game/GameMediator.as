@@ -46,7 +46,7 @@ public class GameMediator extends FeathersMediator {
 	private function setActions():void
 	{
 		var collection:ListCollection = new ListCollection([
-			{ label: "external", triggered: a1 },
+			{ label: "azik", triggered: a1 },
 			{ label: "bob", triggered: a2 },
 			{ label: "joe", triggered: a3 },
 			{ label: "azik", triggered: a4 },
@@ -57,7 +57,7 @@ public class GameMediator extends FeathersMediator {
 	}
 
 	private function a1():void {
-		chat.controller.connect("external", "2gret37nidro");
+		chat.controller.connect("azik", "xf3z54dlc");
 	}
 	private function a2():void {
 		chat.controller.connect("bob", "2gret37nidro");

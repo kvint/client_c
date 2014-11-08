@@ -3,7 +3,9 @@
  */
 package com.scifi.view.chat.tabs.types
 {
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+	import model.communicators.ICommunicator;
+
+	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
 public class DirectCommunicatorTabMediator extends FeathersMediator
 {
@@ -14,7 +16,8 @@ public class DirectCommunicatorTabMediator extends FeathersMediator
 	{
 		super.initializeComplete();
 
-		view.label = "AWD";
+		var iCommunicator:ICommunicator = view.provider.data as ICommunicator;
+		view.label = iCommunicator.label;
 	}
 
 	override public function destroy():void
