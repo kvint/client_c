@@ -58,6 +58,7 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 			case CommunicatorType.DIRECT:
 				factory = DirectCommunicatorTabView;
 				break;
+			case CommunicatorType.MUC:
 			default :
 				factory = DefaultCommunicatorTabView;
 				break;

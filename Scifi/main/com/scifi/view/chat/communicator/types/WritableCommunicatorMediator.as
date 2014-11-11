@@ -25,6 +25,7 @@ package com.scifi.view.chat.communicator.types {
 			commandsMap["/trace"] = CommunicatorCommandEvent.TRACE;
 			commandsMap["/clear"] = CommunicatorCommandEvent.CLEAR;
 			commandsMap["/muc"] = CommunicatorCommandEvent.CREATE_ROOM;
+			commandsMap["/join"] = CommunicatorCommandEvent.JOIN_ROOM;
 			commandsMap["/help"] = function(...params):CommunicatorCommandEvent {
 				return new CommunicatorCommandEvent(CommunicatorCommandEvent.TRACE, communicatorData, DictionaryUtil.getKeys(commandsMap))
 			};
