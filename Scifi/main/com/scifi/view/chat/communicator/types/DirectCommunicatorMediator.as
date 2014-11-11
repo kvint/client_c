@@ -5,10 +5,9 @@ package com.scifi.view.chat.communicator.types
 {
 	import com.scifi.view.chat.communicator.ICommunicatorView;
 
-	import model.communicators.DirectCommunicator;
-	import model.data.ChatMessage;
+	import events.CMEvent;
 
-	import org.igniterealtime.xiff.data.Message;
+	import model.communicators.DirectCommunicator;
 
 	public class DirectCommunicatorMediator extends WritableCommunicatorMediator
 {
@@ -22,15 +21,9 @@ package com.scifi.view.chat.communicator.types
 	}
 
 	override protected function sendMessage():void {
-		var message:ChatMessage = new ChatMessage(directCommunicatorData.participant.escaped);
 
-		message.type = Message.TYPE_CHAT;
-		message.from = chatModel.currentUser.jid.escaped;
-		message.body = writableView.messageInput.text;
+		dispatch(new CMEvent(CMEvent.MESSAGE, directCommunicatorData, [writableView.messageInput.text]));
 
-		var iCommunicator:DirectCommunicator = chatModel.provider.getCommunicator(message) as DirectCommunicator;
-
-		iCommunicator.sendMessage(message);
 		resetInput();
 	}
 
