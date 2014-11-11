@@ -5,8 +5,6 @@ package com.scifi.view.chat.communicator.types
 {
 	import com.scifi.view.chat.communicator.ICommunicatorView;
 
-	import controller.commands.AddCMCommand;
-
 	import model.communicators.DirectCommunicator;
 	import model.data.ChatMessage;
 
@@ -20,7 +18,7 @@ package com.scifi.view.chat.communicator.types
 
 	override public function initializeComplete():void {
 		super.initializeComplete();
-		commandMap["/add"] = AddCMCommand;
+		//commandMap["/add"] = AddCMCommand;
 	}
 
 	override protected function sendMessage():void {
