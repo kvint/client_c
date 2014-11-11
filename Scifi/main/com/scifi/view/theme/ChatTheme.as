@@ -29,12 +29,11 @@ import com.scifi.view.chat.ChatView;
 import com.scifi.view.chat.communicator.types.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
-	import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
-	import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
+import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
+import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
-import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
@@ -56,7 +55,6 @@ import flash.text.engine.FontWeight;
 import flash.text.engine.RenderingMode;
 
 import starling.core.Starling;
-import starling.display.Quad;
 
 public class ChatTheme extends MetalWorksDesktopTheme
 {
@@ -90,7 +88,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(HistoryCommunicatorView).defaultStyleFunction = setHistoryCommunicatorStyles;
 		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
 		getStyleProviderForClass(DirectCommunicatorView).defaultStyleFunction = setDirectCommunicatorStyles;
-//		getStyleProviderForClass(DirectCommunicatorTabView).defaultStyleFunction = setDirectCommunicatorTabStyles;
+		getStyleProviderForClass(DefaultCommunicatorTabView).defaultStyleFunction = setDefaultCommunicatorTabStyles;
 		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
 
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
@@ -162,11 +160,6 @@ public class ChatTheme extends MetalWorksDesktopTheme
 	private function setDefaultCommunicatorTabStyles(view:DefaultCommunicatorTabView):void
 	{
 		setButtonStyles(view);
-	}
-
-	private function setDirectCommunicatorTabStyles(view:DirectCommunicatorTabView):void
-	{
-		setDefaultCommunicatorTabStyles(view);
 	}
 
 	private function setChatViewCommunicatorsTabsStyles(tabs:TabBar):void
