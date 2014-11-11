@@ -4,7 +4,7 @@
 package com.scifi.view.chat.communicator.types {
 	import com.adobe.utils.DictionaryUtil;
 
-	import events.CMEvent;
+	import events.CommunicatorCommandEvent;
 
 	import feathers.events.FeathersEventType;
 
@@ -22,11 +22,11 @@ package com.scifi.view.chat.communicator.types {
 		override public function initializeComplete():void {
 			super.initializeComplete();
 
-			commandsMap["/trace"] = CMEvent.TRACE;
-			commandsMap["/clear"] = CMEvent.CLEAR;
-			commandsMap["/muc"] = CMEvent.CREATE_ROOM;
-			commandsMap["/help"] = function(...params):CMEvent {
-				return new CMEvent(CMEvent.TRACE, communicatorData, DictionaryUtil.getKeys(commandsMap))
+			commandsMap["/trace"] = CommunicatorCommandEvent.TRACE;
+			commandsMap["/clear"] = CommunicatorCommandEvent.CLEAR;
+			commandsMap["/muc"] = CommunicatorCommandEvent.CREATE_ROOM;
+			commandsMap["/help"] = function(...params):CommunicatorCommandEvent {
+				return new CommunicatorCommandEvent(CommunicatorCommandEvent.TRACE, communicatorData, DictionaryUtil.getKeys(commandsMap))
 			};
 
 			mapStarlingEvent(writableView.messageInput, FeathersEventType.ENTER, messageInput_onEnter);
@@ -59,7 +59,7 @@ package com.scifi.view.chat.communicator.types {
 					if(eventObj is Function){
 						dispatch(eventObj(params));
 					}else if (eventObj is String){
-						dispatch(new CMEvent(eventObj, communicatorData, params));
+						dispatch(new CommunicatorCommandEvent(eventObj, communicatorData, params));
 					}else{
 						success = false;
 					}

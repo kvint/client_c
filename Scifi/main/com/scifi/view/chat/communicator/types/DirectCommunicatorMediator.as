@@ -5,7 +5,7 @@ package com.scifi.view.chat.communicator.types
 {
 	import com.scifi.view.chat.communicator.ICommunicatorView;
 
-	import events.CMEvent;
+	import events.CommunicatorCommandEvent;
 
 	import model.communicators.DirectCommunicator;
 
@@ -22,7 +22,7 @@ package com.scifi.view.chat.communicator.types
 
 	override protected function sendMessage():void {
 
-		dispatch(new CMEvent(CMEvent.MESSAGE, directCommunicatorData, [writableView.messageInput.text]));
+		dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.PRIVATE_MESSAGE, directCommunicatorData, [writableView.messageInput.text]));
 
 		resetInput();
 	}
