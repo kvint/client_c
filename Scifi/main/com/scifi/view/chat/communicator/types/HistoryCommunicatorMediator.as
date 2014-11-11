@@ -36,9 +36,15 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 			}
 			return item.toString();
 		};
+		communicatorData.addEventListener(CommunicatorEvent.REPLACED, onCommunicatorReplaced);
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 
+		initHistory();
+		scrollToEnd();
+	}
+
+	private function onCommunicatorReplaced(event:CommunicatorEvent):void {
 		initHistory();
 		scrollToEnd();
 	}
@@ -48,8 +54,10 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		var history:Array = communicatorData.history.concat();
 		for (var i:int = 0; i < history.length; i++)
 		{
-			var message:ChatMessage = history[i];
-			markMessageAsReceived(message);
+			var message:ChatMessage = history[i] as ChatMessage;
+			if(message) {
+				markMessageAsReceived(message);
+			}
 		}
 		historyView.eventsList.dataProvider.data = history;
 	}
@@ -95,6 +103,7 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 	{
 		communicatorData.removeEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
 		communicatorData.removeEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
+		communicatorData.removeEventListener(CommunicatorEvent.REPLACED, onCommunicatorReplaced);
 		super.destroy();
 	}
 }

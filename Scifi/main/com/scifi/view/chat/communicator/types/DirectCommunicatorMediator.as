@@ -33,7 +33,6 @@ package com.scifi.view.chat.communicator.types
 		var iCommunicator:DirectCommunicator = chatModel.provider.getCommunicator(message) as DirectCommunicator;
 
 		iCommunicator.sendMessage(message);
-
 		resetInput();
 	}
 
