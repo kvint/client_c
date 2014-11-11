@@ -23,18 +23,21 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 
 		historyView.eventsList.dataProvider = new ListCollection();
 		historyView.eventsList.isSelectable = false;
-		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ChatMessage):String
+		historyView.eventsList.itemRendererProperties.labelFunction = function (item:Object):String
 		{
-			var str:String = "";
-			if (!item.read)
-			{
-				str += "! "
+			if(item is ChatMessage){
+				var str:String = "";
+				if (!item.read)
+				{
+					str += "! "
+				}
+				str += item.from.node + ": " + item.body;
+				return str;
 			}
-			str += item.from.node + ": " + item.body;
-			return str;
+			return item.toString();
 		};
-		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onMessageAdded);
-		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onMessageUpdated);
+		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
+		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 
 		initHistory();
 		scrollToEnd();
@@ -57,17 +60,19 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		historyView.eventsList.verticalScrollPosition = historyView.eventsList.maxVerticalScrollPosition;
 	}
 
-	private function onMessageUpdated(event:CommunicatorEvent):void
+	private function onItemUpdated(event:CommunicatorEvent):void
 	{
 		var itemIndex:int = historyView.eventsList.dataProvider.getItemIndex(event.data);
 		historyView.eventsList.dataProvider.updateItemAt(itemIndex);
 	}
 
-	protected function onMessageAdded(event:CommunicatorEvent):void
+	protected function onItemAdded(event:CommunicatorEvent):void
 	{
-		var message:ChatMessage = event.data as ChatMessage;
-		markMessageAsReceived(message);
-		addToHistory(message);
+		if(event.data is ChatMessage) {
+			var message:ChatMessage = event.data as ChatMessage;
+			markMessageAsReceived(message);
+		}
+		addItemToHistory(event.data);
 		scrollToEnd();
 	}
 
@@ -76,9 +81,9 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		communicatorData.markAsRead(message);
 	}
 
-	protected function addToHistory(message:Message):void
+	protected function addItemToHistory(item:Object):void
 	{
-		historyView.eventsList.dataProvider.addItem(message);
+		historyView.eventsList.dataProvider.addItem(item);
 	}
 
 	protected function get historyView():HistoryCommunicatorView
@@ -88,8 +93,8 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 
 	override public function destroy():void
 	{
-		communicatorData.removeEventListener(CommunicatorEvent.ITEM_ADDED, onMessageAdded);
-		communicatorData.removeEventListener(CommunicatorEvent.ITEM_UPDATED, onMessageUpdated);
+		communicatorData.removeEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
+		communicatorData.removeEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 		super.destroy();
 	}
 }

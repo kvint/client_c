@@ -3,20 +3,27 @@
  */
 package com.scifi.view.chat.communicator.types
 {
-import com.scifi.view.chat.communicator.ICommunicatorView;
+	import com.scifi.view.chat.communicator.ICommunicatorView;
 
-import model.communicators.DirectCommunicator;
-import model.data.ChatMessage;
+	import controller.commands.AddCMCommand;
 
-import org.igniterealtime.xiff.data.Message;
+	import model.communicators.DirectCommunicator;
+	import model.data.ChatMessage;
 
-public class DirectCommunicatorMediator extends WritableCommunicatorMediator
+	import org.igniterealtime.xiff.data.Message;
+
+	public class DirectCommunicatorMediator extends WritableCommunicatorMediator
 {
 	[Inject]
 	public var view:DirectCommunicatorView;
 
-	override protected function sendMessage():void
-	{
+
+	override public function initializeComplete():void {
+		super.initializeComplete();
+		commandMap["/add"] = AddCMCommand;
+	}
+
+	override protected function sendMessage():void {
 		var message:ChatMessage = new ChatMessage(directCommunicatorData.participant.escaped);
 
 		message.type = Message.TYPE_CHAT;
@@ -27,8 +34,7 @@ public class DirectCommunicatorMediator extends WritableCommunicatorMediator
 
 		iCommunicator.sendMessage(message);
 
-		writableView.messageInput.text = "";
-		writableView.messageInput.selectRange(0, 0);
+		resetInput();
 	}
 
 	protected function get directCommunicatorData():DirectCommunicator
