@@ -4,6 +4,8 @@
 package com.scifi.view.chat.communicator.types {
 	import com.scifi.view.chat.communicator.ICommunicatorView;
 
+	import events.CommunicatorCommandEvent;
+
 	import model.communicators.RoomCommunicator;
 
 	public class MUCCommunicatorMediator extends WritableCommunicatorMediator {
@@ -18,6 +20,9 @@ package com.scifi.view.chat.communicator.types {
 		}
 
 		override protected function sendMessage():void {
+
+			dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROOM_MESSAGE, roomCommunicatorData, [writableView.messageInput.text]));
+
 			resetInput();
 		}
 
