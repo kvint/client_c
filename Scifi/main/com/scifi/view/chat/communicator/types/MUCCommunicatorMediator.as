@@ -14,7 +14,7 @@ public class MUCCommunicatorMediator extends WritableCommunicatorMediator {
 
 		override public function initializeComplete():void {
 			super.initializeComplete();
-			//commandMap["/add"] = AddCMCommand;
+			commandsMap["/info"] = CommunicatorCommandEvent.ROOM_INFO;
 		}
 
 		override protected function sendMessage():void {

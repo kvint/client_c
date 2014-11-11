@@ -16,7 +16,7 @@ public class WritableCommunicatorMediator extends HistoryCommunicatorMediator {
 		private static const COMMAND_PATTERN:RegExp = /^\/\w+(\s|$)/ig;
 		private static const ARG_DELIMITER:RegExp = /\s+/;
 
-		private var commandsMap:Dictionary = new Dictionary();
+		protected var commandsMap:Dictionary = new Dictionary();
 
 		override public function initializeComplete():void {
 			super.initializeComplete();
