@@ -2,29 +2,22 @@
  * Created by AlexanderSla on 03.11.2014.
  */
 package com.scifi.view.chat.roster {
-	import controller.ChatController;
+import com.chat.controller.ChatController;
+import com.chat.events.ChatModelEvent;
+import com.chat.model.ChatModel;
+import com.chat.model.communicators.ICommunicator;
 
-	import events.ChatModelEvent;
+import feathers.controls.List;
+import feathers.data.ListCollection;
 
-	import feathers.controls.List;
-	import feathers.controls.renderers.DefaultListItemRenderer;
-	import feathers.data.ListCollection;
+import org.igniterealtime.xiff.data.im.RosterItemVO;
+import org.igniterealtime.xiff.events.RosterEvent;
 
-	import model.ChatModel;
-	import model.communicators.ICommunicator;
+import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-	import org.igniterealtime.xiff.core.UnescapedJID;
-	import org.igniterealtime.xiff.data.im.RosterItem;
+import starling.events.Event;
 
-	import org.igniterealtime.xiff.data.im.RosterItemVO;
-
-	import org.igniterealtime.xiff.events.RosterEvent;
-
-	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
-
-	import starling.events.Event;
-
-	public class RosterMediator extends FeathersMediator {
+public class RosterMediator extends FeathersMediator {
 
 		[Inject]
 		public var chatModel:ChatModel;

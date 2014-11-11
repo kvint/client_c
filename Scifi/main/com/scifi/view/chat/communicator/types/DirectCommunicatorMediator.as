@@ -3,13 +3,11 @@
  */
 package com.scifi.view.chat.communicator.types
 {
-	import com.scifi.view.chat.communicator.ICommunicatorView;
+import com.chat.events.CommunicatorCommandEvent;
+import com.chat.model.communicators.DirectCommunicator;
+import com.scifi.view.chat.communicator.ICommunicatorView;
 
-	import events.CommunicatorCommandEvent;
-
-	import model.communicators.DirectCommunicator;
-
-	public class DirectCommunicatorMediator extends WritableCommunicatorMediator
+public class DirectCommunicatorMediator extends WritableCommunicatorMediator
 {
 	[Inject]
 	public var view:DirectCommunicatorView;

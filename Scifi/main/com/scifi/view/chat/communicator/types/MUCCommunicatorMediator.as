@@ -2,13 +2,11 @@
  * Created by kvint on 11.11.14.
  */
 package com.scifi.view.chat.communicator.types {
-	import com.scifi.view.chat.communicator.ICommunicatorView;
+import com.chat.events.CommunicatorCommandEvent;
+import com.chat.model.communicators.RoomCommunicator;
+import com.scifi.view.chat.communicator.ICommunicatorView;
 
-	import events.CommunicatorCommandEvent;
-
-	import model.communicators.RoomCommunicator;
-
-	public class MUCCommunicatorMediator extends WritableCommunicatorMediator {
+public class MUCCommunicatorMediator extends WritableCommunicatorMediator {
 
 		[Inject]
 		public var view:MUCCommunicatorView;

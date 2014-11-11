@@ -3,13 +3,11 @@
  */
 package com.scifi.view.chat.communicator.types
 {
-import events.CommunicatorEvent;
+import com.chat.Chat;
+import com.chat.events.CommunicatorEvent;
+import com.chat.model.data.ChatMessage;
 
 import feathers.data.ListCollection;
-
-import model.data.ChatMessage;
-
-import org.igniterealtime.xiff.data.Message;
 
 public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 {

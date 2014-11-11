@@ -1,12 +1,12 @@
 package com.scifi {
 
+import com.chat.config.ChatConfig;
 import com.scifi.config.CommandsConfig;
 import com.scifi.config.MembershipConfig;
 import com.scifi.config.ViewConfig;
 
-	import config.ChatConfig;
+import flash.events.IEventDispatcher;
 
-	import flash.events.IEventDispatcher;
 import robotlegs.bender.framework.api.IConfig;
 import robotlegs.bender.framework.api.IContext;
 import robotlegs.bender.framework.api.IInjector;

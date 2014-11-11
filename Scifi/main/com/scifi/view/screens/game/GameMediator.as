@@ -4,19 +4,20 @@
  */
 package com.scifi.view.screens.game {
 
-	import controller.BaseChatController;
+import com.chat.Chat;
+import com.chat.controller.BaseChatController;
 
-	import feathers.controls.Button;
-	import feathers.data.ListCollection;
-	import feathers.layout.AnchorLayout;
-	import feathers.layout.AnchorLayoutData;
+import feathers.controls.Button;
+import feathers.data.ListCollection;
+import feathers.layout.AnchorLayout;
+import feathers.layout.AnchorLayoutData;
 
-	import org.as3commons.logging.api.ILogger;
-	import org.as3commons.logging.api.getLogger;
+import org.as3commons.logging.api.ILogger;
+import org.as3commons.logging.api.getLogger;
 
-	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-	import starling.events.Event;
+import starling.events.Event;
 
 // WARNING! in mediators 2 types of events are intersecting
 public class GameMediator extends FeathersMediator {

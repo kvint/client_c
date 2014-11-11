@@ -3,13 +3,12 @@
  */
 package com.scifi.view.chat.tabs
 {
+import com.chat.model.communicators.ICommunicator;
 import com.scifi.view.chat.communicator.ICommunicatorView;
 
 import feathers.controls.ToggleButton;
 import feathers.core.IFeathersControl;
 import feathers.skins.IStyleProvider;
-
-import model.communicators.ICommunicator;
 
 import org.as3commons.logging.api.ILogger;
 import org.as3commons.logging.api.getLogger;

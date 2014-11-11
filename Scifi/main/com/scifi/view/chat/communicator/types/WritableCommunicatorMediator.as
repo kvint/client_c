@@ -2,17 +2,16 @@
  * Created by kvint on 02.11.14.
  */
 package com.scifi.view.chat.communicator.types {
-	import com.adobe.utils.DictionaryUtil;
+import com.adobe.utils.DictionaryUtil;
+import com.chat.events.CommunicatorCommandEvent;
 
-	import events.CommunicatorCommandEvent;
+import feathers.events.FeathersEventType;
 
-	import feathers.events.FeathersEventType;
+import flash.utils.Dictionary;
 
-	import flash.utils.Dictionary;
+import org.as3commons.lang.StringUtils;
 
-	import org.as3commons.lang.StringUtils;
-
-	public class WritableCommunicatorMediator extends HistoryCommunicatorMediator {
+public class WritableCommunicatorMediator extends HistoryCommunicatorMediator {
 
 		private static const COMMAND_PATTERN:RegExp = /^\/\w+(\s|$)/ig;
 		private static const ARG_DELIMITER:RegExp = /\s+/;

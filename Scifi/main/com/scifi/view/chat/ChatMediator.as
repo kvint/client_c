@@ -3,17 +3,16 @@
  */
 package com.scifi.view.chat
 {
-	import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
-	import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
+import com.chat.Chat;
+import com.chat.events.ChatModelEvent;
+import com.chat.model.communicators.CommunicatorType;
+import com.chat.model.communicators.ICommunicator;
+import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
+import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
 
-	import events.ChatModelEvent;
+import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-	import model.communicators.CommunicatorType;
-	import model.communicators.ICommunicator;
-
-	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
-
-	public class ChatMediator extends FeathersMediator
+public class ChatMediator extends FeathersMediator
 {
 
 	[Inject]

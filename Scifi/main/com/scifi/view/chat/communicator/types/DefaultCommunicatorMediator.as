@@ -2,13 +2,13 @@
  * Created by kvint on 01.11.14.
  */
 package com.scifi.view.chat.communicator.types {
+import com.chat.model.ChatModel;
+import com.chat.model.communicators.ICommunicator;
 import com.scifi.view.chat.communicator.*;
-	import model.ChatModel;
-	import model.communicators.ICommunicator;
 
-	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-	public class DefaultCommunicatorMediator extends FeathersMediator {
+public class DefaultCommunicatorMediator extends FeathersMediator {
 
 		[Inject]
 		public var chatModel:ChatModel;

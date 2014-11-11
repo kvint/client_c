@@ -3,19 +3,17 @@
  */
 package com.scifi.view.chat.communicator
 {
+import com.chat.model.communicators.ICommunicator;
+import com.scifi.view.utils.SimpleViewFactory;
+
 import feathers.controls.LayoutGroup;
 import feathers.core.IFeathersControl;
 import feathers.skins.IStyleProvider;
 
-import model.communicators.ICommunicator;
-
 import org.as3commons.logging.api.ILogger;
-
 import org.as3commons.logging.api.getLogger;
 
 import starling.display.DisplayObject;
-
-import com.scifi.view.utils.SimpleViewFactory;
 
 public class CommunicatorContainerView extends LayoutGroup
 {

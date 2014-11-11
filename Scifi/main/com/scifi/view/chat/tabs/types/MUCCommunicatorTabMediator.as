@@ -1,17 +1,17 @@
 /**
- * Created by kuts on 11/8/14.
+ * Created by kuts on 11/11/14.
  */
 package com.scifi.view.chat.tabs.types
 {
 import com.chat.events.CommunicatorEvent;
-import com.chat.model.communicators.ICommunicator;
+import com.chat.model.communicators.RoomCommunicator;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-public class DirectCommunicatorTabMediator extends FeathersMediator
+public class MUCCommunicatorTabMediator extends FeathersMediator
 {
 	[Inject]
-	public var view:DirectCommunicatorTabView;
+	public var view:MUCCommunicatorTabView;
 
 	override public function initializeComplete():void
 	{
@@ -48,9 +48,9 @@ public class DirectCommunicatorTabMediator extends FeathersMediator
 		communicator.removeEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
 	}
 
-	protected function get communicator():ICommunicator
+	protected function get communicator():RoomCommunicator
 	{
-		return view.provider.data as ICommunicator;
+		return view.provider.data as RoomCommunicator;
 	}
 }
 }

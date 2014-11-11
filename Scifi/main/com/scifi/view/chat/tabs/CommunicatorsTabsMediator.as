@@ -3,16 +3,14 @@
  */
 package com.scifi.view.chat.tabs
 {
+import com.chat.Chat;
+import com.chat.events.ChatModelEvent;
+import com.chat.model.communicators.CommunicatorType;
+import com.chat.model.communicators.ICommunicator;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 
-import events.ChatModelEvent;
-
 import feathers.data.ListCollection;
-
-import model.communicators.CommunicatorType;
-
-import model.communicators.ICommunicator;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
@@ -59,6 +57,8 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 				factory = DirectCommunicatorTabView;
 				break;
 			case CommunicatorType.MUC:
+				factory = DirectCommunicatorTabView;
+				break;
 			default :
 				factory = DefaultCommunicatorTabView;
 				break;
