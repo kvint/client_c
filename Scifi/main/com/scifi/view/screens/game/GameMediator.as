@@ -6,13 +6,17 @@ package com.scifi.view.screens.game {
 
 	import controller.BaseChatController;
 
+	import feathers.controls.Button;
 	import feathers.data.ListCollection;
-import feathers.layout.AnchorLayout;
-import feathers.layout.AnchorLayoutData;
+	import feathers.layout.AnchorLayout;
+	import feathers.layout.AnchorLayoutData;
 
-import org.as3commons.logging.api.ILogger;
-import org.as3commons.logging.api.getLogger;
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+	import org.as3commons.logging.api.ILogger;
+	import org.as3commons.logging.api.getLogger;
+
+	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+
+	import starling.events.Event;
 
 // WARNING! in mediators 2 types of events are intersecting
 public class GameMediator extends FeathersMediator {
@@ -40,35 +44,48 @@ public class GameMediator extends FeathersMediator {
 
 		setActions();
 
-		BaseChatController.serverName = "slavschika";
+		BaseChatController.serverName = "localhost";
 	}
 
 	private function setActions():void
 	{
 		var collection:ListCollection = new ListCollection([
-			{ label: "azik", triggered: a1 },
-			{ label: "bob", triggered: a2 },
-			{ label: "joe", triggered: a3 },
-			{ label: "azik", triggered: a4 },
-			{ label: "history", triggered: a5 }
+			{ label: "external", triggered: a1 },
+			{ label: "bob", triggered: a2, isEnabled:true },
+			{ label: "joe", triggered: a3, isEnabled:true },
+			{ label: "azik", triggered: a4, isEnabled:true },
+			{ label: "history", triggered: a5, isEnabled:false }
 		]);
 
 		view.loginButtons.dataProvider = collection;
 	}
+	private function disableButtons(target:Button):void {
+		for (var i:int = 0; i < view.loginButtons.dataProvider.length; i++) {
+			var btn:Object = view.loginButtons.dataProvider.getItemAt(i);
+			//if(btn.label == target.label) continue;
+			btn.isEnabled = false;
+			view.loginButtons.dataProvider.updateItemAt(i);
+		}
+	}
 
-	private function a1():void {
-		chat.controller.connect("azik", "xf3z54dlc");
+	private function a1(event:Event):void {
+		chat.controller.connect("external", "2gret37nidro");
+		disableButtons(event.currentTarget as Button);
 	}
-	private function a2():void {
+
+	private function a2(event:Event):void {
 		chat.controller.connect("bob", "2gret37nidro");
+		disableButtons(event.currentTarget as Button);
 	}
-	private function a3():void {
+	private function a3(event:Event):void {
 		chat.controller.connect("joe", "2gret37nidro");
+		disableButtons(event.currentTarget as Button);
 	}
-	private function a4():void {
+	private function a4(event:Event):void {
 		chat.controller.connect("azik", "xf3z54dlc");
+		disableButtons(event.currentTarget as Button);
 	}
-	private function a5():void {
+	private function a5(event:Event):void {
 		chat.controller.test();
 	}
 

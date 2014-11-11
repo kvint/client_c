@@ -3,18 +3,17 @@
  */
 package com.scifi.view.chat
 {
-import events.ChatModelEvent;
+	import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
+	import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
 
-import model.communicators.CommunicatorType;
-import model.communicators.ICommunicator;
+	import events.ChatModelEvent;
 
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+	import model.communicators.CommunicatorType;
+	import model.communicators.ICommunicator;
 
-import com.scifi.view.chat.communicator.types.DefaultCommunicatorView;
-import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
-import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
+	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-public class ChatMediator extends FeathersMediator
+	public class ChatMediator extends FeathersMediator
 {
 
 	[Inject]
@@ -26,6 +25,7 @@ public class ChatMediator extends FeathersMediator
 	override public function initializeComplete():void
 	{
 		view.containerView.communicatorFactory.setViewClass(DirectCommunicatorView, CommunicatorType.DIRECT);
+		view.containerView.communicatorFactory.setViewClass(MUCCommunicatorView, CommunicatorType.MUC);
 
 		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_onCommunicatorActivated)
 	}

@@ -8,6 +8,8 @@ import com.scifi.view.chat.ChatMediator;
 import com.scifi.view.chat.ChatView;
 import com.scifi.view.chat.communicator.types.DirectCommunicatorMediator;
 import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
+import com.scifi.view.chat.communicator.types.MUCCommunicatorMediator;
+import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
 import com.scifi.view.chat.roster.RosterMediator;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorsTabsMediator;
@@ -45,6 +47,7 @@ public class ViewConfig implements IConfig
 		mediatorMap.map(ChatView).toMediator(ChatMediator);
 		mediatorMap.map(CommunicatorsTabsView).toMediator(CommunicatorsTabsMediator);
 		mediatorMap.map(DirectCommunicatorView).toMediator(DirectCommunicatorMediator);
+		mediatorMap.map(MUCCommunicatorView).toMediator(MUCCommunicatorMediator);
 		mediatorMap.map(DirectCommunicatorTabView).toMediator(DirectCommunicatorTabMediator);
 		mediatorMap.map(RosterView).toMediator(RosterMediator);
 	}

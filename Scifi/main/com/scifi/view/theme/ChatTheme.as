@@ -29,7 +29,8 @@ import com.scifi.view.chat.ChatView;
 import com.scifi.view.chat.communicator.types.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
-import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
+	import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
+	import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
@@ -90,6 +91,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
 		getStyleProviderForClass(DirectCommunicatorView).defaultStyleFunction = setDirectCommunicatorStyles;
 		getStyleProviderForClass(DirectCommunicatorTabView).defaultStyleFunction = setDirectCommunicatorTabStyles;
+		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
 
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
@@ -149,6 +151,10 @@ public class ChatTheme extends MetalWorksDesktopTheme
 	}
 
 	private function setDirectCommunicatorStyles(view:DirectCommunicatorView):void
+	{
+		setWritableCommunicatorStyles(view);
+	}
+	private function setMUCCommunicatorStyles(view:MUCCommunicatorView):void
 	{
 		setWritableCommunicatorStyles(view);
 	}
