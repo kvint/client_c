@@ -7,8 +7,8 @@ import com.chat.Chat;
 import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
-import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
-import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
+import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
+import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 

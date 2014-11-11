@@ -1,9 +1,10 @@
 /**
  * Created by kvint on 02.11.14.
  */
-package com.scifi.view.chat.communicator.types {
+package com.scifi.view.chat.communicator.types.writable {
 import com.adobe.utils.DictionaryUtil;
 import com.chat.events.CommunicatorCommandEvent;
+import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorMediator;
 
 import feathers.events.FeathersEventType;
 

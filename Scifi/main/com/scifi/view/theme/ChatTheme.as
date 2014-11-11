@@ -26,11 +26,12 @@ package com.scifi.view.theme
 {
 
 import com.scifi.view.chat.ChatView;
-import com.scifi.view.chat.communicator.types.DefaultCommunicatorView;
-import com.scifi.view.chat.communicator.types.DirectCommunicatorView;
-import com.scifi.view.chat.communicator.types.HistoryCommunicatorView;
-import com.scifi.view.chat.communicator.types.MUCCommunicatorView;
-import com.scifi.view.chat.communicator.types.WritableCommunicatorView;
+import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
+import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
+import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorView;
+import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
+import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
+import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
@@ -90,11 +91,19 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(DirectCommunicatorView).defaultStyleFunction = setDirectCommunicatorStyles;
 		getStyleProviderForClass(DefaultCommunicatorTabView).defaultStyleFunction = setDefaultCommunicatorTabStyles;
 		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
+		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
 
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
+	}
+
+	private function setMUCUsersViewStyles(view:MUCUsersView):void
+	{
+		setListStyles(view);
+
+		view.minWidth = 100;
 	}
 
 	private function setCommunicatorTabCountLabelStyles(label:Label):void
@@ -155,6 +164,13 @@ public class ChatTheme extends MetalWorksDesktopTheme
 	private function setMUCCommunicatorStyles(view:MUCCommunicatorView):void
 	{
 		setWritableCommunicatorStyles(view);
+
+		var usersView:AnchorLayoutData = new AnchorLayoutData();
+
+		usersView.top = 0;
+		usersView.right = 0;
+
+		view.usersView.layoutData = usersView;
 	}
 
 	private function setDefaultCommunicatorTabStyles(view:DefaultCommunicatorTabView):void

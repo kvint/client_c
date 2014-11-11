@@ -1,7 +1,7 @@
 /**
  * Created by kvint on 01.11.14.
  */
-package com.scifi.view.chat.communicator.types {
+package com.scifi.view.chat.communicator.types.base {
 import com.chat.model.ChatModel;
 import com.chat.model.communicators.ICommunicator;
 import com.scifi.view.chat.communicator.*;

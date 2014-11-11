@@ -17,7 +17,6 @@ import org.as3commons.logging.api.getLogger;
 
 public class GameView extends LayoutGroup
 {
-
 	private static const log:ILogger = getLogger(GameView);
 
 	private var _chatView:ChatView = new ChatView();
@@ -52,5 +51,6 @@ public class GameView extends LayoutGroup
 	{
 		return _loginButtons;
 	}
+
 }
 }

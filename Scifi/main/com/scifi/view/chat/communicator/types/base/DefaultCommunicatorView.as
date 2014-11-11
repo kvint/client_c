@@ -1,7 +1,7 @@
 /**
  * Created by kvint on 01.11.14.
  */
-package com.scifi.view.chat.communicator.types {
+package com.scifi.view.chat.communicator.types.base {
 import com.chat.utils.providers.IViewDataProvider;
 import com.chat.utils.providers.ViewDataProvider;
 import com.scifi.view.chat.communicator.*;

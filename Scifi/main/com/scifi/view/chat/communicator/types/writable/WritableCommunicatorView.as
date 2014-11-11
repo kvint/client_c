@@ -1,8 +1,10 @@
 /**
  * Created by kvint on 02.11.14.
  */
-package com.scifi.view.chat.communicator.types
+package com.scifi.view.chat.communicator.types.writable
 {
+import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorView;
+
 import feathers.controls.TextInput;
 import feathers.skins.IStyleProvider;
 

@@ -1,11 +1,12 @@
 /**
  * Created by kvint on 02.11.14.
  */
-package com.scifi.view.chat.communicator.types
+package com.scifi.view.chat.communicator.types.history
 {
 import com.chat.Chat;
 import com.chat.events.CommunicatorEvent;
 import com.chat.model.data.ChatMessage;
+import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;
 
