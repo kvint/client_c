@@ -23,9 +23,9 @@ package com.scifi.view.chat.communicator.types.history
 		historyView.eventsList.dataProvider = new ListCollection();
 		historyView.eventsList.isSelectable = false;
 
-		historyView.eventsList.itemRendererProperties.labelFunction = function (item:Object):String
+		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
-			return (item as ICItem).body.toString();
+			return item.body.toString();
 		};
 
 		initHistory();
