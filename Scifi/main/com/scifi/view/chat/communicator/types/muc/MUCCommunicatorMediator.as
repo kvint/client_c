@@ -18,8 +18,6 @@ public class MUCCommunicatorMediator extends WritableCommunicatorMediator
 		super.initializeComplete();
 
 		view.usersView.provider.data = roomCommunicatorData;
-
-		commandsMap["/info"] = CommunicatorCommandEvent.ROOM_INFO;
 	}
 
 	override protected function sendMessage():void

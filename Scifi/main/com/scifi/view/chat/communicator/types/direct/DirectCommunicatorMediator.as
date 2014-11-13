@@ -12,19 +12,13 @@ package com.scifi.view.chat.communicator.types.direct
 	[Inject]
 	public var view:DirectCommunicatorView;
 
-	override public function initializeComplete():void {
-		super.initializeComplete();
-		//commandMap["/add"] = AddCMCommand;
-	}
-
 	override protected function sendMessage():void {
 
+		var result:int = directCommunicatorData.send(writableView.messageInput.text);
 
-		directCommunicatorData.send(writableView.messageInput.text);
-
-		//dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.PRIVATE_MESSAGE, directCommunicatorData, [writableView.messageInput.text]));
-
-		resetInput();
+		if (result >= 0) {
+			resetInput();
+		}
 	}
 
 	protected function get directCommunicatorData():DirectCommunicator
