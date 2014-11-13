@@ -34,18 +34,9 @@ public class GameMediator extends FeathersMediator {
 
 	override public function initializeComplete():void
 	{
-		view.layout = new AnchorLayout();
-
-		var chatView:AnchorLayoutData = new AnchorLayoutData();
-
-		chatView.percentWidth = 100;
-		chatView.bottom = 0;
-
-		view.chatView.layoutData = chatView;
-
 		setActions();
 
-		BaseChatController.serverName = "localhost";
+		BaseChatController.serverName = "10.0.1.4"; //"localhost";
 	}
 
 	private function setActions():void
