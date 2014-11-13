@@ -33,10 +33,7 @@ public class RosterMediator extends FeathersMediator
 		view.requestsLabel.text = "Requests";
 
 		view.friendsList.dataProvider = new ListCollection();
-		view.friendsList.itemRendererProperties.labelFunction = function (data:Object):String
-		{
-			return (data as IRosterItemVO).nickname;
-		};
+		view.friendsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
 
 		if (chat.model.roster.connection.loggedIn)
 			setUsersList();
@@ -51,6 +48,11 @@ public class RosterMediator extends FeathersMediator
 		super.destroy();
 
 		removeRosterEventsListeners();
+	}
+
+	private static function friendsListLabelFunction(data:Object):String
+	{
+		return (data as IRosterItemVO).nickname;
 	}
 
 	protected function addRosterEventsListeners():void

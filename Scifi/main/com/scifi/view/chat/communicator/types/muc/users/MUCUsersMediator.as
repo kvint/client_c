@@ -3,27 +3,50 @@
  */
 package com.scifi.view.chat.communicator.types.muc.users
 {
-	import com.chat.model.communicators.RoomCommunicator;
+import com.chat.model.communicators.RoomCommunicator;
 
-	import feathers.data.ListCollection;
+import feathers.data.ListCollection;
 
-	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+import org.igniterealtime.xiff.conference.IRoomOccupant;
 
-	public class MUCUsersMediator extends FeathersMediator
+import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+
+public class MUCUsersMediator extends FeathersMediator
 {
 	[Inject]
 	public var view:MUCUsersView;
 
 	override public function initializeComplete():void
 	{
-		super.initializeComplete();
+		setUsersList();
 
-		view.dataProvider = new ListCollection(roomCommunicator.chatRoom.room.source);
+		view.dataProvider = new ListCollection();
+		view.itemRendererProperties.labelFunction = usersListLabelFunction;
+
+		view.dataProvider = new ListCollection(communicator.chatRoom.room.source);
 	}
 
-	public function get roomCommunicator():RoomCommunicator {
+	private static function usersListLabelFunction(data:Object):String
+	{
+		return (data as IRoomOccupant).nickname;
+	}
+
+	private function setUsersList():void
+	{
+		for each(var data:IRoomOccupant in communicator.chatRoom.users.source)
+			addUserToList(data);
+	}
+
+	private function addUserToList(data:IRoomOccupant):void
+	{
+		view.dataProvider.addItem(data);
+	}
+
+	public function get communicator():RoomCommunicator
+	{
 		return view.communicator as RoomCommunicator;
 	}
+
 	override public function destroy():void
 	{
 		super.destroy();

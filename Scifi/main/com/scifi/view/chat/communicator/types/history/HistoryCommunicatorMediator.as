@@ -3,15 +3,17 @@
  */
 package com.scifi.view.chat.communicator.types.history
 {
-	import com.chat.Chat;
-	import com.chat.events.CommunicatorEvent;
-	import com.chat.model.data.ICItem;
-	import com.chat.model.data.MessageItem;
-	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
+import com.chat.Chat;
+import com.chat.events.CommunicatorEvent;
+import com.chat.model.data.ICItem;
+import com.chat.model.data.MessageItem;
+import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
-	import feathers.data.ListCollection;
+import feathers.data.ListCollection;
 
-	public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
+import org.as3commons.lang.StringUtils;
+
+public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 {
 
 	[Inject]
@@ -26,10 +28,12 @@ package com.scifi.view.chat.communicator.types.history
 
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
-			if(item.body == null) {
+			/*if (item.body == null)
+			{
 				return (item as MessageItem).data.toString();
 			}
-			return item.body.toString();
+			return item.body.toString();*/
+			return createListItem(item);
 		};
 
 		initHistory();
@@ -40,7 +44,8 @@ package com.scifi.view.chat.communicator.types.history
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 	}
 
-	private function onCommunicatorReplaced(event:CommunicatorEvent):void {
+	private function onCommunicatorReplaced(event:CommunicatorEvent):void
+	{
 		initHistory();
 		scrollToEnd();
 	}
@@ -51,11 +56,17 @@ package com.scifi.view.chat.communicator.types.history
 		for (var i:int = 0; i < history.length; i++)
 		{
 			var item:ICItem = history[i];
-			if(item) {
+			if (item)
+			{
 				markMessageAsReceived(item);
 			}
 		}
 		historyView.eventsList.dataProvider.data = history;
+	}
+
+	protected static function createListItem(item:ICItem):String
+	{
+		return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, item.body);
 	}
 
 	protected function scrollToEnd():void
@@ -76,15 +87,15 @@ package com.scifi.view.chat.communicator.types.history
 
 
 		/*if(item is ChatMessage){
-			var str:String = "";
-			if (!item.read)
-			{
-				str += "! "
-			}
-			str += item.from.node + ": " + item.body;
-			return str;
-		}
-		return item.toString();*/
+		 var str:String = "";
+		 if (!item.read)
+		 {
+		 str += "! "
+		 }
+		 str += item.from.node + ": " + item.body;
+		 return str;
+		 }
+		 return item.toString();*/
 
 		addItemToHistory(event.data as ICItem);
 		communicatorData.markAsRead((event.data as ICItem));
