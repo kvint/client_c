@@ -6,7 +6,8 @@ package com.scifi.view.chat.communicator.types.history
 import com.chat.Chat;
 import com.chat.events.CommunicatorEvent;
 import com.chat.model.data.ChatMessage;
-import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
+	import com.chat.model.data.ICItem;
+	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;
 
@@ -50,7 +51,7 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 
 	protected function initHistory():void
 	{
-		var history:Array = communicatorData.history.concat();
+		var history:Vector.<ICItem> = communicatorData.items.concat();
 		for (var i:int = 0; i < history.length; i++)
 		{
 			var message:ChatMessage = history[i] as ChatMessage;

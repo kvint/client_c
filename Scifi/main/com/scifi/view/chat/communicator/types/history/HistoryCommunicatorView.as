@@ -3,12 +3,12 @@
  */
 package com.scifi.view.chat.communicator.types.history
 {
-import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
+	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
 
-import feathers.controls.List;
-import feathers.skins.IStyleProvider;
+	import feathers.controls.List;
+	import feathers.skins.IStyleProvider;
 
-public class HistoryCommunicatorView extends DefaultCommunicatorView
+	public class HistoryCommunicatorView extends DefaultCommunicatorView
 {
 	public static const CHILD_COMMUNICATOR_EVENTS_LIST:String = "child-communicator-event-list";
 

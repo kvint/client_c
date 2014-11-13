@@ -221,7 +221,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		rosterView.topAnchorDisplayObject = view.loginButtons;
 		rosterView.top = 0;
-		rosterView.right = 0;
+		rosterView.horizontalCenter = 0;
 
 		view.rosterView.layoutData = rosterView;
 
