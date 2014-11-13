@@ -3,15 +3,14 @@
  */
 package com.scifi.view.chat.communicator.types.history
 {
-import com.chat.Chat;
-import com.chat.events.CommunicatorEvent;
-import com.chat.model.data.ChatMessage;
+	import com.chat.Chat;
+	import com.chat.events.CommunicatorEvent;
 	import com.chat.model.data.ICItem;
 	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
-import feathers.data.ListCollection;
+	import feathers.data.ListCollection;
 
-public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
+	public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 {
 
 	[Inject]
@@ -23,25 +22,18 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 
 		historyView.eventsList.dataProvider = new ListCollection();
 		historyView.eventsList.isSelectable = false;
+
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:Object):String
 		{
-			if(item is ChatMessage){
-				var str:String = "";
-				if (!item.read)
-				{
-					str += "! "
-				}
-				str += item.from.node + ": " + item.body;
-				return str;
-			}
-			return item.toString();
+			return (item as ICItem).body.toString();
 		};
-		communicatorData.addEventListener(CommunicatorEvent.REPLACED, onCommunicatorReplaced);
-		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
-		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 
 		initHistory();
 		scrollToEnd();
+
+		communicatorData.addEventListener(CommunicatorEvent.REPLACED, onCommunicatorReplaced);
+		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
+		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 	}
 
 	private function onCommunicatorReplaced(event:CommunicatorEvent):void {
@@ -54,9 +46,9 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		var history:Vector.<ICItem> = communicatorData.items.concat();
 		for (var i:int = 0; i < history.length; i++)
 		{
-			var message:ChatMessage = history[i] as ChatMessage;
-			if(message) {
-				markMessageAsReceived(message);
+			var item:ICItem = history[i];
+			if(item) {
+				markMessageAsReceived(item);
 			}
 		}
 		historyView.eventsList.dataProvider.data = history;
@@ -76,20 +68,31 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 
 	protected function onItemAdded(event:CommunicatorEvent):void
 	{
-		if(event.data is ChatMessage) {
-			var message:ChatMessage = event.data as ChatMessage;
-			markMessageAsReceived(message);
+		markMessageAsReceived(event.data as ICItem);
+
+
+		/*if(item is ChatMessage){
+			var str:String = "";
+			if (!item.read)
+			{
+				str += "! "
+			}
+			str += item.from.node + ": " + item.body;
+			return str;
 		}
-		addItemToHistory(event.data);
+		return item.toString();*/
+
+		addItemToHistory(event.data as ICItem);
+		communicatorData.markAsRead((event.data as ICItem));
 		scrollToEnd();
 	}
 
-	protected function markMessageAsReceived(message:ChatMessage):void
+	protected function markMessageAsReceived(message:ICItem):void
 	{
 		communicatorData.markAsRead(message);
 	}
 
-	protected function addItemToHistory(item:Object):void
+	protected function addItemToHistory(item:ICItem):void
 	{
 		historyView.eventsList.dataProvider.addItem(item);
 	}
