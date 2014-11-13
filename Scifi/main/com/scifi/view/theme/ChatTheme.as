@@ -221,19 +221,15 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		rosterView.topAnchorDisplayObject = view.loginButtons;
 		rosterView.top = 0;
-		rosterView.horizontalCenter = 0;
+		rosterView.left = 0;
 
 		view.rosterView.layoutData = rosterView;
 
-		view.rosterView.width = 100;
-
 		var chatView:AnchorLayoutData = new AnchorLayoutData();
 
-		chatView.left = 0;
+		chatView.percentWidth = 100;
 		chatView.topAnchorDisplayObject = view.loginButtons;
 		chatView.top = 0;
-		chatView.rightAnchorDisplayObject = view.rosterView;
-		chatView.right = 0;
 		chatView.bottom = 0;
 
 		view.chatView.layoutData = chatView;
@@ -269,6 +265,8 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		list.percentWidth = 100;
 
 		view.list.layoutData = list;
+
+		view.minWidth = 150;
 	}
 
 }

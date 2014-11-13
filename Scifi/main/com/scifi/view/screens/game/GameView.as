@@ -6,6 +6,7 @@ package com.scifi.view.screens.game
 {
 
 import com.scifi.view.chat.ChatView;
+import com.scifi.view.chat.roster.RosterButtonView;
 import com.scifi.view.chat.roster.RosterView;
 
 import feathers.controls.ButtonGroup;
@@ -20,7 +21,7 @@ public class GameView extends LayoutGroup
 	private static const log:ILogger = getLogger(GameView);
 
 	private var _chatView:ChatView = new ChatView();
-	private var _rosterView:RosterView = new RosterView();
+	private var _rosterView:RosterButtonView = new RosterButtonView();
 
 	public static var globalStyleProvider:IStyleProvider;
 	private var _loginButtons:ButtonGroup = new ButtonGroup();
@@ -37,7 +38,7 @@ public class GameView extends LayoutGroup
 		addChild(rosterView);
 	}
 
-	public function get rosterView():RosterView
+	public function get rosterView():RosterButtonView
 	{
 		return _rosterView;
 	}
