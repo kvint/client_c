@@ -3,14 +3,14 @@
  */
 package com.scifi.view.chat.roster
 {
-import com.chat.controller.ChatController;
+import com.chat.Chat;
 import com.chat.events.ChatModelEvent;
-import com.chat.model.ChatModel;
 import com.chat.model.communicators.ICommunicator;
 
 import feathers.controls.List;
 import feathers.data.ListCollection;
 
+import org.igniterealtime.xiff.data.im.IRosterItemVO;
 import org.igniterealtime.xiff.data.im.RosterItemVO;
 import org.igniterealtime.xiff.events.RosterEvent;
 
@@ -22,46 +22,98 @@ public class RosterMediator extends FeathersMediator
 {
 
 	[Inject]
-	public var chatModel:ChatModel;
-
-	[Inject]
-	public var chatController:ChatController;
-
-	[Inject]
 	public var view:RosterView;
+
+	[Inject]
+	public var chat:Chat;
 
 	override public function initializeComplete():void
 	{
 		view.friendsLabel.text = "Friends";
 		view.requestsLabel.text = "Requests";
 
-		view = viewComponent as RosterView;
-
-		view.friendsList.itemRendererProperties.labelFunction = function (data:RosterItemVO):String
+		view.friendsList.dataProvider = new ListCollection();
+		view.friendsList.itemRendererProperties.labelFunction = function (data:Object):String
 		{
-			return data.jid.node;
-		}
+			return (data as IRosterItemVO).nickname;
+		};
 
-		view.friendsList.addEventListener(Event.CHANGE, listChangeHandler);
-		chatModel.addEventListener(RosterEvent.ROSTER_LOADED, onRosterLoaded);
-		displayRoster();
+		if (chat.model.roster.connection.loggedIn)
+			setUsersList();
+
+		mapStarlingEvent(view.friendsList, Event.CHANGE, friendsList_onChange);
+
+		addRosterEventsListeners();
 	}
 
-	private function listChangeHandler(event:Event):void
+	override public function destroy():void
+	{
+		super.destroy();
+
+		removeRosterEventsListeners();
+	}
+
+	protected function addRosterEventsListeners():void
+	{
+		chat.model.roster.addEventListener(RosterEvent.ROSTER_LOADED, roster_handleEvent);
+		chat.model.roster.addEventListener(RosterEvent.USER_ADDED, roster_handleEvent);
+		chat.model.roster.addEventListener(RosterEvent.USER_REMOVED, roster_handleEvent);
+
+		/*
+		 public static const ROSTER_LOADED:String = "rosterLoaded";
+		 public static const SUBSCRIPTION_DENIAL:String = "subscriptionDenial";
+		 public static const SUBSCRIPTION_REQUEST:String = "subscriptionRequest";
+		 public static const SUBSCRIPTION_REVOCATION:String = "subscriptionRevocation";
+		 public static const USER_ADDED:String = "userAdded";
+		 public static const USER_AVAILABLE:String = "userAvailable";
+		 public static const USER_PRESENCE_UPDATED:String = "userPresenceUpdated";
+		 public static const USER_REMOVED:String = "userRemoved";
+		 public static const USER_SUBSCRIPTION_UPDATED:String = "userSubscriptionUpdated";
+		 public static const USER_UNAVAILABLE:String = "userUnavailable";
+		 */
+	}
+
+	protected function removeRosterEventsListeners():void
+	{
+		chat.model.roster.removeEventListener(RosterEvent.ROSTER_LOADED, roster_handleEvent);
+		chat.model.roster.removeEventListener(RosterEvent.USER_ADDED, roster_handleEvent);
+		chat.model.roster.removeEventListener(RosterEvent.USER_REMOVED, roster_handleEvent);
+	}
+
+	private function setUsersList():void
+	{
+		for each(var data:IRosterItemVO in chat.model.roster.source)
+			addUserToList(data);
+	}
+
+	private function addUserToList(data:IRosterItemVO):void
+	{
+		view.friendsList.dataProvider.addItem(data);
+	}
+
+	private function roster_handleEvent(event:RosterEvent):void
+	{
+		switch (event.type)
+		{
+			case RosterEvent.ROSTER_LOADED:
+				setUsersList();
+				break;
+			case RosterEvent.USER_ADDED:
+				addUserToList(event.data.rosterItem);
+				break;
+			case RosterEvent.USER_REMOVED:
+				break;
+		}
+	}
+
+	private function friendsList_onChange(event:Event):void
 	{
 		var ri:RosterItemVO = (event.currentTarget as List).selectedItem as RosterItemVO;
-		var iCommunicator:ICommunicator = chatModel.provider.getCommunicator(ri);
-		chatModel.dispatchEvent(new ChatModelEvent(ChatModelEvent.COMMUNICATOR_ACTIVATED, iCommunicator));
+
+		var iCommunicator:ICommunicator = chat.model.provider.getCommunicator(ri);
+
+		chat.model.dispatchEvent(new ChatModelEvent(ChatModelEvent.COMMUNICATOR_ACTIVATED, iCommunicator));
 	}
 
-	private function onRosterLoaded(event:RosterEvent):void
-	{
-		displayRoster();
-	}
-
-	private function displayRoster():void
-	{
-		view.friendsList.dataProvider = new ListCollection(chatModel.roster.source);
-	}
 }
 }
