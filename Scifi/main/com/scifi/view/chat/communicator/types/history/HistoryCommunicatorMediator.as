@@ -5,7 +5,8 @@ package com.scifi.view.chat.communicator.types.history
 {
 import com.chat.Chat;
 import com.chat.events.CommunicatorEvent;
-import com.chat.model.data.ICItem;
+	import com.chat.model.data.CIString;
+	import com.chat.model.data.ICItem;
 import com.chat.model.data.MessageItem;
 import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
@@ -66,6 +67,7 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 
 	protected static function createListItem(item:ICItem):String
 	{
+		if(item is CIString) return String(item.body);
 		return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, item.body);
 	}
 
