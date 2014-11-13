@@ -3,13 +3,17 @@
  */
 package com.scifi.view.chat.roster
 {
+import feathers.controls.Label;
 import feathers.controls.LayoutGroup;
 import feathers.controls.List;
 import feathers.skins.IStyleProvider;
 
 public class RosterView extends LayoutGroup
 {
-	private var _list:List = new List();
+	private var _friendsLabel:Label = new Label();
+	private var _requestsLabel:Label = new Label();
+	private var _requestsList:List = new List();
+	private var _friendsList:List = new List();
 
 	public static var globalStyleProvider:IStyleProvider;
 
@@ -20,12 +24,30 @@ public class RosterView extends LayoutGroup
 
 	override protected function initialize():void
 	{
-		addChild(list);
+		addChild(friendsLabel);
+		addChild(friendsList);
+		addChild(requestsLabel);
+		addChild(requestsList);
 	}
 
-	public function get list():List
+	public function get friendsList():List
 	{
-		return _list;
+		return _friendsList;
+	}
+
+	public function get requestsList():List
+	{
+		return _requestsList;
+	}
+
+	public function get requestsLabel():Label
+	{
+		return _requestsLabel;
+	}
+
+	public function get friendsLabel():Label
+	{
+		return _friendsLabel;
 	}
 }
 }
