@@ -42,7 +42,7 @@ public class GameMediator extends FeathersMediator {
 	private function setActions():void
 	{
 		var collection:ListCollection = new ListCollection([
-			{ label: "external", triggered: a1 },
+			{ label: "T1000", triggered: a1 },
 			{ label: "bob", triggered: a2, isEnabled:true },
 			{ label: "joe", triggered: a3, isEnabled:true },
 			{ label: "azik", triggered: a4, isEnabled:true },
@@ -61,7 +61,7 @@ public class GameMediator extends FeathersMediator {
 	}
 
 	private function a1(event:Event):void {
-		chat.controller.connect("external@localhost", "2gret37nidro");
+		chat.controller.connect("t1000@localhost", "2gret37nidro");
 		disableButtons(event.currentTarget as Button);
 	}
 

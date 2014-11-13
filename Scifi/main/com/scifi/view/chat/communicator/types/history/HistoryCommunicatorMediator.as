@@ -25,6 +25,7 @@ package com.scifi.view.chat.communicator.types.history
 
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
+			if(item.body == null) return "NULL!!!";
 			return item.body.toString();
 		};
 

@@ -5,6 +5,8 @@ package com.scifi.view.chat.communicator.types.muc.users
 {
 	import com.chat.model.communicators.RoomCommunicator;
 
+	import feathers.data.ListCollection;
+
 	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
 	public class MUCUsersMediator extends FeathersMediator
@@ -16,7 +18,7 @@ package com.scifi.view.chat.communicator.types.muc.users
 	{
 		super.initializeComplete();
 
-		view.dataProvider.data = roomCommunicator.chatRoom.room.source;
+		view.dataProvider = new ListCollection(roomCommunicator.chatRoom.room.source);
 	}
 
 	public function get roomCommunicator():RoomCommunicator {
