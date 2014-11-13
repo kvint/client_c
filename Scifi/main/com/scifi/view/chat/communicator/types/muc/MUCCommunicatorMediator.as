@@ -3,12 +3,11 @@
  */
 package com.scifi.view.chat.communicator.types.muc
 {
-import com.chat.events.CommunicatorCommandEvent;
-import com.chat.model.communicators.RoomCommunicator;
-import com.scifi.view.chat.communicator.ICommunicatorView;
-import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorMediator;
+	import com.chat.model.communicators.RoomCommunicator;
+	import com.scifi.view.chat.communicator.ICommunicatorView;
+	import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorMediator;
 
-public class MUCCommunicatorMediator extends WritableCommunicatorMediator
+	public class MUCCommunicatorMediator extends WritableCommunicatorMediator
 {
 	[Inject]
 	public var view:MUCCommunicatorView;
@@ -22,7 +21,7 @@ public class MUCCommunicatorMediator extends WritableCommunicatorMediator
 
 	override protected function sendMessage():void
 	{
-		dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROOM_MESSAGE, roomCommunicatorData, [writableView.messageInput.text]));
+		roomCommunicatorData.send(writableView.messageInput.text);
 
 		resetInput();
 	}

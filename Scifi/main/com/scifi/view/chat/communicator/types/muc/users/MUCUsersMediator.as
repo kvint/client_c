@@ -3,11 +3,11 @@
  */
 package com.scifi.view.chat.communicator.types.muc.users
 {
-import feathers.data.ListCollection;
+	import com.chat.model.communicators.RoomCommunicator;
 
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-public class MUCUsersMediator extends FeathersMediator
+	public class MUCUsersMediator extends FeathersMediator
 {
 	[Inject]
 	public var view:MUCUsersView;
@@ -16,16 +16,12 @@ public class MUCUsersMediator extends FeathersMediator
 	{
 		super.initializeComplete();
 
-		view.dataProvider = new ListCollection([
-			{ label: "Userkk" },
-			{ label: "User_22" },
-			{ label: "User33" },
-			{ label: "User2" },
-			{ label: "User 4" },
-			{ label: "User 6" }
-		]);
+		view.dataProvider.data = roomCommunicator.chatRoom.room.source;
 	}
 
+	public function get roomCommunicator():RoomCommunicator {
+		return view.communicator as RoomCommunicator;
+	}
 	override public function destroy():void
 	{
 		super.destroy();

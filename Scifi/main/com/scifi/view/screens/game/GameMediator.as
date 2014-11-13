@@ -36,7 +36,7 @@ public class GameMediator extends FeathersMediator {
 	{
 		setActions();
 
-		BaseChatController.serverName = "10.0.1.4"; //"localhost";
+		BaseChatController.serverName = "10.0.1.4";
 	}
 
 	private function setActions():void
@@ -61,20 +61,20 @@ public class GameMediator extends FeathersMediator {
 	}
 
 	private function a1(event:Event):void {
-		chat.controller.connect("external", "2gret37nidro");
+		chat.controller.connect("external@localhost", "2gret37nidro");
 		disableButtons(event.currentTarget as Button);
 	}
 
 	private function a2(event:Event):void {
-		chat.controller.connect("bob", "2gret37nidro");
+		chat.controller.connect("bob@localhost", "2gret37nidro");
 		disableButtons(event.currentTarget as Button);
 	}
 	private function a3(event:Event):void {
-		chat.controller.connect("joe", "2gret37nidro");
+		chat.controller.connect("joe@localhost", "2gret37nidro");
 		disableButtons(event.currentTarget as Button);
 	}
 	private function a4(event:Event):void {
-		chat.controller.connect("azik", "xf3z54dlc");
+		chat.controller.connect("azik@localhost", "xf3z54dlc");
 		disableButtons(event.currentTarget as Button);
 	}
 	private function a5(event:Event):void {
