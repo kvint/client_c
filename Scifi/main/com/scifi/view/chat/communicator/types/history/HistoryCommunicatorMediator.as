@@ -6,6 +6,7 @@ package com.scifi.view.chat.communicator.types.history
 	import com.chat.Chat;
 	import com.chat.events.CommunicatorEvent;
 	import com.chat.model.data.ICItem;
+	import com.chat.model.data.MessageItem;
 	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 	import feathers.data.ListCollection;
@@ -25,7 +26,9 @@ package com.scifi.view.chat.communicator.types.history
 
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
-			if(item.body == null) return "NULL!!!";
+			if(item.body == null) {
+				return (item as MessageItem).data.toString();
+			}
 			return item.body.toString();
 		};
 
