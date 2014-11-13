@@ -260,11 +260,31 @@ public class ChatTheme extends MetalWorksDesktopTheme
 	{
 		view.layout = new AnchorLayout();
 
-		var list:AnchorLayoutData = new AnchorLayoutData();
+		var friendsLabel:AnchorLayoutData = new AnchorLayoutData();
+		view.friendsLabel.layoutData = friendsLabel;
 
-		list.percentWidth = 100;
+		var friendsList:AnchorLayoutData = new AnchorLayoutData();
 
-		view.list.layoutData = list;
+		friendsList.topAnchorDisplayObject = view.friendsLabel;
+		friendsList.top = smallGutterSize;
+		friendsList.percentWidth = 100;
+
+		view.friendsList.layoutData = friendsList;
+
+		var requestsLabel:AnchorLayoutData = new AnchorLayoutData();
+
+		requestsLabel.topAnchorDisplayObject = view.friendsList;
+		requestsLabel.top = gutterSize;
+
+		view.requestsLabel.layoutData = requestsLabel;
+
+		var requestsList:AnchorLayoutData = new AnchorLayoutData();
+
+		requestsList.topAnchorDisplayObject = view.requestsLabel;
+		requestsList.top = smallGutterSize;
+		requestsList.percentWidth = 100;
+
+		view.requestsList.layoutData = requestsList;
 
 		view.minWidth = 150;
 	}
