@@ -13,7 +13,6 @@ public class DirectCommunicatorMediator extends WritableCommunicatorMediator
 	[Inject]
 	public var view:DirectCommunicatorView;
 
-
 	override public function initializeComplete():void {
 		super.initializeComplete();
 		//commandMap["/add"] = AddCMCommand;
