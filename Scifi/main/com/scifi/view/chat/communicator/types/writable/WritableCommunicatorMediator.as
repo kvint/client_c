@@ -2,6 +2,7 @@
  * Created by kvint on 02.11.14.
  */
 package com.scifi.view.chat.communicator.types.writable {
+	import com.chat.model.communicators.WritableCommunicator;
 	import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorMediator;
 
 	import feathers.events.FeathersEventType;
@@ -20,6 +21,15 @@ package com.scifi.view.chat.communicator.types.writable {
 		}
 
 		protected function sendMessage():void {
+			var result:int = writableCommunicator.send(writableView.messageInput.text);
+
+			if (result >= 0) {
+				resetInput();
+			}
+		}
+
+		public function get writableCommunicator():WritableCommunicator {
+			return communicatorData as WritableCommunicator;
 		}
 
 		protected function resetInput():void {

@@ -19,13 +19,6 @@ package com.scifi.view.chat.communicator.types.muc
 		view.usersView.provider.data = roomCommunicatorData;
 	}
 
-	override protected function sendMessage():void
-	{
-		roomCommunicatorData.send(writableView.messageInput.text);
-
-		resetInput();
-	}
-
 	protected function get roomCommunicatorData():RoomCommunicator
 	{
 		return communicatorData as RoomCommunicator;
