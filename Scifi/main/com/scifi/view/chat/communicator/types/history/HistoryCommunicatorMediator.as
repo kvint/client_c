@@ -12,9 +12,12 @@ import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;
 
-import org.as3commons.lang.StringUtils;
+	import flash.utils.setTimeout;
 
-public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
+	import org.as3commons.lang.StringUtils;
+	import org.igniterealtime.xiff.data.Message;
+
+	public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 {
 
 	[Inject]
@@ -68,7 +71,20 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 	protected static function createListItem(item:ICItem):String
 	{
 		if(item is CIString) return String(item.body);
-		return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, item.body);
+		if (item is MessageItem) {
+			var messageItem:MessageItem = item as MessageItem;
+			var message:Message = messageItem.data as Message;
+			if (message.body == null) {
+				if (message.state != null) {
+					return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, message.state);
+				}
+				if (message.receipt != null) {
+					return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, message.receipt);
+				}
+			}
+		}
+
+		return StringUtils.substitute("{0}[{1}] {2}: {3}", item.isRead? "" : "*", item.time, item.from, item.body);
 	}
 
 	protected function scrollToEnd():void
@@ -100,13 +116,12 @@ public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 		 return item.toString();*/
 
 		addItemToHistory(event.data as ICItem);
-		communicatorData.markAsRead((event.data as ICItem));
 		scrollToEnd();
 	}
 
 	protected function markMessageAsReceived(message:ICItem):void
 	{
-		communicatorData.markAsRead(message);
+		communicatorData.read(message);
 	}
 
 	protected function addItemToHistory(item:ICItem):void
