@@ -33,7 +33,7 @@ package com.scifi.view.chat.communicator.types.writable {
 		protected function sendMessage():void {
 			var result:int = writableCommunicator.send(writableView.messageInput.text);
 
-			if (result >= 0) {
+			if (result >= 0 || result == WritableCommunicator.BLANK_BODY) {
 				resetInput();
 			}
 		}
