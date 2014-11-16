@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat
 {
-import com.chat.Chat;
+import com.chat.IChat;
 import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
@@ -19,7 +19,7 @@ public class ChatMediator extends FeathersMediator
 	public var view		:ChatView;
 
 	[Inject]
-	public var chat		:Chat;
+	public var chat		:IChat;
 
 	override public function initializeComplete():void
 	{

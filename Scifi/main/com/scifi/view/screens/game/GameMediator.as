@@ -4,7 +4,7 @@
  */
 package com.scifi.view.screens.game {
 
-import com.chat.Chat;
+import com.chat.IChat;
 import com.chat.controller.BaseChatController;
 
 import feathers.controls.Button;
@@ -30,7 +30,7 @@ public class GameMediator extends FeathersMediator {
 	public var view						:GameView;
 
 	[Inject]
-	public var chat:Chat;
+	public var chat:IChat;
 
 	override public function initializeComplete():void
 	{

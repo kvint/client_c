@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat.roster
 {
-import com.chat.Chat;
+import com.chat.IChat;
 
 import feathers.controls.Callout;
 
@@ -17,7 +17,7 @@ public class RosterButtonMediator extends FeathersMediator
 	public var view:RosterButtonView;
 
 	[Inject]
-	public var chat:Chat;
+	public var chat:IChat;
 
 	private var _rosterCallout:Callout;
 

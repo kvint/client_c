@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat.tabs
 {
-import com.chat.Chat;
+import com.chat.IChat;
 import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
@@ -23,7 +23,7 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 	public var view:CommunicatorsTabsView;
 
 	[Inject]
-	public var chat:Chat;
+	public var chat:IChat;
 
 	override public function initializeComplete():void
 	{

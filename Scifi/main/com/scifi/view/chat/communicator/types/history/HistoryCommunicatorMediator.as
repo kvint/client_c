@@ -3,11 +3,11 @@
  */
 package com.scifi.view.chat.communicator.types.history
 {
-import com.chat.Chat;
+import com.chat.IChat;
 import com.chat.events.CommunicatorEvent;
-	import com.chat.model.data.CIString;
+	import com.chat.model.data.CItemString;
 	import com.chat.model.data.ICItem;
-import com.chat.model.data.MessageItem;
+import com.chat.model.data.СItemMessage;
 import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;
@@ -21,7 +21,7 @@ import feathers.data.ListCollection;
 {
 
 	[Inject]
-	public var chat:Chat;
+	public var chat:IChat;
 
 	override public function initializeComplete():void
 	{
@@ -70,9 +70,9 @@ import feathers.data.ListCollection;
 
 	protected static function createListItem(item:ICItem):String
 	{
-		if(item is CIString) return String(item.body);
-		if (item is MessageItem) {
-			var messageItem:MessageItem = item as MessageItem;
+		if(item is CItemString) return String(item.body);
+		if (item is СItemMessage) {
+			var messageItem:СItemMessage = item as СItemMessage;
 			var message:Message = messageItem.data as Message;
 			if (message.body == null) {
 				if (message.state != null) {
