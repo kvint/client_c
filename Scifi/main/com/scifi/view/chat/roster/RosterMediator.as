@@ -11,7 +11,8 @@ import feathers.controls.List;
 import feathers.data.ListCollection;
 
 import org.igniterealtime.xiff.data.im.IRosterItemVO;
-import org.igniterealtime.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.data.im.RosterExtension;
+	import org.igniterealtime.xiff.data.im.RosterItemVO;
 import org.igniterealtime.xiff.events.RosterEvent;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
@@ -33,7 +34,10 @@ public class RosterMediator extends FeathersMediator
 		view.requestsLabel.text = "Requests";
 
 		view.friendsList.dataProvider = new ListCollection();
+		view.requestsList.dataProvider = new ListCollection();
+
 		view.friendsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
+		view.requestsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
 
 		if (chat.model.roster.connection.loggedIn)
 			setUsersList();
@@ -60,6 +64,7 @@ public class RosterMediator extends FeathersMediator
 		chat.model.roster.addEventListener(RosterEvent.ROSTER_LOADED, roster_handleEvent);
 		chat.model.roster.addEventListener(RosterEvent.USER_ADDED, roster_handleEvent);
 		chat.model.roster.addEventListener(RosterEvent.USER_REMOVED, roster_handleEvent);
+		chat.model.roster.addEventListener(RosterEvent.USER_SUBSCRIPTION_UPDATED, roster_handleEvent);
 
 		/*
 		 public static const ROSTER_LOADED:String = "rosterLoaded";
@@ -80,6 +85,7 @@ public class RosterMediator extends FeathersMediator
 		chat.model.roster.removeEventListener(RosterEvent.ROSTER_LOADED, roster_handleEvent);
 		chat.model.roster.removeEventListener(RosterEvent.USER_ADDED, roster_handleEvent);
 		chat.model.roster.removeEventListener(RosterEvent.USER_REMOVED, roster_handleEvent);
+		chat.model.roster.removeEventListener(RosterEvent.USER_SUBSCRIPTION_UPDATED, roster_handleEvent);
 	}
 
 	private function setUsersList():void
@@ -90,7 +96,16 @@ public class RosterMediator extends FeathersMediator
 
 	private function addUserToList(data:IRosterItemVO):void
 	{
-		view.friendsList.dataProvider.addItem(data);
+		switch (data.subscribeType){
+			case RosterExtension.SUBSCRIBE_TYPE_BOTH:
+				view.friendsList.dataProvider.addItem(data);
+				break;
+			case RosterExtension.SUBSCRIBE_TYPE_FROM:
+				view.requestsList.dataProvider.addItem(data);
+				break;
+			case RosterExtension.SUBSCRIBE_TYPE_TO:
+				break;
+		}
 	}
 
 	private function roster_handleEvent(event:RosterEvent):void
@@ -101,9 +116,17 @@ public class RosterMediator extends FeathersMediator
 				setUsersList();
 				break;
 			case RosterEvent.USER_ADDED:
-				addUserToList(event.data.rosterItem);
+				addUserToList(event.data);
 				break;
 			case RosterEvent.USER_REMOVED:
+				break;
+			case RosterEvent.USER_SUBSCRIPTION_UPDATED:
+				setUsersList();
+				/** TODO:
+				 * from - входящий запрос в друзья,
+				 * to - исходящий запрос в друзья,
+				 * both - друзья навеки!
+				 **/
 				break;
 		}
 	}
