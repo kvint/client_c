@@ -68,7 +68,7 @@ import feathers.data.ListCollection;
 		historyView.eventsList.dataProvider.data = history;
 	}
 
-	protected static function createListItem(item:ICItem):String
+	protected function createListItem(item:ICItem):String
 	{
 		if(item is CItemString) return String(item.body);
 		if (item is СItemMessage) {
@@ -76,15 +76,20 @@ import feathers.data.ListCollection;
 			var message:Message = messageItem.data as Message;
 			if (message.body == null) {
 				if (message.state != null) {
-					return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, message.state);
+					return StringUtils.substitute("[{0}] {1}: {2}", formatTime(item.time), item.from, message.state);
 				}
 				if (message.receipt != null) {
-					return StringUtils.substitute("[{0}] {1}: {2}", item.time, item.from, message.receipt);
+					return StringUtils.substitute("[{0}] {1}: {2}", formatTime(item.time), item.from, message.receipt);
 				}
 			}
 		}
 
-		return StringUtils.substitute("{0}[{1}] {2}: {3}", item.isRead? "" : "*", item.time, item.from, item.body);
+		return StringUtils.substitute("{0}[{1}] {2}: {3}", item.isRead? "" : "*", formatTime(item.time), item.from, item.body);
+	}
+
+	private function formatTime(time:Number):String {
+		var date:Date = new Date(time);
+		return date.date + "/" + (date.month+1) + " " + date.hours + ":" + date.minutes;
 	}
 
 	protected function scrollToEnd():void
