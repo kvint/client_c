@@ -14,7 +14,7 @@ package {
 	import org.igniterealtime.xiff.data.IQ;
 
 	import org.igniterealtime.xiff.data.Message;
-	import org.igniterealtime.xiff.data.archive.ListStanza;
+	import org.igniterealtime.xiff.data.archive.List;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
 	import org.igniterealtime.xiff.data.rsm.Set;
 
