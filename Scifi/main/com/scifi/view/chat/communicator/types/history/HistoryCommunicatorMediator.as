@@ -88,7 +88,7 @@ import feathers.data.ListCollection;
 	}
 
 	private function formatTime(time:Number):String {
-		var date:Date = new Date(time);
+		var date:Date = new Date(time + chatModel.serverTimeOffset);
 		return date.date + "/" + (date.month+1) + " " + date.hours + ":" + date.minutes;
 	}
 
