@@ -16,7 +16,7 @@ package {
 	import org.igniterealtime.xiff.data.Message;
 	import org.igniterealtime.xiff.data.archive.List;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
-	import org.igniterealtime.xiff.data.rsm.Set;
+	import org.igniterealtime.xiff.data.rsm.RSMSet;
 
 	public class Test extends Sprite {
 		public function Test() {
