@@ -32,6 +32,8 @@ public class ChatMediator extends FeathersMediator
 	private function model_onCommunicatorActivated(event:ChatModelEvent):void
 	{
 		view.containerView.communicatorProvider = event.data as ICommunicator;
+		view.containerView.validate();
+		view
 	}
 
 	override public function destroy():void

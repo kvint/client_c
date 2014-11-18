@@ -33,6 +33,7 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ADDED, model_handleEvent);
 		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleEvent);
+		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_DESTROYED, model_handleEvent);
 
 		mapStarlingEvent(view, Event.CHANGE, view_onChange);
 
@@ -95,6 +96,11 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 			case ChatModelEvent.COMMUNICATOR_ACTIVATED:
 				var index:int = view.dataProvider.getItemIndex(event.data);
 				view.selectedIndex = index;
+				break;
+			case ChatModelEvent.COMMUNICATOR_DESTROYED:
+				var index:int = view.dataProvider.getItemIndex(event.data);
+				view.dataProvider.removeItemAt(index);
+				view.validate();
 				break;
 		}
 	}
