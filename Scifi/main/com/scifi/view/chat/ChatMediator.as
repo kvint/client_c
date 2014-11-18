@@ -7,7 +7,8 @@ import com.chat.IChat;
 import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
-import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
+	import com.chat.model.communicators.UIDCommunicator;
+	import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
@@ -31,7 +32,7 @@ public class ChatMediator extends FeathersMediator
 
 	private function model_onCommunicatorActivated(event:ChatModelEvent):void
 	{
-		view.containerView.communicatorProvider = event.data as ICommunicator;
+		view.containerView.communicatorProvider = event.data as UIDCommunicator;
 		view.containerView.validate();
 		view
 	}

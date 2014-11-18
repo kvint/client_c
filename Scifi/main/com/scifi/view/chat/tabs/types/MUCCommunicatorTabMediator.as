@@ -32,7 +32,7 @@ public class MUCCommunicatorTabMediator extends FeathersMediator
 
 	private function setName():void
 	{
-		view.nameLabel.text = communicator.label;
+		view.nameLabel.text = communicator.name;
 	}
 
 	private function setCount():void

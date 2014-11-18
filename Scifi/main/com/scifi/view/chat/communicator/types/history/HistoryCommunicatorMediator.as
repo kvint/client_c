@@ -43,12 +43,12 @@ import feathers.data.ListCollection;
 		initHistory();
 		scrollToEnd();
 
-		communicatorData.addEventListener(CommunicatorEvent.REPLACED, onCommunicatorReplaced);
+		communicatorData.addEventListener(CommunicatorEvent.CHANGED, onCommunicatorChanged);
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
 		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
 	}
 
-	private function onCommunicatorReplaced(event:CommunicatorEvent):void
+	private function onCommunicatorChanged(event:CommunicatorEvent):void
 	{
 		initHistory();
 		scrollToEnd();
@@ -143,7 +143,7 @@ import feathers.data.ListCollection;
 	{
 		communicatorData.removeEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
 		communicatorData.removeEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
-		communicatorData.removeEventListener(CommunicatorEvent.REPLACED, onCommunicatorReplaced);
+		communicatorData.removeEventListener(CommunicatorEvent.CHANGED, onCommunicatorChanged);
 		super.destroy();
 	}
 }

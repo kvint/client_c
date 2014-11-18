@@ -7,7 +7,8 @@ import com.chat.IChat;
 import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
-import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
+	import com.chat.model.communicators.UIDCommunicator;
+	import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 
 import feathers.data.ListCollection;
@@ -46,7 +47,7 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleEvent);
 	}
 
-	protected function tabInitializer(tab:CommunicatorTabContainerView, communicator:ICommunicator):void
+	protected function tabInitializer(tab:CommunicatorTabContainerView, communicator:UIDCommunicator):void
 	{
 		tab.provider = communicator;
 

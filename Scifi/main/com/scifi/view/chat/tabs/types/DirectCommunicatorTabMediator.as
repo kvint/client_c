@@ -5,8 +5,9 @@ package com.scifi.view.chat.tabs.types
 {
 import com.chat.events.CommunicatorEvent;
 import com.chat.model.communicators.ICommunicator;
+	import com.chat.model.communicators.UIDCommunicator;
 
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
 public class DirectCommunicatorTabMediator extends FeathersMediator
 {
@@ -32,7 +33,7 @@ public class DirectCommunicatorTabMediator extends FeathersMediator
 
 	private function setName():void
 	{
-		view.nameLabel.text = communicator.label;
+		view.nameLabel.text = communicator.name;
 	}
 
 	private function setCount():void
@@ -48,9 +49,9 @@ public class DirectCommunicatorTabMediator extends FeathersMediator
 		communicator.removeEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
 	}
 
-	protected function get communicator():ICommunicator
+	protected function get communicator():UIDCommunicator
 	{
-		return view.provider.data as ICommunicator;
+		return view.provider.data as UIDCommunicator;
 	}
 }
 }
