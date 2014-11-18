@@ -4,15 +4,17 @@
 package com.scifi.view.chat
 {
 import com.scifi.view.chat.communicator.CommunicatorContainerView;
-import com.scifi.view.chat.tabs.CommunicatorsTabsView;
 
 import feathers.controls.LayoutGroup;
+import feathers.controls.TabBar;
 import feathers.skins.IStyleProvider;
 
 public class ChatView extends LayoutGroup
 {
+	public static const CHILD_COMMUNICATORS_TABS:String = "child-communicators-tabs";
+
 	private var _containerView:CommunicatorContainerView = new CommunicatorContainerView();
-	private var _tabsView:CommunicatorsTabsView = new CommunicatorsTabsView();
+	private var _communicatorsTabs:TabBar = new TabBar();
 
 	public static var globalStyleProvider:IStyleProvider;
 
@@ -23,8 +25,10 @@ public class ChatView extends LayoutGroup
 
 	override protected function initialize():void
 	{
+		communicatorsTabs.styleNameList.add(CHILD_COMMUNICATORS_TABS);
+
 		addChild(containerView);
-		addChild(tabsView);
+		addChild(communicatorsTabs);
 	}
 
 	public function get containerView():CommunicatorContainerView
@@ -32,9 +36,9 @@ public class ChatView extends LayoutGroup
 		return _containerView;
 	}
 
-	public function get tabsView():CommunicatorsTabsView
+	public function get communicatorsTabs():TabBar
 	{
-		return _tabsView;
+		return _communicatorsTabs;
 	}
 
 }

@@ -12,16 +12,14 @@ import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorMediator;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsView;
-import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonMediator;
+import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.roster.RosterButtonMediator;
 import com.scifi.view.chat.roster.RosterButtonView;
 import com.scifi.view.chat.roster.RosterMediator;
 import com.scifi.view.chat.roster.RosterView;
-import com.scifi.view.chat.tabs.CommunicatorsTabsMediator;
-import com.scifi.view.chat.tabs.CommunicatorsTabsView;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabMediator;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 import com.scifi.view.chat.tabs.types.MUCCommunicatorTabMediator;
@@ -58,7 +56,6 @@ public class ViewConfig implements IConfig
 		mediatorMap.map(ChatView).toMediator(ChatMediator);
 		mediatorMap.map(RosterView).toMediator(RosterMediator);
 		mediatorMap.map(RosterButtonView).toMediator(RosterButtonMediator);
-		mediatorMap.map(CommunicatorsTabsView).toMediator(CommunicatorsTabsMediator);
 		mediatorMap.map(MUCUsersButtonView).toMediator(MUCUsersButtonMediator);
 		mediatorMap.map(MUCUsersView).toMediator(MUCUsersMediator);
 
