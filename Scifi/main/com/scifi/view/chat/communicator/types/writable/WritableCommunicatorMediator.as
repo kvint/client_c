@@ -54,9 +54,9 @@ package com.scifi.view.chat.communicator.types.writable {
 		}
 
 		override public function destroy():void {
-			super.destroy();
 			//TODO: если пользователь закрыл вкладку, то отправлять Message.STATE_GONE, а Message.STATE_INACTIVE отправлять в случае, если он её просто свернул
 			writableCommunicator.state = Message.STATE_INACTIVE;
+			super.destroy();
 		}
 	}
 }

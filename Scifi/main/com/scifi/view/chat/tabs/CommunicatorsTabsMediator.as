@@ -6,9 +6,9 @@ package com.scifi.view.chat.tabs
 import com.chat.IChat;
 import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
+import com.chat.model.communicators.ICommunicatorBase;
 import com.chat.model.communicators.ICommunicator;
-	import com.chat.model.communicators.UIDCommunicator;
-	import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
+import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 
 import feathers.data.ListCollection;
@@ -32,9 +32,8 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 		setTabs();
 
-		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ADDED, model_handleEvent);
-		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleEvent);
-		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_DESTROYED, model_handleEvent);
+		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
+		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
 
 		mapStarlingEvent(view, Event.CHANGE, view_onChange);
 
@@ -43,11 +42,11 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 	override public function destroy():void
 	{
-		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_ADDED, model_handleEvent);
-		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleEvent);
+		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
+		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
 	}
 
-	protected function tabInitializer(tab:CommunicatorTabContainerView, communicator:UIDCommunicator):void
+	protected function tabInitializer(tab:CommunicatorTabContainerView, communicator:ICommunicator):void
 	{
 		tab.provider = communicator;
 
@@ -71,34 +70,32 @@ public class CommunicatorsTabsMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
-		for (var idx:int = 0; idx < iCommunicators.length; idx++)
-			addTab(iCommunicators[idx]);
+		var iCommunicators:Vector.<ICommunicatorBase> = chat.model.provider.getAll();
+
+		for each (var communicator:ICommunicator in iCommunicators)
+			if (communicator.active)
+				addTab(communicator);
 	}
 
-	private function addTab(provider:ICommunicator):void
+	private function addTab(provider:ICommunicatorBase):void
 	{
 		view.dataProvider.addItem(provider);
 	}
 
 	private function view_onChange():void
 	{
-		var communicator:ICommunicator = view.selectedItem as ICommunicator;
+		var communicator:ICommunicatorBase = view.selectedItem as ICommunicatorBase;
 		chat.controller.activateCommunicator(communicator);
 	}
 
-	private function model_handleEvent(event:ChatModelEvent):void
+	private function model_handleActivation(event:ChatModelEvent):void
 	{
 		switch (event.type)
 		{
-			case ChatModelEvent.COMMUNICATOR_ADDED:
-				addTab(event.data as ICommunicator);
-				break;
 			case ChatModelEvent.COMMUNICATOR_ACTIVATED:
-				var index:int = view.dataProvider.getItemIndex(event.data);
-				view.selectedIndex = index;
+				addTab(event.data as ICommunicatorBase);
 				break;
-			case ChatModelEvent.COMMUNICATOR_DESTROYED:
+			case ChatModelEvent.COMMUNICATOR_DEACTIVATED:
 				var index:int = view.dataProvider.getItemIndex(event.data);
 				view.dataProvider.removeItemAt(index);
 				view.validate();

@@ -5,7 +5,9 @@ package com.scifi.view.chat.roster
 {
 import com.chat.IChat;
 import com.chat.events.ChatModelEvent;
+import com.chat.events.CommunicatorCommandEvent;
 import com.chat.model.communicators.ICommunicator;
+import com.chat.model.communicators.ICommunicatorBase;
 
 import feathers.controls.List;
 import feathers.data.ListCollection;
@@ -45,8 +47,14 @@ public class RosterMediator extends FeathersMediator
 			setUsersList();
 
 		mapStarlingEvent(view.friendsList, Event.CHANGE, friendsList_onChange);
+		mapStarlingEvent(view.requestsList, Event.CHANGE, requestsList_onChange);
 
 		addRosterEventsListeners();
+	}
+
+	private function requestsList_onChange():void
+	{
+		dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROSTER_ADD, null, [(view.requestsList.selectedItem as IRosterItemVO).jid]));
 	}
 
 	override public function destroy():void

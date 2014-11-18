@@ -3,8 +3,8 @@
  */
 package com.scifi.view.chat.communicator
 {
-import com.chat.model.communicators.ICommunicator;
-	import com.chat.model.communicators.UIDCommunicator;
+import com.chat.model.communicators.ICommunicatorBase;
+	import com.chat.model.communicators.ICommunicator;
 	import com.scifi.view.utils.SimpleViewFactory;
 
 import feathers.controls.LayoutGroup;
@@ -23,7 +23,7 @@ public class CommunicatorContainerView extends LayoutGroup
 	private var _communicatorFactory	:SimpleViewFactory		= new SimpleViewFactory();
 
 	private var _communicatorView		:ICommunicatorView;
-	private var _communicatorProvider	:UIDCommunicator;
+	private var _communicatorProvider	:ICommunicator;
 
 	override protected function draw():void
 	{
@@ -108,12 +108,12 @@ public class CommunicatorContainerView extends LayoutGroup
 		return _communicatorFactory;
 	}
 
-	public function get communicatorProvider():UIDCommunicator
+	public function get communicatorProvider():ICommunicator
 	{
 		return _communicatorProvider;
 	}
 
-	public function set communicatorProvider(value:UIDCommunicator):void
+	public function set communicatorProvider(value:ICommunicator):void
 	{
 		if (_communicatorProvider == value)
 			return;

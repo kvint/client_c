@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat.tabs
 {
-import com.chat.model.communicators.ICommunicator;
+import com.chat.model.communicators.ICommunicatorBase;
 import com.scifi.view.chat.communicator.ICommunicatorView;
 
 import feathers.controls.ToggleButton;
@@ -21,7 +21,7 @@ public class CommunicatorTabContainerView extends ToggleButton
 {
 	private static const log:ILogger = getLogger(CommunicatorTabContainerView);
 
-	private var _provider:ICommunicator;
+	private var _provider:ICommunicatorBase;
 	private var _tabView:ICommunicatorView;
 	private var _viewFactoryClass:Class;
 
@@ -117,12 +117,12 @@ public class CommunicatorTabContainerView extends ToggleButton
 		}*/
 	}
 
-	public function get provider():ICommunicator
+	public function get provider():ICommunicatorBase
 	{
 		return _provider;
 	}
 
-	public function set provider(value:ICommunicator):void
+	public function set provider(value:ICommunicatorBase):void
 	{
 		if (_provider == value)
 			return;

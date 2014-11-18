@@ -4,8 +4,8 @@
 package com.scifi.view.chat.tabs.types
 {
 import com.chat.events.CommunicatorEvent;
-import com.chat.model.communicators.ICommunicator;
-	import com.chat.model.communicators.UIDCommunicator;
+import com.chat.model.communicators.ICommunicatorBase;
+	import com.chat.model.communicators.ICommunicator;
 
 	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
@@ -49,9 +49,9 @@ public class DirectCommunicatorTabMediator extends FeathersMediator
 		communicator.removeEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
 	}
 
-	protected function get communicator():UIDCommunicator
+	protected function get communicator():ICommunicator
 	{
-		return view.provider.data as UIDCommunicator;
+		return view.provider.data as ICommunicator;
 	}
 }
 }

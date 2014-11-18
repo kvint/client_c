@@ -11,8 +11,6 @@ import feathers.skins.IStyleProvider;
 
 public class ChatView extends LayoutGroup
 {
-	public static const CHILD_COMMUNICATORS_TABS:String = "child-communicators-tabs";
-
 	private var _containerView:CommunicatorContainerView = new CommunicatorContainerView();
 	private var _tabsView:CommunicatorsTabsView = new CommunicatorsTabsView();
 
@@ -25,8 +23,6 @@ public class ChatView extends LayoutGroup
 
 	override protected function initialize():void
 	{
-		tabsView.styleNameList.add(CHILD_COMMUNICATORS_TABS);
-
 		addChild(containerView);
 		addChild(tabsView);
 	}

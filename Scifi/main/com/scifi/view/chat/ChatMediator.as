@@ -4,14 +4,14 @@
 package com.scifi.view.chat
 {
 import com.chat.IChat;
-import com.chat.events.ChatModelEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
-	import com.chat.model.communicators.UIDCommunicator;
-	import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
+import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+
+import starling.events.Event;
 
 public class ChatMediator extends FeathersMediator
 {
@@ -27,21 +27,21 @@ public class ChatMediator extends FeathersMediator
 		view.containerView.communicatorFactory.setViewClass(DirectCommunicatorView, CommunicatorType.DIRECT);
 		view.containerView.communicatorFactory.setViewClass(MUCCommunicatorView, CommunicatorType.MUC);
 
-		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_onCommunicatorActivated)
+		setCommunicatorView();
+
+		view.tabsView.addEventListener(Event.CHANGE, tabsView_onChange);
 	}
 
-	private function model_onCommunicatorActivated(event:ChatModelEvent):void
+	private function tabsView_onChange():void
 	{
-		view.containerView.communicatorProvider = event.data as UIDCommunicator;
+		setCommunicatorView();
+	}
+
+	private function setCommunicatorView():void
+	{
+		view.containerView.communicatorProvider = view.tabsView.selectedItem as ICommunicator;
 		view.containerView.validate();
-		view
 	}
 
-	override public function destroy():void
-	{
-		super.destroy();
-
-		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_onCommunicatorActivated)
-	}
 }
 }

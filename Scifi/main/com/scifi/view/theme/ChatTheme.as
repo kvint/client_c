@@ -35,6 +35,7 @@ import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
+import com.scifi.view.chat.tabs.CommunicatorsTabsView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
@@ -94,6 +95,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
 		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
 		getStyleProviderForClass(RosterView).defaultStyleFunction = setRosterViewStyles;
+		getStyleProviderForClass(CommunicatorsTabsView).defaultStyleFunction = setCommunicatorsTabsViewStyles;
 
 		getStyleProviderForClass(HistoryCommunicatorView).defaultStyleFunction = setHistoryCommunicatorStyles;
 		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
@@ -103,7 +105,6 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
 		getStyleProviderForClass(MUCUserActionsView).defaultStyleFunction = setMUCUserActionsViewStyles;
 
-		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
@@ -195,18 +196,6 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		setButtonStyles(view);
 	}
 
-	private function setChatViewCommunicatorsTabsStyles(tabs:TabBar):void
-	{
-		setTabBarStyles(tabs);
-
-		tabs.tabFactory = function ():CommunicatorTabContainerView
-		{
-			return new CommunicatorTabContainerView();
-		};
-
-		tabs.horizontalAlign = TabBar.HORIZONTAL_ALIGN_CENTER;
-	}
-
 	private function setCommunicatorsEventsListStyles(list:List):void
 	{
 		setListStyles(list);
@@ -271,6 +260,19 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		tabsView.bottom = 0;
 
 		view.tabsView.layoutData = tabsView;
+	}
+
+	private function setCommunicatorsTabsViewStyles(view:CommunicatorsTabsView):void
+	{
+		setTabBarStyles(view);
+
+		view.tabFactory = function ():CommunicatorTabContainerView
+		{
+			return new CommunicatorTabContainerView();
+		};
+
+		view.horizontalAlign = TabBar.HORIZONTAL_ALIGN_CENTER;
+		view.distributeTabSizes = false;
 	}
 
 	private function setRosterViewStyles(view:RosterView):void
