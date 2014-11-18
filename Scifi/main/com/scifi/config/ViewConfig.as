@@ -10,6 +10,8 @@ import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorMediator;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorMediator;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
+import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsMediator;
+import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersMediator;
@@ -68,7 +70,8 @@ public class ViewConfig implements IConfig
 		mediatorMap.map(MUCCommunicatorTabView).toMediator(MUCCommunicatorTabMediator);
 		mediatorMap.map(DirectCommunicatorTabView).toMediator(DirectCommunicatorTabMediator);
 
-
+		//
+		mediatorMap.map(MUCUserActionsView).toMediator(MUCUserActionsMediator);
 	}
 
 }

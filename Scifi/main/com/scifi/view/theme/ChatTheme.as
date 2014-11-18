@@ -30,6 +30,7 @@ import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
+import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
 import com.scifi.view.chat.roster.RosterView;
@@ -45,6 +46,7 @@ import feathers.controls.TabBar;
 import feathers.display.Scale9Image;
 import feathers.layout.AnchorLayout;
 import feathers.layout.AnchorLayoutData;
+import feathers.layout.HorizontalLayout;
 import feathers.layout.VerticalLayout;
 import feathers.themes.MetalWorksDesktopTheme;
 
@@ -70,6 +72,13 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		Starling.current.nativeStage.color = 0x000000;
 	}
 
+	override protected function initializeDimensions():void
+	{
+		super.initializeDimensions();
+
+		buttonMinWidth = gutterSize;
+	}
+
 	override protected function initializeFonts():void
 	{
 		super.initializeFonts();
@@ -92,6 +101,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(DefaultCommunicatorTabView).defaultStyleFunction = setDefaultCommunicatorTabStyles;
 		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
 		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
+		getStyleProviderForClass(MUCUserActionsView).defaultStyleFunction = setMUCUserActionsViewStyles;
 
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setChatViewCommunicatorsTabsStyles)
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
@@ -99,11 +109,18 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
 	}
 
+	private function setMUCUserActionsViewStyles(view:MUCUserActionsView):void
+	{
+		const layout:HorizontalLayout = new HorizontalLayout();
+		view.layout = layout;
+		view.actionsButtons.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+	}
+
 	private function setMUCUsersViewStyles(view:MUCUsersView):void
 	{
 		setListStyles(view);
 
-		view.minWidth = 100;
+		view.width = 200;
 	}
 
 	private function setCommunicatorTabCountLabelStyles(label:Label):void

@@ -12,8 +12,14 @@ import feathers.controls.ToggleButton;
 import feathers.events.FeathersEventType;
 import feathers.skins.IStyleProvider;
 
+import org.as3commons.logging.api.ILogger;
+
+import org.as3commons.logging.api.getLogger;
+
 public class DefaultCommunicatorTabView extends ToggleButton implements ICommunicatorView
 {
+	private static const log:ILogger = getLogger(DefaultCommunicatorTabView);
+
 	public static const CHILD_COMMUNICATOR_TAB_NAME_LABEL:String = "child-communicator-tab-name-label";
 	public static const CHILD_COMMUNICATOR_TAB_COUNT_LABEL:String = "child-communicator-tab-count-label";
 
