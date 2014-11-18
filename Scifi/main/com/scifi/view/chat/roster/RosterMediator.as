@@ -30,6 +30,8 @@ public class RosterMediator extends FeathersMediator
 
 	override public function initializeComplete():void
 	{
+//		view.friendsList.isSelectable = false;
+
 		view.friendsLabel.text = "Friends";
 		view.requestsLabel.text = "Requests";
 

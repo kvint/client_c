@@ -8,12 +8,14 @@ import com.scifi.view.chat.communicator.ICommunicatorView;
 
 import feathers.controls.ToggleButton;
 import feathers.core.IFeathersControl;
+import feathers.events.FeathersEventType;
 import feathers.skins.IStyleProvider;
 
 import org.as3commons.logging.api.ILogger;
 import org.as3commons.logging.api.getLogger;
 
 import starling.display.DisplayObject;
+import starling.events.Event;
 
 public class CommunicatorTabContainerView extends ToggleButton
 {
@@ -90,6 +92,7 @@ public class CommunicatorTabContainerView extends ToggleButton
 		if (_tabView)
 		{
 			_tabView.removeFromParent();
+			_tabView.removeEventListener(FeathersEventType.RESIZE, child_onResize);
 			_tabView = null;
 		}
 
@@ -99,18 +102,19 @@ public class CommunicatorTabContainerView extends ToggleButton
 		if (_tabView)
 		{
 			_tabView.provider.data = provider;
+			_tabView.addEventListener(FeathersEventType.RESIZE, child_onResize);
 			addChild(_tabView as DisplayObject);
 		}
 	}
 
 	override protected function layoutContent():void
 	{
-		if (_tabView)
+		/*if (_tabView)
 		{
 			_tabView.validate();
 			_tabView.width = actualWidth;
 			_tabView.height = actualHeight;
-		}
+		}*/
 	}
 
 	public function get provider():ICommunicator
@@ -143,6 +147,11 @@ public class CommunicatorTabContainerView extends ToggleButton
 	override protected function get defaultStyleProvider():IStyleProvider
 	{
 		return globalStyleProvider;
+	}
+
+	private function child_onResize(event:Event):void
+	{
+		invalidate(INVALIDATION_FLAG_STYLES);
 	}
 }
 }

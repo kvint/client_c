@@ -36,8 +36,8 @@ public class GameMediator extends FeathersMediator {
 	{
 		setActions();
 
-//		BaseChatController.serverName = "10.0.1.4";
-		BaseChatController.serverName = "localhost";
+		BaseChatController.serverName = "10.0.1.4";
+//		BaseChatController.serverName = "localhost";
 	}
 
 	private function setActions():void
@@ -70,6 +70,7 @@ public class GameMediator extends FeathersMediator {
 		chat.controller.connect("bob@localhost", "2gret37nidro");
 		disableButtons(event.currentTarget as Button);
 	}
+
 	private function a3(event:Event):void {
 		chat.controller.connect("joe@localhost", "2gret37nidro");
 		disableButtons(event.currentTarget as Button);
