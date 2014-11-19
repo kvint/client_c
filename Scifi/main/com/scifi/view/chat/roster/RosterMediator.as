@@ -145,7 +145,7 @@ public class RosterMediator extends FeathersMediator
 	{
 		var ri:RosterItemVO = (event.currentTarget as List).selectedItem as RosterItemVO;
 
-		var iCommunicator:ICommunicator = chat.model.provider.getCommunicator(ri);
+		var iCommunicator:ICommunicator = chat.model.communicators.getCommunicator(ri);
 		iCommunicator.active = true;
 	}
 

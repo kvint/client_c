@@ -76,7 +76,7 @@ public class ChatMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		var iCommunicators:Vector.<ICommunicator> = chat.model.provider.getAll();
+		var iCommunicators:Vector.<ICommunicator> = chat.model.communicators.getAll();
 
 		for each (var communicator:ICommunicator in iCommunicators)
 			if (communicator.active)
