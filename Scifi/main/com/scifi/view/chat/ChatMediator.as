@@ -13,7 +13,15 @@ import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabView;
 
+import feathers.controls.TabBar;
+
 import feathers.data.ListCollection;
+
+import flash.utils.setTimeout;
+
+import org.as3commons.logging.api.ILogger;
+
+import org.as3commons.logging.api.getLogger;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
@@ -21,6 +29,7 @@ import starling.events.Event;
 
 public class ChatMediator extends FeathersMediator
 {
+	private static const log:ILogger = getLogger(ChatMediator);
 
 	[Inject]
 	public var view:ChatView;
@@ -42,6 +51,74 @@ public class ChatMediator extends FeathersMediator
 
 		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
 		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
+
+		test();
+	}
+
+	private function test():void
+	{
+		/*var tabs:TabBar = new TabBar();
+		view.addChild(tabs);
+		tabs.dataProvider = new ListCollection();
+		tabs.addEventListener(Event.CHANGE, handleChange);
+
+		setTimeout(function ():void
+		{
+			tabs.dataProvider.addItem({ label: "One"});
+			tabs.validate();
+		}, 1000);
+
+		function handleChange(event:Event):void
+		{
+			trace("Change");
+		}*/
+
+		/*tabs.dataProvider.addItem({ label: "Two"});
+		tabs.dataProvider.addItem({ label: "Three"});
+
+		tabs.selectedIndex = 1;
+		tabs.validate();
+
+		trace(tabs.selectedItem.label); // output: "Two". Ok
+
+		tabs.dataProvider.removeItemAt(1);
+
+		tabs.validate();
+		trace(tabs.selectedItem.label);*/ // output: "Three". Change handler NOT firing
+
+//		trace(tabs.selectedIndex); // output: "-1". Ok
+
+
+//		tabs.validate();
+
+//		trace(tabs.selectedIndex); // output: "0". Change handler NOT firing
+
+		/*trace(tabs.selectedIndex); // output: "0". Change handler NOT firing
+
+		tabs.dataProvider.addItem({ label: "Two"});
+		tabs.dataProvider.addItem({ label: "Three"});
+
+		tabs.validate();
+
+		trace(tabs.selectedItem.label); // output: "One". Ok
+
+		tabs.dataProvider.removeItemAt(0);
+
+		tabs.validate();
+
+		trace(tabs.selectedItem.label); // output: "Two". Same index but other item. Change handler NOT firing
+
+		tabs.selectedIndex = 1;
+
+		tabs.validate();
+
+		trace(tabs.selectedItem.label); // output: "Three". Change handler firing.
+
+		tabs.dataProvider.removeItemAt(1);
+
+		tabs.validate();
+
+		trace(tabs.selectedItem.label); // output: "Two". Change handler NOT firing*/
 	}
 
 	override public function destroy():void
@@ -80,7 +157,7 @@ public class ChatMediator extends FeathersMediator
 
 		for each (var communicator:ICommunicator in iCommunicators)
 			if (communicator.active)
-				removeTab(communicator);
+				addTab(communicator);
 	}
 
 	private function addTab(communicator:ICommunicator):void
@@ -92,7 +169,6 @@ public class ChatMediator extends FeathersMediator
 	{
 		var index:int = view.communicatorsTabs.dataProvider.getItemIndex(communicator);
 		view.communicatorsTabs.dataProvider.removeItemAt(index);
-		view.validate();
 	}
 
 	private function model_handleActivation(event:ChatModelEvent):void
@@ -101,13 +177,14 @@ public class ChatMediator extends FeathersMediator
 		{
 			case ChatModelEvent.COMMUNICATOR_ACTIVATED:
 				addTab(event.data as ICommunicator);
-//				view.communicatorsTabs.validate();
 				break;
 			case ChatModelEvent.COMMUNICATOR_DEACTIVATED:
 				removeTab(event.data as ICommunicator);
-				view.communicatorsTabs.validate();
 				break;
 		}
+
+		view.communicatorsTabs.validate();
+		setCommunicatorView();
 	}
 
 	private function tabsView_onChange():void

@@ -3,9 +3,8 @@
  */
 package com.scifi.view.chat.communicator
 {
-import com.chat.model.communicators.ICommunicatorBase;
-	import com.chat.model.communicators.ICommunicator;
-	import com.scifi.view.utils.SimpleViewFactory;
+import com.chat.model.communicators.ICommunicator;
+import com.scifi.view.utils.SimpleViewFactory;
 
 import feathers.controls.LayoutGroup;
 import feathers.core.IFeathersControl;
@@ -76,7 +75,10 @@ public class CommunicatorContainerView extends LayoutGroup
 	protected function updateCommunicatorView():void
 	{
 		if (communicatorView)
+		{
 			communicatorView.removeFromParent();
+			_communicatorView = null;
+		}
 
 		if (communicatorProvider)
 		{
