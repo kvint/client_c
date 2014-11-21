@@ -8,7 +8,7 @@ import com.chat.events.CommunicatorFactoryEvent;
 import com.chat.events.CommunicatorCommandEvent;
 import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.ICommunicatorBase;
-	import com.chat.model.communicators.ICommunicatorFactory;
+	import com.chat.model.communicators.factory.ICommunicatorFactory;
 
 	import feathers.controls.List;
 import feathers.data.ListCollection;

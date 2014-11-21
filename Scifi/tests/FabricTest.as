@@ -10,7 +10,8 @@ package {
 	import com.chat.model.ChatUser;
 	import com.chat.model.IChatModel;
 	import com.chat.model.communicators.ICommunicator;
-	import com.chat.model.communicators.ICommunicatorFactory;
+	import com.chat.model.communicators.RoomCommunicator;
+	import com.chat.model.communicators.factory.ICommunicatorFactory;
 	import com.chat.model.communicators.factory.CommunicatorFactory;
 
 	import flash.events.EventDispatcher;
@@ -81,6 +82,16 @@ package {
 			assertNull(chat.model.communicators.getFor(null));
 			assertNull(chat.model.communicators.getFor(msg));
 		}
+
+		[Test]
+		public function testRoomCreation():void {
+			var msg:Message = new Message();
+			msg.type = Message.TYPE_GROUPCHAT;
+			msg.to = chat.model.currentUser.jid.escaped;
+			msg.from = new UnescapedJID("joe@localhost").escaped;
+			assertTrue(chat.model.communicators.getFor(msg) is RoomCommunicator);
+		}
+
 		[Test(order=3,async)]
 		public function testCreation():void {
 			chat.model.communicators.addEventListener(CommunicatorFactoryEvent.COMMUNICATOR_ADDED, Async.asyncHandler(this, function(e:CommunicatorFactoryEvent, data:Object):void{
