@@ -1,7 +1,7 @@
 /**
  * Created by kvint on 19.11.14.
  */
-package {
+package tests {
 	import com.chat.Chat;
 	import com.chat.IChat;
 	import com.chat.controller.ChatController;
@@ -42,13 +42,14 @@ package {
 		public function setUp():void {
 			var bus:IEventDispatcher = new EventDispatcher();
 			injector = new RobotlegsInjector();
+			injector.map(IInjector).toValue(injector);
+
 			injector.map(IChat).toSingleton(Chat);
 			injector.map(IChatModel).toSingleton(ChatModel);
 			injector.map(ChatController).toSingleton(ChatController);
 
 
 			injector.map(ICommunicatorFactory).toSingleton(CommunicatorFactory);
-			injector.map(IInjector).toValue(injector);
 			injector.map(IEventDispatcher).toValue(bus);
 			chat = injector.getInstance(IChat);
 			chat.model.currentUser = new ChatUser(new UnescapedJID("bob@localhost"));
