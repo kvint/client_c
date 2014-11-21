@@ -4,12 +4,13 @@
 package com.scifi.view.chat.roster
 {
 import com.chat.IChat;
-import com.chat.events.ChatModelEvent;
+import com.chat.events.CommunicatorFactoryEvent;
 import com.chat.events.CommunicatorCommandEvent;
 import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.ICommunicatorBase;
+	import com.chat.model.communicators.ICommunicatorFactory;
 
-import feathers.controls.List;
+	import feathers.controls.List;
 import feathers.data.ListCollection;
 
 import org.igniterealtime.xiff.data.im.IRosterItemVO;
@@ -29,6 +30,9 @@ public class RosterMediator extends FeathersMediator
 
 	[Inject]
 	public var chat:IChat;
+
+	[Inject]
+	public var communicators:ICommunicatorFactory;
 
 	override public function initializeComplete():void
 	{
@@ -145,7 +149,7 @@ public class RosterMediator extends FeathersMediator
 	{
 		var ri:RosterItemVO = (event.currentTarget as List).selectedItem as RosterItemVO;
 
-		var iCommunicator:ICommunicator = chat.model.communicators.getFor(ri);
+		var iCommunicator:ICommunicator = communicators.getFor(ri);
 		iCommunicator.active = true;
 	}
 

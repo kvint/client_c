@@ -3,7 +3,8 @@
  */
 package com.scifi.view.chat.communicator.types.base {
 import com.chat.model.ChatModel;
-import com.chat.model.communicators.ICommunicatorBase;
+	import com.chat.model.IChatModel;
+	import com.chat.model.communicators.ICommunicatorBase;
 import com.scifi.view.chat.communicator.*;
 
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
@@ -11,7 +12,7 @@ import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 public class DefaultCommunicatorMediator extends FeathersMediator {
 
 		[Inject]
-		public var chatModel:ChatModel;
+		public var chatModel:IChatModel;
 
 
 		override public function initializeComplete():void {

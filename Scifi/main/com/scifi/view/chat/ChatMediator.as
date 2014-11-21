@@ -4,10 +4,11 @@
 package com.scifi.view.chat
 {
 import com.chat.IChat;
-import com.chat.events.ChatModelEvent;
+import com.chat.events.CommunicatorFactoryEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
-import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
+	import com.chat.model.communicators.ICommunicatorFactory;
+	import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
@@ -35,7 +36,7 @@ public class ChatMediator extends FeathersMediator
 	public var view:ChatView;
 
 	[Inject]
-	public var chat:IChat;
+	public var communicators:ICommunicatorFactory;
 
 	override public function initializeComplete():void
 	{
@@ -49,8 +50,8 @@ public class ChatMediator extends FeathersMediator
 
 		mapStarlingEvent(view.communicatorsTabs, Event.CHANGE, tabsView_onChange);
 
-		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
-		chat.model.addEventListener(ChatModelEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
+		communicators.addEventListener(CommunicatorFactoryEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
+		communicators.addEventListener(CommunicatorFactoryEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
 
 		test();
 	}
@@ -125,8 +126,8 @@ public class ChatMediator extends FeathersMediator
 	{
 		super.destroy();
 
-		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
-		chat.model.removeEventListener(ChatModelEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
+		communicators.removeEventListener(CommunicatorFactoryEvent.COMMUNICATOR_ACTIVATED, model_handleActivation);
+		communicators.removeEventListener(CommunicatorFactoryEvent.COMMUNICATOR_DEACTIVATED, model_handleActivation);
 	}
 
 	protected function tabInitializer(tab:CommunicatorTabContainerView, communicator:ICommunicator):void
@@ -153,7 +154,7 @@ public class ChatMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		var iCommunicators:Vector.<ICommunicator> = chat.model.communicators.getAll();
+		var iCommunicators:Vector.<ICommunicator> = communicators.getAll();
 
 		for each (var communicator:ICommunicator in iCommunicators)
 			if (communicator.active)
@@ -171,14 +172,14 @@ public class ChatMediator extends FeathersMediator
 		view.communicatorsTabs.dataProvider.removeItemAt(index);
 	}
 
-	private function model_handleActivation(event:ChatModelEvent):void
+	private function model_handleActivation(event:CommunicatorFactoryEvent):void
 	{
 		switch (event.type)
 		{
-			case ChatModelEvent.COMMUNICATOR_ACTIVATED:
+			case CommunicatorFactoryEvent.COMMUNICATOR_ACTIVATED:
 				addTab(event.data as ICommunicator);
 				break;
-			case ChatModelEvent.COMMUNICATOR_DEACTIVATED:
+			case CommunicatorFactoryEvent.COMMUNICATOR_DEACTIVATED:
 				removeTab(event.data as ICommunicator);
 				break;
 		}
