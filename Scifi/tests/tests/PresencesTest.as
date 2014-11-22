@@ -17,16 +17,13 @@ package tests {
 		[Before]
 		public function setUp():void {
 			injector = new RobotlegsInjector();
-			var presences:Presences = new Presences();
-			injector.map(IPresences).toValue(presences);
-			injector.map(IPresencesHandler).toValue(presences);
 		}
 
 		[Test]
 		public function testInstance():void {
-			var instance:* = injector.getInstance(IPresences);
-			var instance2:* = injector.getInstance(IPresencesHandler);
-			assertEquals(instance, instance2);
+			var presences:Presences = new Presences();
+			presences.subscribe();
+
 		}
 	}
 }
