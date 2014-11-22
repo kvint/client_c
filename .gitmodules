@@ -1,4 +1,4 @@
-[submodule "ChatClient"]
-	path = ChatClient
-	url = git@github.com:kvint/ChatClient.git
+[submodule "ChatLib"]
+	path = ChatLib
+	url = git@github.com:kvint/ChatLib.git
 	branch = master
