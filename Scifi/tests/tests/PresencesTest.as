@@ -26,8 +26,8 @@ package tests {
 			injector = new RobotlegsInjector();
 			presences = new Presences();
 
-			bob = new FakePresence("bob@localhost/xiff");
-			joe = new FakePresence("joe@localhost/xiff");
+			bob = new FakePresence("bob@localhost");
+			joe = new FakePresence("joe@localhost");
 		}
 
 		[Test(order=1)]
