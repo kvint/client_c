@@ -22,7 +22,7 @@ package tests {
 		[Test]
 		public function testInstance():void {
 			var presences:Presences = new Presences();
-			presences.subscribe();
+			//presences.subscribe();
 
 		}
 	}
