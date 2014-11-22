@@ -13,6 +13,9 @@ package tests {
 	import com.chat.model.communicators.RoomCommunicator;
 	import com.chat.model.communicators.factory.ICommunicatorFactory;
 	import com.chat.model.communicators.factory.CommunicatorFactory;
+	import com.chat.model.presences.IPresences;
+	import com.chat.model.presences.IPresencesHandler;
+	import com.chat.model.presences.Presences;
 
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
@@ -25,6 +28,7 @@ package tests {
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.IPresence;
 	import org.igniterealtime.xiff.data.Message;
 	import org.swiftsuspenders.Injector;
 
@@ -51,6 +55,10 @@ package tests {
 
 			injector.map(ICommunicatorFactory).toSingleton(CommunicatorFactory);
 			injector.map(IEventDispatcher).toValue(bus);
+			var presences:Presences = new Presences();
+			injector.map(IPresences).toValue(presences);
+			injector.map(IPresencesHandler).toValue(presences);
+
 			chat = injector.getInstance(IChat);
 			chat.model.currentUser = new ChatUser(new UnescapedJID("bob@localhost"));
 
