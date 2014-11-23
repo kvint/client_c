@@ -5,14 +5,15 @@ package tests {
 	import com.chat.Chat;
 	import com.chat.IChat;
 	import com.chat.controller.ChatController;
+	import com.chat.controller.IChatController;
 	import com.chat.events.CommunicatorFactoryEvent;
 	import com.chat.model.ChatModel;
 	import com.chat.model.ChatUser;
 	import com.chat.model.IChatModel;
 	import com.chat.model.communicators.ICommunicator;
 	import com.chat.model.communicators.RoomCommunicator;
-	import com.chat.model.communicators.factory.ICommunicatorFactory;
 	import com.chat.model.communicators.factory.CommunicatorFactory;
+	import com.chat.model.communicators.factory.ICommunicatorFactory;
 	import com.chat.model.presences.IPresences;
 	import com.chat.model.presences.IPresencesHandler;
 	import com.chat.model.presences.Presences;
@@ -24,11 +25,9 @@ package tests {
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertNull;
-	import org.flexunit.asserts.assertStrictlyEquals;
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	import org.igniterealtime.xiff.core.UnescapedJID;
-	import org.igniterealtime.xiff.data.IPresence;
 	import org.igniterealtime.xiff.data.Message;
 	import org.swiftsuspenders.Injector;
 
@@ -50,7 +49,7 @@ package tests {
 
 			injector.map(IChat).toSingleton(Chat);
 			injector.map(IChatModel).toSingleton(ChatModel);
-			injector.map(ChatController).toSingleton(ChatController);
+			injector.map(IChatController).toSingleton(ChatController);
 
 
 			injector.map(ICommunicatorFactory).toSingleton(CommunicatorFactory);

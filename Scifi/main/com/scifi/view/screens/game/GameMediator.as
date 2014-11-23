@@ -80,7 +80,7 @@ public class GameMediator extends FeathersMediator {
 		disableButtons(event.currentTarget as Button);
 	}
 	private function a5(event:Event):void {
-		chat.controller.test();
+		//chat.controller.test();
 	}
 
 
