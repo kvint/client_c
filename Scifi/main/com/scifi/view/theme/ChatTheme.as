@@ -33,6 +33,7 @@ import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
+import com.scifi.view.chat.presence.PresenceView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
@@ -102,11 +103,20 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
 		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
 		getStyleProviderForClass(MUCUserActionsView).defaultStyleFunction = setMUCUserActionsViewStyles;
+		getStyleProviderForClass(PresenceView).defaultStyleFunction = setPresenceViewStyles;
 
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setCommunicatorsTabsStyles)
+	}
+
+	private function setPresenceViewStyles(view:PresenceView):void
+	{
+		view.layout = new AnchorLayout();
+
+		view.minWidth = 10;
+		view.minHeight = 10;
 	}
 
 	private function setMUCUserActionsViewStyles(view:MUCUserActionsView):void

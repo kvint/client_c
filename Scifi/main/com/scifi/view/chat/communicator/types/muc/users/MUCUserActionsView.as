@@ -3,17 +3,17 @@
  */
 package com.scifi.view.chat.communicator.types.muc.users
 {
+import com.scifi.view.chat.presence.PresenceView;
+
 import feathers.controls.ButtonGroup;
 import feathers.controls.LayoutGroup;
 import feathers.skins.IStyleProvider;
-
-import starling.display.Quad;
 
 public class MUCUserActionsView extends LayoutGroup
 {
 	private var _data:Object;
 
-	private var _presenceView:Quad = new Quad(5, 5, 0x223322);
+	private var _presenceView:PresenceView = new PresenceView();
 	private var _actionsButtons:ButtonGroup = new ButtonGroup();
 
 	public static var globalStyleProvider:IStyleProvider;
@@ -47,7 +47,7 @@ public class MUCUserActionsView extends LayoutGroup
 		return _actionsButtons;
 	}
 
-	public function get presenceView():Quad
+	public function get presenceView():PresenceView
 	{
 		return _presenceView;
 	}
