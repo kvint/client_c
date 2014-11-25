@@ -1,7 +1,7 @@
 /**
  * Created by kuts on 11/25/14.
  */
-package com.scifi.view.chat.presence
+package com.scifi.view.chat.user.presence
 {
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
@@ -33,7 +33,7 @@ public class PresenceMediator extends FeathersMediator
 
 	private function statusProvider_onDataChange():void
 	{
-
+		setStatus();
 	}
 }
 }
