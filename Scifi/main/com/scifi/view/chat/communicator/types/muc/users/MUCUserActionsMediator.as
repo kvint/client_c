@@ -27,10 +27,13 @@ public class MUCUserActionsMediator extends FeathersMediator implements IPresenc
 
 		chat.model.presences.subscribe(this);
 
-		view.actionsButtons.dataProvider = new ListCollection([
-			{ label: "+" },
-			{ label: ".." }
-		])
+		view.actionsButtons.dataProvider = new ListCollection();
+
+//		if (chat.model.roster.isFriend(chatUser.jid.bareJID))
+//
+//			{ label: "+" },
+//			{ label: ".." }
+//		])
 	}
 
 	override public function destroy():void

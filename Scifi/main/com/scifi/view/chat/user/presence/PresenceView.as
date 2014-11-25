@@ -1,7 +1,7 @@
 /**
  * Created by kuts on 11/25/14.
  */
-package com.scifi.view.chat.presence
+package com.scifi.view.chat.user.presence
 {
 import com.chat.utils.providers.IViewDataProvider;
 import com.chat.utils.providers.ViewDataProvider;

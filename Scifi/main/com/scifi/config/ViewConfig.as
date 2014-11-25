@@ -16,6 +16,10 @@ import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
+import com.scifi.view.chat.user.actions.FriendUserActionsMediator;
+import com.scifi.view.chat.user.actions.FriendUserActionsView;
+import com.scifi.view.chat.user.presence.PresenceMediator;
+import com.scifi.view.chat.user.presence.PresenceView;
 import com.scifi.view.chat.roster.RosterButtonMediator;
 import com.scifi.view.chat.roster.RosterButtonView;
 import com.scifi.view.chat.roster.RosterMediator;
@@ -67,8 +71,9 @@ public class ViewConfig implements IConfig
 		mediatorMap.map(MUCCommunicatorTabView).toMediator(MUCCommunicatorTabMediator);
 		mediatorMap.map(DirectCommunicatorTabView).toMediator(DirectCommunicatorTabMediator);
 
-		//
 		mediatorMap.map(MUCUserActionsView).toMediator(MUCUserActionsMediator);
+		mediatorMap.map(PresenceView).toMediator(PresenceMediator);
+		mediatorMap.map(FriendUserActionsView).toMediator(FriendUserActionsMediator);
 	}
 
 }

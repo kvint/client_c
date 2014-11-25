@@ -33,12 +33,15 @@ import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
-import com.scifi.view.chat.presence.PresenceView;
+import com.scifi.view.chat.user.actions.UserActionsView;
+import com.scifi.view.chat.user.presence.PresenceView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
+
+import feathers.controls.Button;
 
 import feathers.controls.ButtonGroup;
 import feathers.controls.Label;
@@ -104,11 +107,38 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
 		getStyleProviderForClass(MUCUserActionsView).defaultStyleFunction = setMUCUserActionsViewStyles;
 		getStyleProviderForClass(PresenceView).defaultStyleFunction = setPresenceViewStyles;
+		getStyleProviderForClass(UserActionsView).defaultStyleFunction = setUserActionsViewStyles;
 
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setCommunicatorsTabsStyles)
+		getStyleProviderForClass(ButtonGroup).setFunctionForStyleName(UserActionsView.CHILD_USER_ACTIONS_BUTTONS_GROUP, setUserActionsViewButtonsGroupStyles)
+		getStyleProviderForClass(Button).setFunctionForStyleName(UserActionsView.CHILD_USER_ACTIONS_BUTTON, setUserActionsViewButtonStyles)
+	}
+
+	private function setUserActionsViewButtonStyles(button:Button):void
+	{
+		setButtonStyles(button);
+	}
+
+	private function setUserActionsViewButtonsGroupStyles(buttons:ButtonGroup):void
+	{
+		setButtonGroupStyles(buttons);
+
+		buttons.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+		buttons.distributeButtonSizes = false;
+		buttons.minWidth = 10;
+	}
+
+	private function setUserActionsViewStyles(view:UserActionsView):void
+	{
+		const hLayout:HorizontalLayout = new HorizontalLayout();
+
+		hLayout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
+		hLayout.gap = smallGutterSize;
+
+		view.layout = hLayout;
 	}
 
 	private function setPresenceViewStyles(view:PresenceView):void
@@ -331,7 +361,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		view.requestsList.layoutData = requestsList;
 
-		view.minWidth = 150;
+		view.minWidth = 200;
 	}
 
 }

@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat.communicator.types.muc.users
 {
-import com.scifi.view.chat.presence.PresenceView;
+import com.scifi.view.chat.user.presence.PresenceView;
 
 import feathers.controls.ButtonGroup;
 import feathers.controls.LayoutGroup;

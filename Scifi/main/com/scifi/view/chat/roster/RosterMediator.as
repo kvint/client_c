@@ -9,8 +9,9 @@ import com.chat.events.CommunicatorCommandEvent;
 import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.ICommunicatorBase;
 	import com.chat.model.communicators.factory.ICommunicatorFactory;
+import com.scifi.view.chat.user.actions.FriendUserActionsView;
 
-	import feathers.controls.List;
+import feathers.controls.List;
 import feathers.data.ListCollection;
 
 import org.igniterealtime.xiff.data.im.IRosterItemVO;
@@ -36,29 +37,27 @@ public class RosterMediator extends FeathersMediator
 
 	override public function initializeComplete():void
 	{
-//		view.friendsList.isSelectable = false;
-
 		view.friendsLabel.text = "Friends";
 		view.requestsLabel.text = "Requests";
 
-		view.friendsList.dataProvider = new ListCollection();
-		view.requestsList.dataProvider = new ListCollection();
+		view.friendsList.isSelectable = false;
+		view.requestsList.isSelectable = false;
 
 		view.friendsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
+		view.friendsList.itemRendererProperties.accessoryFunction = createFriendActionsView;
+
 		view.requestsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
+//		view.friendsList.itemRendererProperties.accessoryFunction = createRequestActionsView;
 
 		if (chat.model.roster.connection.loggedIn)
 			setUsersList();
 
-		mapStarlingEvent(view.friendsList, Event.CHANGE, friendsList_onChange);
-		mapStarlingEvent(view.requestsList, Event.CHANGE, requestsList_onChange);
-
 		addRosterEventsListeners();
 	}
 
-	private function requestsList_onChange():void
+	private static function createFriendActionsView(data:IRosterItemVO):FriendUserActionsView
 	{
-		dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROSTER_ADD, null, [(view.requestsList.selectedItem as IRosterItemVO).jid]));
+		return new FriendUserActionsView(data);
 	}
 
 	override public function destroy():void
@@ -104,6 +103,9 @@ public class RosterMediator extends FeathersMediator
 
 	private function setUsersList():void
 	{
+		view.friendsList.dataProvider = new ListCollection();
+		view.requestsList.dataProvider = new ListCollection();
+
 		for each(var data:IRosterItemVO in chat.model.roster.source)
 			addUserToList(data);
 	}
@@ -122,6 +124,20 @@ public class RosterMediator extends FeathersMediator
 		}
 	}
 
+	private function removeUserFromList(data:IRosterItemVO):void
+	{
+		switch (data.subscribeType){
+			case RosterExtension.SUBSCRIBE_TYPE_BOTH:
+				view.friendsList.dataProvider.removeItemAt(view.friendsList.dataProvider.getItemIndex(data));
+				break;
+			case RosterExtension.SUBSCRIBE_TYPE_FROM:
+				view.requestsList.dataProvider.removeItemAt(view.requestsList.dataProvider.getItemIndex(data));
+				break;
+			case RosterExtension.SUBSCRIBE_TYPE_TO:
+				break;
+		}
+	}
+
 	private function roster_handleEvent(event:RosterEvent):void
 	{
 		switch (event.type)
@@ -133,6 +149,7 @@ public class RosterMediator extends FeathersMediator
 				addUserToList(event.data);
 				break;
 			case RosterEvent.USER_REMOVED:
+				removeUserFromList(event.data);
 				break;
 			case RosterEvent.USER_SUBSCRIPTION_UPDATED:
 				setUsersList();
@@ -145,13 +162,7 @@ public class RosterMediator extends FeathersMediator
 		}
 	}
 
-	private function friendsList_onChange(event:Event):void
-	{
-		var ri:RosterItemVO = (event.currentTarget as List).selectedItem as RosterItemVO;
-
-		var iCommunicator:ICommunicator = communicators.getFor(ri);
-		iCommunicator.active = true;
-	}
+	//dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROSTER_ADD, null, [(view.requestsList.selectedItem as IRosterItemVO).jid]));
 
 }
 }
