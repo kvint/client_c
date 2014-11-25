@@ -34,7 +34,6 @@ package tests {
 		[Test]
 		public function basicSubscribe():void {
 
-			assertEquals(0, bob.showStatus);
 			presences.subscribe(bob);
 			assertEquals(PresenceStatuses.UNKNOWN, bob.showStatus);
 		}
@@ -58,6 +57,35 @@ package tests {
 			presences.subscribe(bob);
 
 			assertEquals(bob.showStatus, PresenceStatuses.OFFLINE);
+		}
+
+		[Test]
+		public function testUnsubscribe():void {
+			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
+			bobPresence.type = Presence.TYPE_UNSUBSCRIBED;
+			presences.handlePresence(bobPresence);
+			presences.subscribe(bob);
+
+			assertEquals(bob.showStatus, PresenceStatuses.UNKNOWN);
+		}
+		[Test]
+		public function testAway():void {
+			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
+			bobPresence.show = "away";
+			presences.handlePresence(bobPresence);
+			presences.subscribe(bob);
+
+			assertEquals(bob.showStatus, PresenceStatuses.AWAY);
+		}
+		[Test]
+		public function testUnusual():void {
+			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
+			bobPresence.show = Presence.SHOW_XA;
+			presences.subscribe(bob);
+
+			presences.handlePresence(bobPresence);
+
+			assertEquals(bob.showStatus, PresenceStatuses.ONLINE);
 		}
 	}
 }
