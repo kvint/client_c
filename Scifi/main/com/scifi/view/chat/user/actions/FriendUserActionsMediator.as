@@ -6,34 +6,31 @@ package com.scifi.view.chat.user.actions
 import com.chat.IChat;
 import com.chat.model.presences.IPresenceStatus;
 
-import feathers.data.ListCollection;
-
 import org.igniterealtime.xiff.data.im.IRosterItemVO;
 
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
-
-public class FriendUserActionsMediator extends FeathersMediator implements IPresenceStatus
+public class FriendUserActionsMediator extends UserActionsMediator implements IPresenceStatus
 {
 	[Inject]
 	public var view:FriendUserActionsView;
-
-	[Inject]
-	public var chat:IChat;
 
 	override public function initializeComplete():void
 	{
 		super.initializeComplete();
 
-		view.actionsButtons.dataProvider = new ListCollection();
-		view.actionsButtons.buttonFactory = view.actionButtonFactory;
-
-		setActionsData();
-
 		chat.model.presences.subscribe(this);
 	}
 
-	private function setActionsData():void
+	override public function destroy():void
 	{
+		chat.model.presences.unsubscribe(this);
+
+		super.destroy();
+	}
+
+	override protected function setActionsButtons():void
+	{
+		super.setActionsButtons();
+
 		view.actionsButtons.dataProvider.addItem({
 			label: "-",
 			triggered: actionsButtons_removeUser
@@ -74,11 +71,9 @@ public class FriendUserActionsMediator extends FeathersMediator implements IPres
 	{
 	}
 
-	override public function destroy():void
+	override protected function get actionsView():UserActionsView
 	{
-		chat.model.presences.unsubscribe(this);
-
-		super.destroy();
+		return view;
 	}
 }
 }

@@ -9,11 +9,9 @@ public class FriendUserActionsView extends UserActionsView
 {
 	private var _presenceView:PresenceView = new PresenceView();
 
-	private var _data:Object;
-
 	public function FriendUserActionsView(data:Object)
 	{
-		_data = data;
+		super(data);
 	}
 
 	override protected function initialize():void
@@ -28,9 +26,5 @@ public class FriendUserActionsView extends UserActionsView
 		return _presenceView;
 	}
 
-	public function get data():Object
-	{
-		return _data;
-	}
 }
 }

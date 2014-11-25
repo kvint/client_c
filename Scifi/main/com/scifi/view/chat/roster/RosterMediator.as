@@ -10,6 +10,7 @@ import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.ICommunicatorBase;
 	import com.chat.model.communicators.factory.ICommunicatorFactory;
 import com.scifi.view.chat.user.actions.FriendUserActionsView;
+import com.scifi.view.chat.user.actions.RequestUserActionsView;
 
 import feathers.controls.List;
 import feathers.data.ListCollection;
@@ -43,11 +44,11 @@ public class RosterMediator extends FeathersMediator
 		view.friendsList.isSelectable = false;
 		view.requestsList.isSelectable = false;
 
-		view.friendsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
+		view.friendsList.itemRendererProperties.labelFunction = usersListLabelFunction;
 		view.friendsList.itemRendererProperties.accessoryFunction = createFriendActionsView;
 
-		view.requestsList.itemRendererProperties.labelFunction = friendsListLabelFunction;
-//		view.friendsList.itemRendererProperties.accessoryFunction = createRequestActionsView;
+		view.requestsList.itemRendererProperties.labelFunction = usersListLabelFunction;
+		view.requestsList.itemRendererProperties.accessoryFunction = createRequestActionsView;
 
 		if (chat.model.roster.connection.loggedIn)
 			setUsersList();
@@ -60,6 +61,11 @@ public class RosterMediator extends FeathersMediator
 		return new FriendUserActionsView(data);
 	}
 
+	private static function createRequestActionsView(data:IRosterItemVO):RequestUserActionsView
+	{
+		return new RequestUserActionsView(data);
+	}
+
 	override public function destroy():void
 	{
 		super.destroy();
@@ -67,7 +73,7 @@ public class RosterMediator extends FeathersMediator
 		removeRosterEventsListeners();
 	}
 
-	private static function friendsListLabelFunction(data:Object):String
+	private static function usersListLabelFunction(data:Object):String
 	{
 		return (data as IRosterItemVO).nickname;
 	}
@@ -161,8 +167,6 @@ public class RosterMediator extends FeathersMediator
 				break;
 		}
 	}
-
-	//dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROSTER_ADD, null, [(view.requestsList.selectedItem as IRosterItemVO).jid]));
 
 }
 }

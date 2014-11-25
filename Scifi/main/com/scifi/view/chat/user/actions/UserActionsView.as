@@ -15,6 +15,13 @@ public class UserActionsView extends LayoutGroup
 
 	private var _actionsButtons:ButtonGroup = new ButtonGroup();
 
+	private var _data:Object;
+
+	public function UserActionsView(data:Object)
+	{
+		_data = data;
+	}
+
 	public static var globalStyleProvider:IStyleProvider;
 
 	override protected function get defaultStyleProvider():IStyleProvider
@@ -41,6 +48,11 @@ public class UserActionsView extends LayoutGroup
 	public function get actionsButtons():ButtonGroup
 	{
 		return _actionsButtons;
+	}
+
+	public function get data():Object
+	{
+		return _data;
 	}
 }
 }
