@@ -21,7 +21,7 @@ public class PresenceMediator extends FeathersMediator
 
 	private function setStatus():void
 	{
-		view.quad.color = Math.random();
+		view.statusQuad.color = view.statusColors[view.statusProvider.data];
 	}
 
 	override public function destroy():void

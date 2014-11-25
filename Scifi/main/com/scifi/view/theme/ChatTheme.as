@@ -25,6 +25,7 @@
 package com.scifi.view.theme
 {
 
+import com.chat.model.config.PresenceStatuses;
 import com.scifi.view.chat.ChatView;
 import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
@@ -60,6 +61,7 @@ import flash.text.engine.FontLookup;
 import flash.text.engine.FontPosture;
 import flash.text.engine.FontWeight;
 import flash.text.engine.RenderingMode;
+import flash.utils.Dictionary;
 
 import starling.core.Starling;
 
@@ -70,10 +72,28 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 	public static const CUSTOM_FONT_NAME:String = "Play";
 
+	private static var PRESENCE_STATUSES_COLORS:Dictionary = new Dictionary();
+
 	override protected function initializeStage():void
 	{
 		Starling.current.stage.color = 0x000000;
 		Starling.current.nativeStage.color = 0x000000;
+	}
+
+	override protected function initialize():void
+	{
+		super.initialize();
+
+		initializeColors();
+	}
+
+	protected function initializeColors():void
+	{
+		PRESENCE_STATUSES_COLORS[PresenceStatuses.AWAY] = 0xDFCD34;
+		PRESENCE_STATUSES_COLORS[PresenceStatuses.DND] = 0xB53B3B;
+		PRESENCE_STATUSES_COLORS[PresenceStatuses.ONLINE] = 0x46A126;
+		PRESENCE_STATUSES_COLORS[PresenceStatuses.UNKNOWN] = 0x555555;
+		PRESENCE_STATUSES_COLORS[PresenceStatuses.OFFLINE] = 0x555555;
 	}
 
 	override protected function initializeDimensions():void
@@ -147,6 +167,8 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		view.minWidth = 10;
 		view.minHeight = 10;
+
+		view.statusColors = PRESENCE_STATUSES_COLORS;
 	}
 
 	private function setMUCUserActionsViewStyles(view:MUCUserActionsView):void

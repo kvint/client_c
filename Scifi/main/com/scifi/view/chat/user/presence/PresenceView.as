@@ -9,19 +9,29 @@ import com.chat.utils.providers.ViewDataProvider;
 import feathers.controls.LayoutGroup;
 import feathers.skins.IStyleProvider;
 
+import flash.utils.Dictionary;
+
 import starling.display.Quad;
 
 public class PresenceView extends LayoutGroup
 {
 	private var _statusProvider:IViewDataProvider = new ViewDataProvider();
-
-	private var _quad:Quad = new Quad(10, 10, 0xFFFFFF);
+	private var _statusQuad:Quad = new Quad(1, 1)
+	private var _statusColors:Dictionary;
 
 	override protected function initialize():void
 	{
 		super.initialize();
 
-		addChild(quad);
+		addChild(statusQuad);
+	}
+
+	override protected function draw():void
+	{
+		super.draw();
+
+		statusQuad.width = actualWidth;
+		statusQuad.height = actualHeight;
 	}
 
 	public function get statusProvider():IViewDataProvider
@@ -36,9 +46,19 @@ public class PresenceView extends LayoutGroup
 	    return globalStyleProvider;
 	}
 
-	public function get quad():Quad
+	public function set statusColors(statusColors:Dictionary):void
 	{
-		return _quad;
+		_statusColors = statusColors;
+	}
+
+	public function get statusQuad():Quad
+	{
+		return _statusQuad;
+	}
+
+	public function get statusColors():Dictionary
+	{
+		return _statusColors;
 	}
 }
 }
