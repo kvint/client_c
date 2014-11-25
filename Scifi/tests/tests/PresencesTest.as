@@ -2,6 +2,7 @@
  * Created by AlexanderSla on 21.11.2014.
  */
 package tests {
+	import com.chat.model.config.PresenceStatuses;
 	import com.chat.model.presences.Presences;
 
 	import org.flexunit.asserts.assertEquals;
@@ -30,29 +31,33 @@ package tests {
 			joe = new FakePresence("joe@localhost");
 		}
 
-		[Test(order=1)]
-		public function testCreation():void {
+		[Test]
+		public function basicSubscribe():void {
+
+			assertEquals(0, bob.showStatus);
+			presences.subscribe(bob);
+			assertEquals(PresenceStatuses.UNKNOWN, bob.showStatus);
+		}
+
+		[Test]
+		public function testSubscribeAfterHandle():void {
 
 			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
 			presences.handlePresence(bobPresence);
-
 			presences.subscribe(bob);
-			presences.subscribe(joe);
 
-			assertTrue(bob.online);
-			assertFalse(joe.online);
-
-
+			assertEquals(bob.showStatus, PresenceStatuses.ONLINE);
 		}
 
-		[Test(order=2)]
-		public function testChangeStatus():void {
-			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped, Presence.TYPE_UNAVAILABLE);
+
+		[Test]
+		public function testUnavailable():void {
+			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
+			bobPresence.type = Presence.TYPE_UNAVAILABLE;
 			presences.handlePresence(bobPresence);
+			presences.subscribe(bob);
 
-			assertNull(presences.getByUID(""));
-			assertFalse(bob.online);
-
+			assertEquals(bob.showStatus, PresenceStatuses.OFFLINE);
 		}
 	}
 }
@@ -61,21 +66,26 @@ import com.chat.model.presences.IPresenceStatus;
 
 class FakePresence implements IPresenceStatus {
 
-	private var _online:Boolean;
 	private var _uid:String;
+	private var _status:int;
 
 	public function FakePresence(uid:String) {
 		_uid = uid;
 	}
 
-	public function get online():Boolean {
-		return _online;
+
+	public function set showStatus(value:int):void {
+		_status = value;
 	}
-	public function set online(value:Boolean):void {
-		_online = value;
+
+	public function set textStatus(value:String):void {
 	}
 
 	public function get uid():String {
 		return _uid;
+	}
+
+	public function get showStatus():int {
+		return _status;
 	}
 }
