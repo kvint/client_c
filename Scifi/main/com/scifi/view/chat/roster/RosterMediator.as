@@ -40,15 +40,19 @@ public class RosterMediator extends FeathersMediator
 	{
 		view.friendsLabel.text = "Friends";
 		view.requestsLabel.text = "Requests";
+		view.outLabel.text = "Out";
 
 		view.friendsList.isSelectable = false;
 		view.requestsList.isSelectable = false;
+		view.outList.isSelectable = false;
 
 		view.friendsList.itemRendererProperties.labelFunction = usersListLabelFunction;
 		view.friendsList.itemRendererProperties.accessoryFunction = createFriendActionsView;
 
 		view.requestsList.itemRendererProperties.labelFunction = usersListLabelFunction;
 		view.requestsList.itemRendererProperties.accessoryFunction = createRequestActionsView;
+
+		view.outList.itemRendererProperties.labelFunction = usersListLabelFunction;
 
 		if (chat.model.roster.connection.loggedIn)
 			setUsersList();
@@ -111,6 +115,7 @@ public class RosterMediator extends FeathersMediator
 	{
 		view.friendsList.dataProvider = new ListCollection();
 		view.requestsList.dataProvider = new ListCollection();
+		view.outList.dataProvider = new ListCollection();
 
 		for each(var data:IRosterItemVO in chat.model.roster.source)
 			addUserToList(data);
@@ -126,6 +131,7 @@ public class RosterMediator extends FeathersMediator
 				view.requestsList.dataProvider.addItem(data);
 				break;
 			case RosterExtension.SUBSCRIBE_TYPE_TO:
+				view.outList.dataProvider.addItem(data);
 				break;
 		}
 	}
@@ -140,6 +146,7 @@ public class RosterMediator extends FeathersMediator
 				view.requestsList.dataProvider.removeItemAt(view.requestsList.dataProvider.getItemIndex(data));
 				break;
 			case RosterExtension.SUBSCRIBE_TYPE_TO:
+				view.outList.dataProvider.removeItemAt(view.outList.dataProvider.getItemIndex(data));
 				break;
 		}
 	}

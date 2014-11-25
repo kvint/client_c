@@ -383,6 +383,21 @@ public class ChatTheme extends MetalWorksDesktopTheme
 
 		view.requestsList.layoutData = requestsList;
 
+		var outLabel:AnchorLayoutData = new AnchorLayoutData();
+
+		outLabel.topAnchorDisplayObject = view.requestsList;
+		outLabel.top = gutterSize;
+
+		view.outLabel.layoutData = outLabel;
+
+		var outList:AnchorLayoutData = new AnchorLayoutData();
+
+		outList.topAnchorDisplayObject = view.outLabel;
+		outList.top = smallGutterSize;
+		outList.percentWidth = 100;
+
+		view.outList.layoutData = outList;
+
 		view.minWidth = 200;
 	}
 
