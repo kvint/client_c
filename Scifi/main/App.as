@@ -58,10 +58,7 @@ public class App extends Sprite
 		//LOGGER_FACTORY.setup = null; //Use in release build
 		var logSetupLevel:LogSetupLevel = LogSetupLevel.INFO;
 
-		CONFIG::debug
-		{
-			logSetupLevel = LogSetupLevel.DEBUG;
-		}
+		logSetupLevel = LogSetupLevel.DEBUG;
 
 		LOGGER_FACTORY.setup = new LevelTargetSetup( new FlashConsoleTarget(), logSetupLevel ); //Use in debug build
 	}
@@ -81,10 +78,7 @@ public class App extends Sprite
 
 //		Starling.current.showStats = true;
 
-		CONFIG::debug //uncomment in case of errors
-		{
-			//_starling.context.enableErrorChecking = true;
-		}
+		//_starling.context.enableErrorChecking = true;
 
 		Cc.store("starling", _starling);
 
