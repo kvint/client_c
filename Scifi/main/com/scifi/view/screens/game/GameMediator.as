@@ -8,6 +8,7 @@ package com.scifi.view.screens.game {
 	import com.chat.controller.BaseChatController;
 
 	import feathers.data.ListCollection;
+	import feathers.events.FeathersEventType;
 
 	import org.as3commons.logging.api.ILogger;
 	import org.as3commons.logging.api.getLogger;
@@ -31,10 +32,27 @@ public class GameMediator extends FeathersMediator {
 
 	override public function initializeComplete():void
 	{
+		view.enterButton.label = "Enter";
+
+		mapStarlingEvent(view.enterButton, Event.TRIGGERED, onEnter);
+		mapStarlingEvent(view.userInput, FeathersEventType.ENTER, onEnter);
+		mapStarlingEvent(view.passwordInput, FeathersEventType.ENTER, onEnter);
+
 		setActions();
 
 		BaseChatController.serverName = "10.0.1.4";
 //		BaseChatController.serverName = "localhost";
+	}
+
+	private function onEnter():void {
+		chat.controller.connect(view.userInput.text, view.passwordInput.text);
+
+		view.userInput.removeFromParent(true);
+		view.passwordInput.removeFromParent(true);
+		view.enterButton.removeFromParent(true);
+
+		view.addChild(view.chatView);
+		view.addChild(view.rosterView);
 	}
 
 	private function setActions():void
@@ -51,6 +69,8 @@ public class GameMediator extends FeathersMediator {
 	}
 	private function hideButtons():void {
 		view.loginButtons.removeFromParent(true);
+		view.addChild(view.chatView);
+		view.addChild(view.rosterView);
 	}
 
 	private function a1(event:Event):void {

@@ -5,23 +5,27 @@
 package com.scifi.view.screens.game
 {
 
-import com.scifi.view.chat.ChatView;
-import com.scifi.view.chat.roster.RosterButtonView;
-import com.scifi.view.chat.roster.RosterView;
+	import com.scifi.view.chat.ChatView;
+	import com.scifi.view.chat.roster.RosterButtonView;
 
-import feathers.controls.ButtonGroup;
-import feathers.controls.LayoutGroup;
-import feathers.skins.IStyleProvider;
+	import feathers.controls.Button;
+	import feathers.controls.ButtonGroup;
+	import feathers.controls.LayoutGroup;
+	import feathers.controls.TextInput;
+	import feathers.skins.IStyleProvider;
 
-import org.as3commons.logging.api.ILogger;
-import org.as3commons.logging.api.getLogger;
+	import org.as3commons.logging.api.ILogger;
+	import org.as3commons.logging.api.getLogger;
 
-public class GameView extends LayoutGroup
+	public class GameView extends LayoutGroup
 {
 	private static const log:ILogger = getLogger(GameView);
 
 	private var _chatView:ChatView = new ChatView();
 	private var _rosterView:RosterButtonView = new RosterButtonView();
+	private var _userInput:TextInput = new TextInput();
+	private var _passwordInput:TextInput = new TextInput();
+	private var _enterButton:Button = new Button();
 
 	public static var globalStyleProvider:IStyleProvider;
 	private var _loginButtons:ButtonGroup = new ButtonGroup();
@@ -33,9 +37,11 @@ public class GameView extends LayoutGroup
 
 	override protected function initialize():void
 	{
-		addChild(chatView);
+		passwordInput.displayAsPassword = true;
+//		addChild(userInput);
+//		addChild(passwordInput);
+//		addChild(enterButton);
 		addChild(loginButtons);
-		addChild(rosterView);
 	}
 
 	public function get rosterView():RosterButtonView
@@ -53,5 +59,16 @@ public class GameView extends LayoutGroup
 		return _loginButtons;
 	}
 
+	public function get userInput():TextInput {
+		return _userInput;
+	}
+
+	public function get passwordInput():TextInput {
+		return _passwordInput;
+	}
+
+	public function get enterButton():Button {
+		return _enterButton;
+	}
 }
 }

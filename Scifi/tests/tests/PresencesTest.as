@@ -78,6 +78,15 @@ package tests {
 			assertEquals(bob.showStatus, PresenceStatuses.AWAY);
 		}
 		[Test]
+		public function testDnd():void {
+			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
+			bobPresence.show = "dnd";
+			presences.handlePresence(bobPresence);
+			presences.subscribe(bob);
+
+			assertEquals(bob.showStatus, PresenceStatuses.DND);
+		}
+		[Test]
 		public function testUnusual():void {
 			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
 			bobPresence.show = Presence.SHOW_XA;
