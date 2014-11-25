@@ -47,12 +47,12 @@ public class GameMediator extends FeathersMediator {
 	private function onEnter():void {
 		chat.controller.connect(view.userInput.text, view.passwordInput.text);
 
-		view.userInput.removeFromParent(true);
-		view.passwordInput.removeFromParent(true);
-		view.enterButton.removeFromParent(true);
+//		view.userInput.removeFromParent(true);
+//		view.passwordInput.removeFromParent(true);
+//		view.enterButton.removeFromParent(true);
 
-		view.addChild(view.chatView);
-		view.addChild(view.rosterView);
+//		view.addChild(view.chatView);
+//		view.addChild(view.rosterView);
 	}
 
 	private function setActions():void
@@ -67,29 +67,29 @@ public class GameMediator extends FeathersMediator {
 
 		view.loginButtons.dataProvider = collection;
 	}
-	private function hideButtons():void {
-		view.loginButtons.removeFromParent(true);
+	private function initView():void {
+		view.loginButtons.isEnabled = false;
 		view.addChild(view.chatView);
 		view.addChild(view.rosterView);
 	}
 
 	private function a1(event:Event):void {
 		chat.controller.connect("t1000@localhost", "2gret37nidro");
-		hideButtons();
+		initView();
 	}
 
 	private function a2(event:Event):void {
 		chat.controller.connect("bob@localhost", "2gret37nidro");
-		hideButtons();
+		initView();
 	}
 
 	private function a3(event:Event):void {
 		chat.controller.connect("joe@localhost", "2gret37nidro");
-		hideButtons();
+		initView();
 	}
 	private function a4(event:Event):void {
 		chat.controller.connect("azik@localhost", "xf3z54dlc");
-		hideButtons();
+		initView();
 	}
 	private function a5(event:Event):void {
 		//chat.controller.test();
