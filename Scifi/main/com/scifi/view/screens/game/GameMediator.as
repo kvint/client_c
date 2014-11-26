@@ -50,7 +50,7 @@ public class GameMediator extends FeathersMediator {
 	}
 
 	private function onLogin(e:LoginEvent):void {
-		view.currentUserLabel.text = chat.model.currentUser.jid.toString();
+		view.currentUserLabel.text = chat.model.currentUser.displayName;
 		view.addChild(view.currentUserLabel);
 	}
 
