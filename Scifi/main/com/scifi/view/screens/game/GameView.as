@@ -10,6 +10,7 @@ package com.scifi.view.screens.game
 
 	import feathers.controls.Button;
 	import feathers.controls.ButtonGroup;
+	import feathers.controls.Label;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.TextInput;
 	import feathers.skins.IStyleProvider;
@@ -21,6 +22,7 @@ package com.scifi.view.screens.game
 {
 	private static const log:ILogger = getLogger(GameView);
 
+	private var _currentUserLabel:Label = new Label();
 	private var _chatView:ChatView = new ChatView();
 	private var _rosterView:RosterButtonView = new RosterButtonView();
 	private var _userInput:TextInput = new TextInput();
@@ -70,5 +72,9 @@ package com.scifi.view.screens.game
 	public function get enterButton():Button {
 		return _enterButton;
 	}
-}
+
+		public function get currentUserLabel():Label {
+			return _currentUserLabel;
+		}
+	}
 }

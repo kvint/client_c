@@ -293,6 +293,11 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		view.passwordInput.layoutData = passwordInput;
 		view.enterButton.layoutData = enterButton;
 
+		var currentUserLabel:AnchorLayoutData = new AnchorLayoutData();
+		currentUserLabel.top = 5;
+		currentUserLabel.horizontalCenter = 0;
+		view.currentUserLabel.layoutData = currentUserLabel;
+
 		var loginButtons:AnchorLayoutData = new AnchorLayoutData();
 
 		loginButtons.percentWidth = 100;

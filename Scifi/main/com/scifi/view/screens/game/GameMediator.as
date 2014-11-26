@@ -10,8 +10,11 @@ package com.scifi.view.screens.game {
 	import feathers.data.ListCollection;
 	import feathers.events.FeathersEventType;
 
+	import flash.events.IEventDispatcher;
+
 	import org.as3commons.logging.api.ILogger;
 	import org.as3commons.logging.api.getLogger;
+	import org.igniterealtime.xiff.events.LoginEvent;
 
 	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
@@ -34,14 +37,21 @@ public class GameMediator extends FeathersMediator {
 	{
 		view.enterButton.label = "Enter";
 
+		addContextListener(LoginEvent.LOGIN, onLogin);
+
 		mapStarlingEvent(view.enterButton, Event.TRIGGERED, onEnter);
 		mapStarlingEvent(view.userInput, FeathersEventType.ENTER, onEnter);
 		mapStarlingEvent(view.passwordInput, FeathersEventType.ENTER, onEnter);
 
 		setActions();
 
-		BaseChatController.serverName = "10.0.1.4";
-//		BaseChatController.serverName = "localhost";
+//		BaseChatController.serverName = "10.0.1.4";
+		BaseChatController.serverName = "localhost";
+	}
+
+	private function onLogin(e:LoginEvent):void {
+		view.currentUserLabel.text = chat.model.currentUser.jid.toString();
+		view.addChild(view.currentUserLabel);
 	}
 
 	private function onEnter():void {
@@ -68,7 +78,7 @@ public class GameMediator extends FeathersMediator {
 		view.loginButtons.dataProvider = collection;
 	}
 	private function initView():void {
-		view.loginButtons.isEnabled = false;
+		view.loginButtons.removeFromParent();
 		view.addChild(view.chatView);
 		view.addChild(view.rosterView);
 	}
