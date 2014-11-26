@@ -39,8 +39,8 @@ public class RosterMediator extends FeathersMediator
 	override public function initializeComplete():void
 	{
 		view.friendsLabel.text = "Friends";
-		view.requestsLabel.text = "Requests";
-		view.outLabel.text = "Out";
+		view.requestsLabel.text = "From";
+		view.outLabel.text = "To";
 
 		view.friendsList.isSelectable = false;
 		view.requestsList.isSelectable = false;
@@ -123,7 +123,7 @@ public class RosterMediator extends FeathersMediator
 
 	private function addUserToList(data:IRosterItemVO):void
 	{
-		switch (data.subscribeType){
+		switch (data.subscribeType) {
 			case RosterExtension.SUBSCRIBE_TYPE_BOTH:
 				view.friendsList.dataProvider.addItem(data);
 				break;
