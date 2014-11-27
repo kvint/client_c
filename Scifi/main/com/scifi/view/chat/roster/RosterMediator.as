@@ -3,29 +3,20 @@
  */
 package com.scifi.view.chat.roster
 {
-import com.chat.IChat;
-import com.chat.events.CommunicatorFactoryEvent;
-import com.chat.events.CommunicatorCommandEvent;
-import com.chat.model.communicators.ICommunicator;
-import com.chat.model.communicators.ICommunicatorBase;
+	import com.chat.IChat;
 	import com.chat.model.communicators.factory.ICommunicatorFactory;
-	import com.chat.utils.FriendUtil;
 	import com.scifi.view.chat.user.actions.FriendUserActionsView;
-import com.scifi.view.chat.user.actions.RequestUserActionsView;
+	import com.scifi.view.chat.user.actions.RequestUserActionsView;
 
-import feathers.controls.List;
-import feathers.data.ListCollection;
+	import feathers.data.ListCollection;
 
-import org.igniterealtime.xiff.data.im.IRosterItemVO;
+	import org.igniterealtime.xiff.data.im.IRosterItemVO;
 	import org.igniterealtime.xiff.data.im.RosterExtension;
-	import org.igniterealtime.xiff.data.im.RosterItemVO;
-import org.igniterealtime.xiff.events.RosterEvent;
+	import org.igniterealtime.xiff.events.RosterEvent;
 
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
-import starling.events.Event;
-
-public class RosterMediator extends FeathersMediator
+	public class RosterMediator extends FeathersMediator
 {
 
 	[Inject]
@@ -124,7 +115,7 @@ public class RosterMediator extends FeathersMediator
 
 	private function addUserToList(data:IRosterItemVO):void
 	{
-		if(FriendUtil.isFriend(data)){
+		if(chat.model.roster.isFriend(data.jid)){
 			view.friendsList.dataProvider.addItem(data);
 		}else{
 			switch (data.subscribeType) {
