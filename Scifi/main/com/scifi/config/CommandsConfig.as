@@ -3,12 +3,16 @@
  */
 package com.scifi.config {
 
-import com.scifi.controller.StartApp;
-import com.scifi.model.ModelEvent;
-import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
-import robotlegs.bender.framework.api.IConfig;
+	import com.scifi.controller.ChatLoginCommand;
+	import com.scifi.controller.StartApp;
+	import com.scifi.model.ModelEvent;
 
-public class CommandsConfig implements IConfig {
+	import org.igniterealtime.xiff.events.LoginEvent;
+
+	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
+	import robotlegs.bender.framework.api.IConfig;
+
+	public class CommandsConfig implements IConfig {
 
 	[Inject]
 	public var commandMap		:IEventCommandMap;
@@ -21,6 +25,7 @@ public class CommandsConfig implements IConfig {
 	private function mapCommands():void
 	{
 		commandMap.map(ModelEvent.APP_INITIALIZE, ModelEvent)					.toCommand(StartApp);
+		commandMap.map(LoginEvent.LOGIN, LoginEvent)							.toCommand(ChatLoginCommand);
 	}
 
 }
