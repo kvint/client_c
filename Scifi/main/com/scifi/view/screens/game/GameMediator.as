@@ -45,8 +45,8 @@ public class GameMediator extends FeathersMediator {
 
 		setActions();
 
-//		BaseChatController.serverName = "10.0.1.4";
-		BaseChatController.serverName = "localhost";
+		BaseChatController.serverName = "10.0.1.4";
+//		BaseChatController.serverName = "localhost";
 	}
 
 	private function onLogin(e:LoginEvent):void {
