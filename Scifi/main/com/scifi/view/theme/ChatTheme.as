@@ -92,7 +92,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		PRESENCE_STATUSES_COLORS[PresenceStatuses.AWAY] = 0xDFCD34;
 		PRESENCE_STATUSES_COLORS[PresenceStatuses.DND] = 0xB53B3B;
 		PRESENCE_STATUSES_COLORS[PresenceStatuses.ONLINE] = 0x46A126;
-		PRESENCE_STATUSES_COLORS[PresenceStatuses.UNKNOWN] = 0x555555;
+		PRESENCE_STATUSES_COLORS[PresenceStatuses.UNKNOWN] = 0xAAAAAA;
 		PRESENCE_STATUSES_COLORS[PresenceStatuses.OFFLINE] = 0x555555;
 	}
 

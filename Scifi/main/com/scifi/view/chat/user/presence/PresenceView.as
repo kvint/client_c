@@ -3,8 +3,8 @@
  */
 package com.scifi.view.chat.user.presence
 {
-import com.chat.utils.providers.IViewDataProvider;
-import com.chat.utils.providers.ViewDataProvider;
+import com.scifi.utils.providers.IViewDataProvider;
+import com.scifi.utils.providers.ViewDataProvider;
 
 import feathers.controls.LayoutGroup;
 import feathers.skins.IStyleProvider;

@@ -3,8 +3,8 @@
  */
 package com.scifi.view.chat.communicator.types.muc.users
 {
-import com.chat.utils.providers.IViewDataProvider;
-import com.chat.utils.providers.ViewDataProvider;
+import com.scifi.utils.providers.IViewDataProvider;
+import com.scifi.utils.providers.ViewDataProvider;
 import com.scifi.view.chat.communicator.ICommunicatorView;
 
 import feathers.controls.ToggleButton;

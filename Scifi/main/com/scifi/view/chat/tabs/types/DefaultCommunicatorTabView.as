@@ -3,8 +3,8 @@
  */
 package com.scifi.view.chat.tabs.types
 {
-import com.chat.utils.providers.IViewDataProvider;
-import com.chat.utils.providers.ViewDataProvider;
+import com.scifi.utils.providers.IViewDataProvider;
+import com.scifi.utils.providers.ViewDataProvider;
 import com.scifi.view.chat.communicator.ICommunicatorView;
 
 import feathers.controls.Label;
