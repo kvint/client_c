@@ -9,7 +9,8 @@ import com.chat.events.CommunicatorCommandEvent;
 import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.ICommunicatorBase;
 	import com.chat.model.communicators.factory.ICommunicatorFactory;
-import com.scifi.view.chat.user.actions.FriendUserActionsView;
+	import com.chat.utils.FriendUtil;
+	import com.scifi.view.chat.user.actions.FriendUserActionsView;
 import com.scifi.view.chat.user.actions.RequestUserActionsView;
 
 import feathers.controls.List;
@@ -123,25 +124,20 @@ public class RosterMediator extends FeathersMediator
 
 	private function addUserToList(data:IRosterItemVO):void
 	{
-		switch (data.subscribeType) {
-			case RosterExtension.SUBSCRIBE_TYPE_BOTH:
-				view.friendsList.dataProvider.addItem(data);
-				break;
-			case RosterExtension.SUBSCRIBE_TYPE_FROM:
-				if(data.askType == RosterExtension.ASK_TYPE_SUBSCRIBE) { // User asks contact to subscription
-					view.friendsList.dataProvider.addItem(data);
-				}else{
+		if(FriendUtil.isFriend(data)){
+			view.friendsList.dataProvider.addItem(data);
+		}else{
+			switch (data.subscribeType) {
+				case RosterExtension.SUBSCRIBE_TYPE_FROM:
 					view.requestsList.dataProvider.addItem(data);
-				}
-				break;
-			case RosterExtension.SUBSCRIBE_TYPE_TO:
-				view.outList.dataProvider.addItem(data);
-				break;
-			case RosterExtension.SUBSCRIBE_TYPE_NONE:
-				if(data.askType == RosterExtension.ASK_TYPE_SUBSCRIBE){ // User asks contact to subscription
+					break;
+				case RosterExtension.SUBSCRIBE_TYPE_NONE:
+					if(data.askType != RosterExtension.ASK_TYPE_SUBSCRIBE){
+						return;
+					}
+				case RosterExtension.SUBSCRIBE_TYPE_TO:
 					view.outList.dataProvider.addItem(data);
-				}
-				break;
+			}
 		}
 	}
 
