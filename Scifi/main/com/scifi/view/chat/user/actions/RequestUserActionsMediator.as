@@ -29,7 +29,7 @@ public class RequestUserActionsMediator extends UserActionsMediator
 
 	private function actionsButtons_onRequestAccepted():void
 	{
-		chat.model.roster.addContact(rosterItem.jid, rosterItem.nickname, null, true);
+		chat.controller.addFriend(rosterItem.jid);
 	}
 
 	private function actionsButtons_onRequestDecline():void
