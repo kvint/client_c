@@ -128,10 +128,19 @@ public class RosterMediator extends FeathersMediator
 				view.friendsList.dataProvider.addItem(data);
 				break;
 			case RosterExtension.SUBSCRIBE_TYPE_FROM:
-				view.requestsList.dataProvider.addItem(data);
+				if(data.askType == RosterExtension.ASK_TYPE_SUBSCRIBE) { // User asks contact to subscription
+					view.friendsList.dataProvider.addItem(data);
+				}else{
+					view.requestsList.dataProvider.addItem(data);
+				}
 				break;
 			case RosterExtension.SUBSCRIBE_TYPE_TO:
 				view.outList.dataProvider.addItem(data);
+				break;
+			case RosterExtension.SUBSCRIBE_TYPE_NONE:
+				if(data.askType == RosterExtension.ASK_TYPE_SUBSCRIBE){ // User asks contact to subscription
+					view.outList.dataProvider.addItem(data);
+				}
 				break;
 		}
 	}
