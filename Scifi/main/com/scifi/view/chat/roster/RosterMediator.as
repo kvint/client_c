@@ -80,6 +80,7 @@ package com.scifi.view.chat.roster
 		chat.model.roster.addEventListener(RosterEvent.USER_ADDED, roster_handleEvent);
 		chat.model.roster.addEventListener(RosterEvent.USER_REMOVED, roster_handleEvent);
 		chat.model.roster.addEventListener(RosterEvent.USER_SUBSCRIPTION_UPDATED, roster_handleEvent);
+		chat.model.roster.addEventListener(RosterEvent.SUBSCRIPTION_REVOCATION, roster_handleEvent);
 
 		/*
 		 public static const ROSTER_LOADED:String = "rosterLoaded";
@@ -101,6 +102,7 @@ package com.scifi.view.chat.roster
 		chat.model.roster.removeEventListener(RosterEvent.USER_ADDED, roster_handleEvent);
 		chat.model.roster.removeEventListener(RosterEvent.USER_REMOVED, roster_handleEvent);
 		chat.model.roster.removeEventListener(RosterEvent.USER_SUBSCRIPTION_UPDATED, roster_handleEvent);
+		chat.model.roster.removeEventListener(RosterEvent.SUBSCRIPTION_REVOCATION, roster_handleEvent);
 	}
 
 	private function setUsersList():void
@@ -157,6 +159,7 @@ package com.scifi.view.chat.roster
 				addUserToList(event.data);
 				break;
 			case RosterEvent.USER_REMOVED:
+			case RosterEvent.SUBSCRIPTION_REVOCATION:
 				removeUserFromList(event.data);
 				break;
 			case RosterEvent.USER_SUBSCRIPTION_UPDATED:

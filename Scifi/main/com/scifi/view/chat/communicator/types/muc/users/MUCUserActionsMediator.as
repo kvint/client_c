@@ -3,21 +3,15 @@
  */
 package com.scifi.view.chat.communicator.types.muc.users
 {
-import com.chat.IChat;
 import com.chat.model.ChatUser;
 import com.chat.model.presences.IPresenceStatus;
+import com.scifi.view.chat.user.actions.UserActionsMediator;
+import com.scifi.view.chat.user.actions.UserActionsView;
 
-import feathers.data.ListCollection;
-
-import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
-
-public class MUCUserActionsMediator extends FeathersMediator implements IPresenceStatus
+public class MUCUserActionsMediator extends UserActionsMediator implements IPresenceStatus
 {
 	[Inject]
 	public var view:MUCUserActionsView;
-
-	[Inject]
-	public var chat:IChat;
 
 	override public function initializeComplete():void
 	{
@@ -26,14 +20,25 @@ public class MUCUserActionsMediator extends FeathersMediator implements IPresenc
 		view.presenceView.statusProvider.data = chat.model.presences.getByUID(chatUser.jid.bareJID);
 
 		chat.model.presences.subscribe(this);
+	}
 
-		view.actionsButtons.dataProvider = new ListCollection();
+	override protected function setActionsButtons():void
+	{
+		if (chat.model.isMe(chatUser.jid))
+			return;
 
-//		if (chat.model.roster.isFriend(chatUser.jid.bareJID))
-//
-//			{ label: "+" },
-//			{ label: ".." }
-//		])
+		if (!chat.model.roster.isFriend(chatUser.jid))
+		{
+			view.actionsButtons.dataProvider.addItem({
+				label: "+",
+				triggered: actionsButtons_addFriend
+			});
+		}
+
+		view.actionsButtons.dataProvider.addItem({
+			label: "..",
+			triggered: actionsButtons_startPrivate
+		});
 	}
 
 	override public function destroy():void
@@ -41,6 +46,16 @@ public class MUCUserActionsMediator extends FeathersMediator implements IPresenc
 		chat.model.presences.unsubscribe(this);
 
 		super.destroy();
+	}
+
+	private function actionsButtons_startPrivate():void
+	{
+		chat.model.communicators.getFor(chatUser).active = true;
+	}
+
+	private function actionsButtons_addFriend():void
+	{
+		chat.controller.addFriend(chatUser.jid);
 	}
 
 	public function set textStatus(value:String):void
@@ -67,5 +82,9 @@ public class MUCUserActionsMediator extends FeathersMediator implements IPresenc
 		return view.data as ChatUser;
 	}
 
+	override protected function get actionsView():UserActionsView
+	{
+		return view;
+	}
 }
 }

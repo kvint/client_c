@@ -3,8 +3,6 @@
  */
 package com.scifi.view.chat.user.actions
 {
-import com.chat.events.CommunicatorCommandEvent;
-
 import org.igniterealtime.xiff.data.im.IRosterItemVO;
 
 public class RequestUserActionsMediator extends UserActionsMediator

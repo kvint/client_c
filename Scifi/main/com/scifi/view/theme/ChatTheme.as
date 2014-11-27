@@ -31,19 +31,17 @@ import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
-import com.scifi.view.chat.communicator.types.muc.users.MUCUserActionsView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
-import com.scifi.view.chat.user.actions.UserActionsView;
-import com.scifi.view.chat.user.presence.PresenceView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
+import com.scifi.view.chat.user.actions.UserActionsView;
+import com.scifi.view.chat.user.presence.PresenceView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
 import feathers.controls.Button;
-
 import feathers.controls.ButtonGroup;
 import feathers.controls.Label;
 import feathers.controls.List;
@@ -125,7 +123,6 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(DefaultCommunicatorTabView).defaultStyleFunction = setDefaultCommunicatorTabStyles;
 		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
 		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
-		getStyleProviderForClass(MUCUserActionsView).defaultStyleFunction = setMUCUserActionsViewStyles;
 		getStyleProviderForClass(PresenceView).defaultStyleFunction = setPresenceViewStyles;
 		getStyleProviderForClass(UserActionsView).defaultStyleFunction = setUserActionsViewStyles;
 
@@ -169,13 +166,6 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		view.minHeight = 10;
 
 		view.statusColors = PRESENCE_STATUSES_COLORS;
-	}
-
-	private function setMUCUserActionsViewStyles(view:MUCUserActionsView):void
-	{
-		const layout:HorizontalLayout = new HorizontalLayout();
-		view.layout = layout;
-		view.actionsButtons.direction = ButtonGroup.DIRECTION_HORIZONTAL;
 	}
 
 	private function setMUCUsersViewStyles(view:MUCUsersView):void
