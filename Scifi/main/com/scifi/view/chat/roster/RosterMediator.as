@@ -147,16 +147,15 @@ public class RosterMediator extends FeathersMediator
 
 	private function removeUserFromList(data:IRosterItemVO):void
 	{
-		switch (data.subscribeType){
-			case RosterExtension.SUBSCRIBE_TYPE_BOTH:
-				view.friendsList.dataProvider.removeItemAt(view.friendsList.dataProvider.getItemIndex(data));
-				break;
-			case RosterExtension.SUBSCRIBE_TYPE_FROM:
-				view.requestsList.dataProvider.removeItemAt(view.requestsList.dataProvider.getItemIndex(data));
-				break;
-			case RosterExtension.SUBSCRIBE_TYPE_TO:
-				view.outList.dataProvider.removeItemAt(view.outList.dataProvider.getItemIndex(data));
-				break;
+		removeDataFromProvider(data, view.friendsList.dataProvider);
+		removeDataFromProvider(data, view.requestsList.dataProvider);
+		removeDataFromProvider(data, view.outList.dataProvider);
+	}
+
+	private function removeDataFromProvider(data:IRosterItemVO, dataProvider:ListCollection):void {
+		var itemIndex:int = dataProvider.getItemIndex(data);
+		if(itemIndex != -1){
+			dataProvider.removeItemAt(itemIndex);
 		}
 	}
 

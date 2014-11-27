@@ -69,6 +69,16 @@ package tests {
 			assertEquals(bob.showStatus, PresenceStatuses.UNKNOWN);
 		}
 		[Test]
+		public function testSubscribe():void {
+			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
+			bobPresence.type = Presence.TYPE_SUBSCRIBE;
+			presences.subscribe(bob);
+
+			presences.handlePresence(bobPresence);
+
+			assertEquals(bob.showStatus, PresenceStatuses.UNKNOWN);
+		}
+		[Test]
 		public function testAway():void {
 			var bobPresence:Presence = new Presence(null, new UnescapedJID(bob.uid).escaped);
 			bobPresence.show = "away";
@@ -96,6 +106,7 @@ package tests {
 
 			assertEquals(bob.showStatus, PresenceStatuses.ONLINE);
 		}
+
 	}
 }
 
