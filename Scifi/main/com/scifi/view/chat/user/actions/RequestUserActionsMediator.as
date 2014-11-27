@@ -19,13 +19,22 @@ public class RequestUserActionsMediator extends UserActionsMediator
 		view.actionsButtons.dataProvider.addItem({
 			label: "✓️", //✔
 			triggered: actionsButtons_onRequestAccepted
-		})
+		});
+
+		view.actionsButtons.dataProvider.addItem({
+			label: "x",
+			triggered: actionsButtons_onRequestDecline
+		});
 	}
 
 	private function actionsButtons_onRequestAccepted():void
 	{
 		chat.model.roster.addContact(rosterItem.jid, rosterItem.nickname, null, true);
-//		dispatch(new CommunicatorCommandEvent(CommunicatorCommandEvent.ROSTER_ADD, null, [rosterItem.jid]));
+	}
+
+	private function actionsButtons_onRequestDecline():void
+	{
+		chat.model.roster.denySubscription(rosterItem.jid);
 	}
 
 	protected function get rosterItem():IRosterItemVO
