@@ -19,7 +19,8 @@ import org.as3commons.logging.setup.target.FlashConsoleTarget;
 
 import robotlegs.bender.bundles.mvcs.MVCSBundle;
 import robotlegs.bender.extensions.contextView.ContextView;
-import robotlegs.bender.framework.api.IContext;
+	import robotlegs.bender.extensions.signalCommandMap.SignalCommandMapExtension;
+	import robotlegs.bender.framework.api.IContext;
 import robotlegs.extensions.starlingViewMap.StarlingViewMapExtension;
 
 import starling.core.Starling;
@@ -66,7 +67,7 @@ public class App extends Sprite
 	private function initRobotlegs():void
 	{
 		_context = new GameContext()
-			.install(MVCSBundle, StarlingViewMapExtension)
+			.install(MVCSBundle, StarlingViewMapExtension, SignalCommandMapExtension)
 			.configure(GameConfig, new ContextView(this), _starling);
 	}
 
