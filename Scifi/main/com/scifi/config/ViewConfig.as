@@ -19,6 +19,8 @@ import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
+import com.scifi.view.chat.controls.counter.CounterMediator;
+import com.scifi.view.chat.controls.counter.CounterView;
 import com.scifi.view.chat.conversations.ConversationsBar;
 import com.scifi.view.chat.conversations.ConversationsBarMediator;
 import com.scifi.view.chat.conversations.ConversationsMediator;
@@ -27,8 +29,8 @@ import com.scifi.view.chat.user.actions.FriendUserActionsMediator;
 import com.scifi.view.chat.user.actions.FriendUserActionsView;
 import com.scifi.view.chat.user.actions.RequestUserActionsMediator;
 import com.scifi.view.chat.user.actions.RequestUserActionsView;
-import com.scifi.view.chat.user.presence.PresenceMediator;
-import com.scifi.view.chat.user.presence.PresenceView;
+import com.scifi.view.chat.controls.presence.PresenceMediator;
+import com.scifi.view.chat.controls.presence.PresenceView;
 import com.scifi.view.chat.roster.RosterBarMediator;
 import com.scifi.view.chat.roster.RosterBar;
 import com.scifi.view.chat.roster.RosterMediator;
@@ -85,6 +87,7 @@ public class ViewConfig implements IConfig
 
 		mediatorMap.map(MUCUserActionsView).toMediator(MUCUserActionsMediator);
 		mediatorMap.map(PresenceView).toMediator(PresenceMediator);
+		mediatorMap.map(CounterView).toMediator(CounterMediator);
 		mediatorMap.map(FriendUserActionsView).toMediator(FriendUserActionsMediator);
 		mediatorMap.map(RequestUserActionsView).toMediator(RequestUserActionsMediator);
 	}

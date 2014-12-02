@@ -34,12 +34,13 @@ import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
+import com.scifi.view.chat.controls.counter.CounterView;
 import com.scifi.view.chat.conversations.ConversationsView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
 import com.scifi.view.chat.user.actions.UserActionsView;
-import com.scifi.view.chat.user.presence.PresenceView;
+import com.scifi.view.chat.controls.presence.PresenceView;
 import com.scifi.view.screens.game.GameView;
 import com.scifi.view.utils.UIUtils;
 
@@ -64,6 +65,7 @@ import flash.text.engine.RenderingMode;
 import flash.utils.Dictionary;
 
 import starling.core.Starling;
+import starling.display.Quad;
 
 public class ChatTheme extends MetalWorksDesktopTheme
 {
@@ -128,11 +130,13 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(MUCCommunicatorView).defaultStyleFunction = setMUCCommunicatorStyles;
 		getStyleProviderForClass(MUCUsersView).defaultStyleFunction = setMUCUsersViewStyles;
 		getStyleProviderForClass(PresenceView).defaultStyleFunction = setPresenceViewStyles;
+		getStyleProviderForClass(CounterView).defaultStyleFunction = setCounterViewStyles;
 		getStyleProviderForClass(UserActionsView).defaultStyleFunction = setUserActionsViewStyles;
 
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
+		getStyleProviderForClass(Label).setFunctionForStyleName(CounterView.CHILD_COUNTER_VALUE_LABEL, setCounterViewValueLabelStyles)
 		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatClient.CHILD_COMMUNICATORS_TABS, setCommunicatorsTabsStyles)
 		getStyleProviderForClass(ButtonGroup).setFunctionForStyleName(UserActionsView.CHILD_USER_ACTIONS_BUTTONS_GROUP, setUserActionsViewButtonsGroupStyles)
 		getStyleProviderForClass(Button).setFunctionForStyleName(UserActionsView.CHILD_USER_ACTIONS_BUTTON, setUserActionsViewButtonStyles)
@@ -160,6 +164,11 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		hLayout.gap = smallGutterSize;
 
 		view.layout = hLayout;
+	}
+
+	private function setCounterViewStyles(view:CounterView):void
+	{
+
 	}
 
 	private function setPresenceViewStyles(view:PresenceView):void
@@ -343,6 +352,16 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		tabsView.bottom = 0;
 
 		view.communicatorsTabs.layoutData = tabsView;
+	}
+
+	private function setCounterViewValueLabelStyles(label:Label):void
+	{
+		setLabelStyles(label);
+
+		label.backgroundSkin = new Quad(1, 1, 0x445566);
+
+		label.paddingLeft = label.paddingRight = 4;
+		label.paddingTop = label.paddingBottom = 2;
 	}
 
 	private function setCommunicatorsTabsStyles(tabs:TabBar):void

@@ -27,6 +27,8 @@ public class ConversationsBarMediator extends FeathersMediator
 
 		view.label = "RECENT";
 
+		view.counterView.countProvider.data = 7;
+
 		mapStarlingEvent(view, Event.CHANGE, view_onChange);
 	}
 
