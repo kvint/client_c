@@ -3,18 +3,20 @@
  */
 package com.scifi.view.chat.conversations
 {
-	import com.chat.IChat;
-	import com.chat.events.CommunicatorEvent;
-	import com.chat.model.communicators.IConversationsCommunicator;
-	import com.chat.model.data.CItemConversation;
-	import com.chat.model.data.ICItem;
+import com.chat.IChat;
+import com.chat.events.CommunicatorEvent;
+import com.chat.model.communicators.ICommunicator;
+import com.chat.model.communicators.IConversationsCommunicator;
+import com.chat.model.data.CItemConversation;
+import com.chat.model.data.ICItem;
 
-	import feathers.data.ListCollection;
+import feathers.data.ListCollection;
 
-	import org.igniterealtime.xiff.core.AbstractJID;
-	import org.igniterealtime.xiff.data.Message;
+import org.igniterealtime.xiff.core.AbstractJID;
 
-	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
+
+import starling.events.Event;
 
 public class ConversationsMediator extends FeathersMediator
 {
@@ -38,6 +40,8 @@ public class ConversationsMediator extends FeathersMediator
 		view.conversationsList.itemRendererProperties.labelFunction = conversationListLabelFunction;
 
 		setItems();
+
+		mapStarlingEvent(view.conversationsList, Event.CHANGE, conversationsList_onChange);
 	}
 
 	private function conversationListLabelFunction(item:ICItem):String {
@@ -98,11 +102,20 @@ public class ConversationsMediator extends FeathersMediator
 
 
 	override public function destroy():void {
-		_conversations.addEventListener(CommunicatorEvent.ITEM_REMOVED, handler);
-		_conversations.addEventListener(CommunicatorEvent.ITEM_ADDED, handler);
-		_conversations.addEventListener(CommunicatorEvent.ITEM_INSERTED, handler);
-		_conversations.addEventListener(CommunicatorEvent.ITEM_UPDATED, handler);
+		_conversations.removeEventListener(CommunicatorEvent.ITEM_REMOVED, handler);
+		_conversations.removeEventListener(CommunicatorEvent.ITEM_ADDED, handler);
+		_conversations.removeEventListener(CommunicatorEvent.ITEM_INSERTED, handler);
+		_conversations.removeEventListener(CommunicatorEvent.ITEM_UPDATED, handler);
 		super.destroy();
+	}
+
+	private function conversationsList_onChange():void
+	{
+		if (view.conversationsList.selectedIndex == -1)
+			return;
+
+		var iCommunicator:ICommunicator = chat.model.communicators.getFor(view.conversationsList.selectedItem);
+		iCommunicator.active = true;
 	}
 }
 }
