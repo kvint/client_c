@@ -79,8 +79,8 @@ public class GameMediator extends FeathersMediator {
 	}
 	private function initView():void {
 		view.loginButtons.removeFromParent();
-		view.addChild(view.chatView);
-		view.addChild(view.rosterView);
+		view.addChild(view.chatClient);
+		view.addChild(view.chatBar);
 	}
 
 	private function a1(event:Event):void {

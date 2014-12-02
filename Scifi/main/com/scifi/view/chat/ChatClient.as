@@ -9,7 +9,7 @@ import feathers.controls.LayoutGroup;
 import feathers.controls.TabBar;
 import feathers.skins.IStyleProvider;
 
-public class ChatView extends LayoutGroup
+public class ChatClient extends LayoutGroup
 {
 	public static const CHILD_COMMUNICATORS_TABS:String = "child-communicators-tabs";
 

@@ -26,13 +26,15 @@ package com.scifi.view.theme
 {
 
 import com.chat.model.config.PresenceStatuses;
-import com.scifi.view.chat.ChatView;
+import com.scifi.view.chat.ChatBar;
+import com.scifi.view.chat.ChatClient;
 import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorView;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.history.HistoryCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
 import com.scifi.view.chat.communicator.types.writable.WritableCommunicatorView;
+import com.scifi.view.chat.conversations.ConversationsView;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
@@ -114,8 +116,10 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		super.initializeStyleProviders();
 
 		getStyleProviderForClass(GameView).defaultStyleFunction = setGameViewStyles;
-		getStyleProviderForClass(ChatView).defaultStyleFunction = setChatViewStyles;
+		getStyleProviderForClass(ChatBar).defaultStyleFunction = setChatBarStyles;
+		getStyleProviderForClass(ChatClient).defaultStyleFunction = setChatViewStyles;
 		getStyleProviderForClass(RosterView).defaultStyleFunction = setRosterViewStyles;
+		getStyleProviderForClass(ConversationsView).defaultStyleFunction = setConversationsViewStyles;
 
 		getStyleProviderForClass(HistoryCommunicatorView).defaultStyleFunction = setHistoryCommunicatorStyles;
 		getStyleProviderForClass(WritableCommunicatorView).defaultStyleFunction = setWritableCommunicatorStyles;
@@ -129,7 +133,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		getStyleProviderForClass(List).setFunctionForStyleName(HistoryCommunicatorView.CHILD_COMMUNICATOR_EVENTS_LIST, setCommunicatorsEventsListStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_NAME_LABEL, setCommunicatorTabNameLabelStyles)
 		getStyleProviderForClass(Label).setFunctionForStyleName(DefaultCommunicatorTabView.CHILD_COMMUNICATOR_TAB_COUNT_LABEL, setCommunicatorTabCountLabelStyles)
-		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatView.CHILD_COMMUNICATORS_TABS, setCommunicatorsTabsStyles)
+		getStyleProviderForClass(TabBar).setFunctionForStyleName(ChatClient.CHILD_COMMUNICATORS_TABS, setCommunicatorsTabsStyles)
 		getStyleProviderForClass(ButtonGroup).setFunctionForStyleName(UserActionsView.CHILD_USER_ACTIONS_BUTTONS_GROUP, setUserActionsViewButtonsGroupStyles)
 		getStyleProviderForClass(Button).setFunctionForStyleName(UserActionsView.CHILD_USER_ACTIONS_BUTTON, setUserActionsViewButtonStyles)
 	}
@@ -261,6 +265,12 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		list.layout = layout;
 	}
 
+	private function setChatBarStyles(view:ChatBar):void
+	{
+		const hLayout:HorizontalLayout = new HorizontalLayout();
+		view.layout = hLayout;
+	}
+
 	private function setGameViewStyles(view:GameView):void
 	{
 		view.backgroundSkin = new Scale9Image(UIUtils.getScale9RectTexture(6, 6, 0xf332233));
@@ -302,7 +312,7 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		rosterView.top = 0;
 		rosterView.left = 0;
 
-		view.rosterView.layoutData = rosterView;
+		view.chatBar.layoutData = rosterView;
 
 		var chatView:AnchorLayoutData = new AnchorLayoutData();
 
@@ -311,10 +321,10 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		chatView.top = 0;
 		chatView.bottom = 0;
 
-		view.chatView.layoutData = chatView;
+		view.chatClient.layoutData = chatView;
 	}
 
-	private function setChatViewStyles(view:ChatView):void
+	private function setChatViewStyles(view:ChatClient):void
 	{
 		view.layout = new AnchorLayout();
 
@@ -392,6 +402,19 @@ public class ChatTheme extends MetalWorksDesktopTheme
 		outList.percentWidth = 100;
 
 		view.outList.layoutData = outList;
+
+		view.minWidth = 200;
+	}
+
+	private function setConversationsViewStyles(view:ConversationsView):void
+	{
+		view.layout = new AnchorLayout();
+
+		var conversationsList:AnchorLayoutData = new AnchorLayoutData();
+
+		conversationsList.percentWidth = 100;
+
+		view.conversationsList.layoutData = conversationsList;
 
 		view.minWidth = 200;
 	}

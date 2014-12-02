@@ -4,8 +4,11 @@
 package com.scifi.config
 {
 
-import com.scifi.view.chat.ChatMediator;
-import com.scifi.view.chat.ChatView;
+import com.scifi.view.chat.ChatBar;
+import com.scifi.view.chat.ChatBar;
+import com.scifi.view.chat.ChatBarMediator;
+import com.scifi.view.chat.ChatClientMediator;
+import com.scifi.view.chat.ChatClient;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorMediator;
 import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorMediator;
@@ -16,14 +19,18 @@ import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersButtonView;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersMediator;
 import com.scifi.view.chat.communicator.types.muc.users.MUCUsersView;
+import com.scifi.view.chat.conversations.ConversationsBar;
+import com.scifi.view.chat.conversations.ConversationsBarMediator;
+import com.scifi.view.chat.conversations.ConversationsMediator;
+import com.scifi.view.chat.conversations.ConversationsView;
 import com.scifi.view.chat.user.actions.FriendUserActionsMediator;
 import com.scifi.view.chat.user.actions.FriendUserActionsView;
 import com.scifi.view.chat.user.actions.RequestUserActionsMediator;
 import com.scifi.view.chat.user.actions.RequestUserActionsView;
 import com.scifi.view.chat.user.presence.PresenceMediator;
 import com.scifi.view.chat.user.presence.PresenceView;
-import com.scifi.view.chat.roster.RosterButtonMediator;
-import com.scifi.view.chat.roster.RosterButtonView;
+import com.scifi.view.chat.roster.RosterBarMediator;
+import com.scifi.view.chat.roster.RosterBar;
 import com.scifi.view.chat.roster.RosterMediator;
 import com.scifi.view.chat.roster.RosterView;
 import com.scifi.view.chat.tabs.types.DirectCommunicatorTabMediator;
@@ -59,9 +66,12 @@ public class ViewConfig implements IConfig
 		mediatorMap.map(GameView).toMediator(GameMediator);
 
 		// CHAT
-		mediatorMap.map(ChatView).toMediator(ChatMediator);
+		mediatorMap.map(ChatClient).toMediator(ChatClientMediator);
+		mediatorMap.map(ChatBar).toMediator(ChatBarMediator);
+		mediatorMap.map(RosterBar).toMediator(RosterBarMediator);
 		mediatorMap.map(RosterView).toMediator(RosterMediator);
-		mediatorMap.map(RosterButtonView).toMediator(RosterButtonMediator);
+		mediatorMap.map(ConversationsBar).toMediator(ConversationsBarMediator);
+		mediatorMap.map(ConversationsView).toMediator(ConversationsMediator);
 		mediatorMap.map(MUCUsersButtonView).toMediator(MUCUsersButtonMediator);
 		mediatorMap.map(MUCUsersView).toMediator(MUCUsersMediator);
 

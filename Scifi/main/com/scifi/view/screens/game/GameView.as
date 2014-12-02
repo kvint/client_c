@@ -5,26 +5,26 @@
 package com.scifi.view.screens.game
 {
 
-	import com.scifi.view.chat.ChatView;
-	import com.scifi.view.chat.roster.RosterButtonView;
+import com.scifi.view.chat.ChatBar;
+import com.scifi.view.chat.ChatClient;
 
-	import feathers.controls.Button;
-	import feathers.controls.ButtonGroup;
-	import feathers.controls.Label;
-	import feathers.controls.LayoutGroup;
-	import feathers.controls.TextInput;
-	import feathers.skins.IStyleProvider;
+import feathers.controls.Button;
+import feathers.controls.ButtonGroup;
+import feathers.controls.Label;
+import feathers.controls.LayoutGroup;
+import feathers.controls.TextInput;
+import feathers.skins.IStyleProvider;
 
-	import org.as3commons.logging.api.ILogger;
-	import org.as3commons.logging.api.getLogger;
+import org.as3commons.logging.api.ILogger;
+import org.as3commons.logging.api.getLogger;
 
-	public class GameView extends LayoutGroup
+public class GameView extends LayoutGroup
 {
 	private static const log:ILogger = getLogger(GameView);
 
 	private var _currentUserLabel:Label = new Label();
-	private var _chatView:ChatView = new ChatView();
-	private var _rosterView:RosterButtonView = new RosterButtonView();
+	private var _chatBar:ChatBar = new ChatBar();
+	private var _chatClient:ChatClient = new ChatClient();
 	private var _userInput:TextInput = new TextInput();
 	private var _passwordInput:TextInput = new TextInput();
 	private var _enterButton:Button = new Button();
@@ -46,14 +46,9 @@ package com.scifi.view.screens.game
 		addChild(loginButtons);
 	}
 
-	public function get rosterView():RosterButtonView
+	public function get chatClient():ChatClient
 	{
-		return _rosterView;
-	}
-
-	public function get chatView():ChatView
-	{
-		return _chatView;
+		return _chatClient;
 	}
 
 	public function get loginButtons():ButtonGroup
@@ -75,6 +70,11 @@ package com.scifi.view.screens.game
 
 		public function get currentUserLabel():Label {
 			return _currentUserLabel;
+		}
+
+		public function get chatBar():ChatBar
+		{
+			return _chatBar;
 		}
 	}
 }

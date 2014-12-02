@@ -28,12 +28,12 @@ import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
 import starling.events.Event;
 
-public class ChatMediator extends FeathersMediator
+public class ChatClientMediator extends FeathersMediator
 {
-	private static const log:ILogger = getLogger(ChatMediator);
+	private static const log:ILogger = getLogger(ChatClientMediator);
 
 	[Inject]
-	public var view:ChatView;
+	public var view:ChatClient;
 
 	[Inject]
 	public var communicators:ICommunicatorFactory;

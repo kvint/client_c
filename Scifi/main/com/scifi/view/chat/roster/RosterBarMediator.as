@@ -11,10 +11,10 @@ import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
 import starling.events.Event;
 
-public class RosterButtonMediator extends FeathersMediator
+public class RosterBarMediator extends FeathersMediator
 {
 	[Inject]
-	public var view:RosterButtonView;
+	public var view:RosterBar;
 
 	[Inject]
 	public var chat:IChat;
