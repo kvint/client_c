@@ -7,7 +7,7 @@ import com.chat.IChat;
 import com.chat.events.CommunicatorEvent;
 	import com.chat.model.data.CItemString;
 	import com.chat.model.data.ICItem;
-import com.chat.model.data.СItemMessage;
+import com.chat.model.data.CItemMessage;
 import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;
@@ -71,8 +71,8 @@ import feathers.data.ListCollection;
 	protected function createListItem(item:ICItem):String
 	{
 		if(item is CItemString) return String(item.body);
-		if (item is СItemMessage) {
-			var messageItem:СItemMessage = item as СItemMessage;
+		if (item is CItemMessage) {
+			var messageItem:CItemMessage = item as CItemMessage;
 			var message:Message = messageItem.data as Message;
 			if (message.body == null) {
 				if (message.state != null) {
