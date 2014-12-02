@@ -4,6 +4,7 @@
 package com.scifi.view.chat.conversations
 {
 import com.chat.IChat;
+import com.chat.events.CommunicatorEvent;
 
 import feathers.controls.Callout;
 
@@ -27,14 +28,29 @@ public class ConversationsBarMediator extends FeathersMediator
 
 		view.label = "RECENT";
 
-		view.counterView.countProvider.data = 7;
+		setCount();
 
 		mapStarlingEvent(view, Event.CHANGE, view_onChange);
+
+		chat.model.conversations.addEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
 	}
 
 	override public function destroy():void
 	{
+		chat.model.conversations.removeEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
+
 		super.destroy();
+	}
+
+	private function communicator_onUnreadUpdate(event:CommunicatorEvent):void
+	{
+		setCount();
+	}
+
+	private function setCount():void
+	{
+		view.counterView.visible = chat.model.conversations.unreadCount;
+		view.counterView.countProvider.data = chat.model.conversations.unreadCount;
 	}
 
 	private function view_onChange():void
@@ -57,5 +73,6 @@ public class ConversationsBarMediator extends FeathersMediator
 
 		view.isSelected = false;
 	}
+
 }
 }
