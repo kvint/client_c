@@ -1,7 +1,7 @@
 /**
  * Created by kuts on 11/25/14.
  */
-package com.scifi.view.chat.user.presence
+package com.scifi.view.chat.controls.presence
 {
 import com.scifi.utils.providers.IViewDataProvider;
 import com.scifi.utils.providers.ViewDataProvider;
@@ -16,7 +16,7 @@ import starling.display.Quad;
 public class PresenceView extends LayoutGroup
 {
 	private var _statusProvider:IViewDataProvider = new ViewDataProvider();
-	private var _statusQuad:Quad = new Quad(1, 1)
+	private var _statusQuad:Quad = new Quad(1, 1);
 	private var _statusColors:Dictionary;
 
 	override protected function initialize():void

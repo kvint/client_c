@@ -7,9 +7,6 @@ import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
 public class ConversationsMediator extends FeathersMediator
 {
-	public function ConversationsMediator()
-	{
-		super();
-	}
+
 }
 }

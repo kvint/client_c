@@ -1,7 +1,7 @@
 /**
  * Created by kuts on 11/25/14.
  */
-package com.scifi.view.chat.user.presence
+package com.scifi.view.chat.controls.presence
 {
 import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 

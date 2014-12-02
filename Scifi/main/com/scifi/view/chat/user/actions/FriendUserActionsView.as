@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat.user.actions
 {
-import com.scifi.view.chat.user.presence.PresenceView;
+import com.scifi.view.chat.controls.presence.PresenceView;
 
 public class FriendUserActionsView extends UserActionsView
 {
