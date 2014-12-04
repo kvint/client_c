@@ -6,6 +6,7 @@ package com.scifi.view.chat.tabs.types
 import com.scifi.utils.providers.IViewDataProvider;
 import com.scifi.utils.providers.ViewDataProvider;
 import com.scifi.view.chat.communicator.ICommunicatorView;
+import com.scifi.view.chat.controls.counter.CounterView;
 
 import feathers.controls.Label;
 import feathers.controls.ToggleButton;
@@ -23,8 +24,9 @@ public class DefaultCommunicatorTabView extends ToggleButton implements ICommuni
 	public static const CHILD_COMMUNICATOR_TAB_NAME_LABEL:String = "child-communicator-tab-name-label";
 	public static const CHILD_COMMUNICATOR_TAB_COUNT_LABEL:String = "child-communicator-tab-count-label";
 
+	private var _nameText:String = null;
 	private var _nameLabel:Label = new Label();
-	private var _countLabel:Label = new Label();
+	private var _counterView:CounterView = new CounterView();
 
 	private var _provider:IViewDataProvider = new ViewDataProvider();
 
@@ -40,19 +42,28 @@ public class DefaultCommunicatorTabView extends ToggleButton implements ICommuni
 		super.initialize();
 
 		nameLabel.styleNameList.add(CHILD_COMMUNICATOR_TAB_NAME_LABEL);
-		countLabel.styleNameList.add(CHILD_COMMUNICATOR_TAB_COUNT_LABEL);
+		counterView.styleNameList.add(CHILD_COMMUNICATOR_TAB_COUNT_LABEL);
 
 		addChild(nameLabel);
-		addChild(countLabel);
+		addChild(counterView);
 
-		nameLabel.addEventListener(FeathersEventType.RESIZE, child_onResize);
-		countLabel.addEventListener(FeathersEventType.RESIZE, child_onResize);
+		counterView.visible = false;
+
+		counterView.addEventListener(FeathersEventType.RESIZE, child_onResize);
+	}
+
+	override protected function refreshLabel():void
+	{
+		nameLabel.text = _nameText;
+	}
+
+	override protected function refreshLabelStyles():void
+	{
+		super.refreshLabelStyles();
 	}
 
 	override protected function autoSizeIfNeeded():Boolean
 	{
-		super.autoSizeIfNeeded();
-
 		const needsWidth:Boolean = isNaN(explicitWidth);
 		const needsHeight:Boolean = isNaN(explicitHeight);
 
@@ -60,21 +71,24 @@ public class DefaultCommunicatorTabView extends ToggleButton implements ICommuni
 			return false;
 
 		nameLabel.validate();
-		countLabel.validate();
+
+		if (counterView.visible)
+			counterView.validate();
 
 		var newWidth:Number = explicitWidth;
 
 		if(needsWidth)
-			newWidth = paddingLeft + nameLabel.width + gap + countLabel.width + paddingRight;
+		{
+			newWidth = paddingLeft + nameLabel.width + paddingRight;
+
+			if (counterView.visible)
+				newWidth += gap + counterView.width;
+		}
 
 		var newHeight:Number = explicitHeight;
 
 		if(needsHeight)
-		{
-			newHeight = paddingTop;
-			newHeight += Math.max(nameLabel.height, countLabel.height)
-			newHeight += paddingBottom;
-		}
+			newHeight = paddingTop + Math.max(nameLabel.height, counterView.height) + paddingBottom;
 
 		return setSizeInternal(newWidth, newHeight, false);
 	}
@@ -84,13 +98,21 @@ public class DefaultCommunicatorTabView extends ToggleButton implements ICommuni
 		super.layoutContent();
 
 		nameLabel.validate();
-		countLabel.validate();
 
 		nameLabel.x = paddingLeft;
 		nameLabel.y = (actualHeight - nameLabel.height) / 2;
 
-		countLabel.x = actualWidth - countLabel.width - paddingRight;
-		countLabel.y = (actualHeight - countLabel.height) / 2;
+		if (counterView.visible)
+		{
+			counterView.validate();
+
+			if (_nameText && _nameText != "")
+				nameLabel.maxWidth = actualWidth - paddingLeft - counterView.width - paddingRight;
+			counterView.x = actualWidth - counterView.width - paddingRight;
+			counterView.y = (actualHeight - counterView.height) / 2;
+		}
+		else if (_nameText && _nameText != "")
+			nameLabel.maxWidth = actualWidth - paddingLeft - paddingRight;
 	}
 
 	private function child_onResize():void
@@ -108,9 +130,29 @@ public class DefaultCommunicatorTabView extends ToggleButton implements ICommuni
 		return _nameLabel;
 	}
 
-	public function get countLabel():Label
+	public function get counterView():CounterView
 	{
-		return _countLabel;
+		return _counterView;
+	}
+
+	public function setCounterVisible(value:Boolean):void
+	{
+		if (counterView.visible == value)
+			return;
+
+		counterView.visible = value;
+
+		invalidate(INVALIDATION_FLAG_STYLES);
+	}
+
+	public function set nameText(value:String):void
+	{
+		if (_nameText == value)
+			return;
+
+		_nameText = value;
+
+		invalidate(INVALIDATION_FLAG_DATA);
 	}
 }
 }

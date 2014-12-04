@@ -33,13 +33,13 @@ public class DirectCommunicatorTabMediator extends FeathersMediator
 
 	private function setName():void
 	{
-		view.nameLabel.text = communicator.name;
+		view.nameText = communicator.name;
 	}
 
 	private function setCount():void
 	{
-		view.countLabel.visible = communicator.unreadCount;
-		view.countLabel.text = String(communicator.unreadCount);
+		view.setCounterVisible(communicator.unreadCount);
+		view.counterView.countProvider.data = communicator.unreadCount;
 	}
 
 	override public function destroy():void
