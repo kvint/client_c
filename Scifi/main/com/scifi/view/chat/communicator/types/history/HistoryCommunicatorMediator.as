@@ -12,6 +12,9 @@ import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;
 
+	import flash.globalization.DateTimeFormatter;
+	import flash.globalization.DateTimeStyle;
+
 	import flash.utils.setTimeout;
 
 	import org.as3commons.lang.StringUtils;
@@ -22,6 +25,7 @@ import feathers.data.ListCollection;
 
 	[Inject]
 	public var chat:IChat;
+	private var _dateFormatter:DateTimeFormatter = new DateTimeFormatter(flash.globalization.LocaleID.DEFAULT, DateTimeStyle.SHORT, DateTimeStyle.SHORT);
 
 	override public function initializeComplete():void
 	{
@@ -71,25 +75,25 @@ import feathers.data.ListCollection;
 	protected function createListItem(item:ICItem):String
 	{
 		if(item is CItemString) return String(item.body);
+
+		var date:Date = new Date(item.time);
+
+		var time:String = _dateFormatter.formatUTC(date);
+
 		if (item is CItemMessage) {
 			var messageItem:CItemMessage = item as CItemMessage;
 			var message:Message = messageItem.data as Message;
 			if (message.body == null) {
 				if (message.state != null) {
-					return StringUtils.substitute("[{0}] {1}: {2}", formatTime(item.time), item.from, message.state);
+					return StringUtils.substitute("[{0}] {1}: {2}", time, item.from, message.state);
 				}
 				if (message.receipt != null) {
-					return StringUtils.substitute("[{0}] {1}: {2}", formatTime(item.time), item.from, message.receipt);
+					return StringUtils.substitute("[{0}] {1}: {2}", time, item.from, message.receipt);
 				}
 			}
 		}
 
-		return StringUtils.substitute("{0}[{1}] {2}: {3}", item.isRead? "" : "*", formatTime(item.time), item.from, item.body);
-	}
-
-	private function formatTime(time:Number):String {
-		var date:Date = new Date(time + chatModel.serverTimeOffset);
-		return date.date + "/" + (date.month+1) + " " + date.hours + ":" + date.minutes;
+		return StringUtils.substitute("{0}[{1}] {2}: {3}", item.isRead? "" : "*", time, item.from, item.body);
 	}
 
 	protected function scrollToEnd():void
