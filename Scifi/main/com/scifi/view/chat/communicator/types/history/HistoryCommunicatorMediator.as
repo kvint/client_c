@@ -5,9 +5,9 @@ package com.scifi.view.chat.communicator.types.history
 {
 import com.chat.IChat;
 import com.chat.events.CommunicatorEvent;
-	import com.chat.model.data.CItemString;
-	import com.chat.model.data.ICItem;
-import com.chat.model.data.CItemMessage;
+	import com.chat.model.data.citems.CItemString;
+	import com.chat.model.data.citems.ICItem;
+import com.chat.model.data.citems.CItemMessage;
 import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 import feathers.data.ListCollection;

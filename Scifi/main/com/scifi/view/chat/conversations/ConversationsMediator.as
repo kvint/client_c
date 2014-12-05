@@ -7,8 +7,8 @@ import com.chat.IChat;
 import com.chat.events.CommunicatorEvent;
 import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.IConversationsCommunicator;
-import com.chat.model.data.CItemConversation;
-import com.chat.model.data.ICItem;
+import com.chat.model.data.citems.CItemConversation;
+import com.chat.model.data.citems.ICItem;
 
 import feathers.data.ListCollection;
 
