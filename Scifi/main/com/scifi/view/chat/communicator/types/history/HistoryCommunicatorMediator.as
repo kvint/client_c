@@ -8,9 +8,13 @@ import com.chat.events.CommunicatorEvent;
 	import com.chat.model.data.citems.CItemString;
 	import com.chat.model.data.citems.ICItem;
 import com.chat.model.data.citems.CItemMessage;
-import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
+	import com.chat.model.data.collections.ICItemCollection;
+	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
-import feathers.data.ListCollection;
+	import feathers.data.ChatListCollection;
+
+	import feathers.data.ListCollection;
+	import feathers.events.CollectionEventType;
 
 	import flash.globalization.DateTimeFormatter;
 	import flash.globalization.DateTimeStyle;
@@ -19,6 +23,10 @@ import feathers.data.ListCollection;
 
 	import org.as3commons.lang.StringUtils;
 	import org.igniterealtime.xiff.data.Message;
+
+	import starling.events.Event;
+
+	import starling.events.EventDispatcher;
 
 	public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
 {
@@ -31,8 +39,12 @@ import feathers.data.ListCollection;
 	{
 		super.initializeComplete();
 
-		historyView.eventsList.dataProvider = new ListCollection();
+		historyView.eventsList.dataProvider = new ChatListCollection(communicatorData.items);
 		historyView.eventsList.isSelectable = false;
+
+		var dispatcher:EventDispatcher = communicatorData.items as EventDispatcher;
+		mapStarlingEvent(dispatcher, CollectionEventType.ADD_ITEM, onItemAdded);
+		mapStarlingEvent(dispatcher, CollectionEventType.RESET, onCommunicatorChanged);
 
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
@@ -43,33 +55,20 @@ import feathers.data.ListCollection;
 			return item.body.toString();*/
 			return createListItem(item);
 		};
-
-		initHistory();
-		scrollToEnd();
-
-		communicatorData.addEventListener(CommunicatorEvent.CHANGED, onCommunicatorChanged);
-		communicatorData.addEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
-		communicatorData.addEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
-	}
-
-	private function onCommunicatorChanged(event:CommunicatorEvent):void
-	{
-		initHistory();
+		readMessages();
 		scrollToEnd();
 	}
 
-	protected function initHistory():void
-	{
-		var history:Vector.<ICItem> = communicatorData.items.concat();
-		for (var i:int = 0; i < history.length; i++)
-		{
-			var item:ICItem = history[i];
-			if (item)
-			{
-				markMessageAsReceived(item);
-			}
+	private function readMessages():void {
+		for(var i:int = 0; i < communicatorData.items.length; i++) {
+			var icItem:ICItem = communicatorData.items.getItemAt(i);
+			markMessageAsReceived(icItem);
 		}
-		historyView.eventsList.dataProvider.data = history;
+	}
+
+	private function onCommunicatorChanged(event:Event):void
+	{
+		scrollToEnd();
 	}
 
 	protected function createListItem(item:ICItem):String
@@ -102,15 +101,11 @@ import feathers.data.ListCollection;
 		historyView.eventsList.verticalScrollPosition = historyView.eventsList.maxVerticalScrollPosition;
 	}
 
-	private function onItemUpdated(event:CommunicatorEvent):void
+	protected function onItemAdded(event:Event):void
 	{
-		var itemIndex:int = historyView.eventsList.dataProvider.getItemIndex(event.data);
-		historyView.eventsList.dataProvider.updateItemAt(itemIndex);
-	}
-
-	protected function onItemAdded(event:CommunicatorEvent):void
-	{
-		markMessageAsReceived(event.data as ICItem);
+		var index:int = int(event.data);
+		var item:ICItem = communicatorData.items.getItemAt(index);
+		markMessageAsReceived(item);
 
 
 		/*if(item is ChatMessage){
@@ -124,18 +119,12 @@ import feathers.data.ListCollection;
 		 }
 		 return item.toString();*/
 
-		addItemToHistory(event.data as ICItem);
 		scrollToEnd();
 	}
 
 	protected function markMessageAsReceived(message:ICItem):void
 	{
 		communicatorData.read(message);
-	}
-
-	protected function addItemToHistory(item:ICItem):void
-	{
-		historyView.eventsList.dataProvider.addItem(item);
 	}
 
 	protected function get historyView():HistoryCommunicatorView
@@ -145,9 +134,6 @@ import feathers.data.ListCollection;
 
 	override public function destroy():void
 	{
-		communicatorData.removeEventListener(CommunicatorEvent.ITEM_ADDED, onItemAdded);
-		communicatorData.removeEventListener(CommunicatorEvent.ITEM_UPDATED, onItemUpdated);
-		communicatorData.removeEventListener(CommunicatorEvent.CHANGED, onCommunicatorChanged);
 		super.destroy();
 	}
 }
