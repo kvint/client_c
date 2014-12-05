@@ -44,7 +44,7 @@ package com.scifi.view.chat.conversations
 			var from:AbstractJID = conversation.from as AbstractJID;
 			var msg:String = "";
 			if(conversation.lastMessage){
-				msg = String(conversation.lastMessage.body);
+				msg = " " + String(conversation.lastMessage.body);
 			}
 			return from.toString() + msg;
 		}
