@@ -14,7 +14,7 @@ package com.scifi.view.chat.communicator.types.direct
 
 		override public function initializeComplete():void {
 			super.initializeComplete();
-			communicatorData.history.fetchNext(3);
+			communicatorData.history.fetchNext(10);
 		}
 
 		override protected function get communicatorView():ICommunicatorView
