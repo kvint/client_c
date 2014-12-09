@@ -72,7 +72,7 @@ public class GameMediator extends FeathersMediator {
 			{ label: "bob", triggered: a2, isEnabled:true },
 			{ label: "joe", triggered: a3, isEnabled:true },
 			{ label: "azik", triggered: a4, isEnabled:true },
-			{ label: "history", triggered: a5, isEnabled:false }
+			{ label: "joffrey", triggered: a5, isEnabled:true }
 		]);
 
 		view.loginButtons.dataProvider = collection;
@@ -102,7 +102,8 @@ public class GameMediator extends FeathersMediator {
 		initView();
 	}
 	private function a5(event:Event):void {
-		//chat.controller.test();
+		chat.controller.connect("joffrey@localhost", "2gret37nidro");
+		initView();
 	}
 
 

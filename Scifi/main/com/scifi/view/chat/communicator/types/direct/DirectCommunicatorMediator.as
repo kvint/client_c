@@ -11,7 +11,13 @@ package com.scifi.view.chat.communicator.types.direct
 	[Inject]
 	public var view:DirectCommunicatorView;
 
-	override protected function get communicatorView():ICommunicatorView
+
+		override public function initializeComplete():void {
+			super.initializeComplete();
+			communicatorData.history.fetchNext(3);
+		}
+
+		override protected function get communicatorView():ICommunicatorView
 	{
 		return view;
 	}
