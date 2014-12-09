@@ -4,12 +4,15 @@
 package com.scifi.view.chat.conversations
 {
 	import com.chat.IChat;
+	import com.chat.events.ChatEvent;
 	import com.chat.model.communicators.ICommunicator;
 	import com.chat.model.communicators.IConversationsCommunicator;
 	import com.chat.model.data.citems.CItemConversation;
 	import com.chat.model.data.citems.ICItem;
 
 	import feathers.data.ChatListCollection;
+
+	import flash.events.Event;
 
 	import org.igniterealtime.xiff.core.AbstractJID;
 
@@ -35,7 +38,9 @@ package com.scifi.view.chat.conversations
 
 		view.conversationsList.dataProvider = new ChatListCollection(_conversations.items);
 
-		mapStarlingEvent(view.conversationsList, Event.CHANGE, conversationsList_onChange);
+		mapStarlingEvent(view.conversationsList, starling.events.Event.CHANGE, conversationsList_onChange);
+
+		dispatch(new flash.events.Event(ChatEvent.LOAD_CONVERSATIONS));
 	}
 
 	private function conversationListLabelFunction(item:ICItem):String {
