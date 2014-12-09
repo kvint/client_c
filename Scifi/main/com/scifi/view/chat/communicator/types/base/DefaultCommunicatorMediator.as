@@ -3,7 +3,7 @@
  */
 package com.scifi.view.chat.communicator.types.base {
 	import com.chat.model.IChatModel;
-	import com.chat.model.communicators.ICommunicatorBase;
+	import com.chat.model.communicators.ICommunicator;
 	import com.scifi.view.chat.communicator.*;
 
 	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
@@ -22,8 +22,8 @@ package com.scifi.view.chat.communicator.types.base {
 		protected function onViewDataChanged():void {
 
 		}
-		protected function get communicatorData():ICommunicatorBase {
-			return communicatorView.provider.data as ICommunicatorBase;
+		protected function get communicatorData():ICommunicator {
+			return communicatorView.provider.data as ICommunicator;
 		}
 
 		protected function get communicatorView():ICommunicatorView {
