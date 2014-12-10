@@ -7,7 +7,7 @@ package com.scifi.view.chat.conversations
 	import com.chat.events.ChatEvent;
 	import com.chat.model.communicators.ICommunicator;
 	import com.chat.model.communicators.IConversationsCommunicator;
-	import com.chat.model.data.citems.CItemConversation;
+	import com.chat.model.data.citems.CConversation;
 	import com.chat.model.data.citems.ICItem;
 
 	import feathers.data.CItemListCollection;
@@ -44,8 +44,8 @@ package com.scifi.view.chat.conversations
 	}
 
 	private function conversationListLabelFunction(item:ICItem):String {
-		if(item is CItemConversation){
-			var conversation:CItemConversation = item as CItemConversation;
+		if(item is CConversation){
+			var conversation:CConversation = item as CConversation;
 			var from:AbstractJID = conversation.from as AbstractJID;
 			var msg:String = "";
 			if(conversation.lastMessage){

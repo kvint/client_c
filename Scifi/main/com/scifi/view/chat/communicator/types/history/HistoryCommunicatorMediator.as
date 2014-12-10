@@ -3,29 +3,21 @@
  */
 package com.scifi.view.chat.communicator.types.history
 {
-import com.chat.IChat;
-import com.chat.events.CommunicatorEvent;
+	import com.chat.IChat;
 	import com.chat.model.data.citems.CItemString;
+	import com.chat.model.data.citems.CMessage;
 	import com.chat.model.data.citems.ICItem;
-import com.chat.model.data.citems.CItemMessage;
-	import com.chat.model.data.collections.ICItemCollection;
+	import com.chat.model.data.citems.ICMessage;
+	import com.chat.model.data.citems.ICTime;
 	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
 	import feathers.data.CItemListCollection;
-
-	import feathers.data.ListCollection;
 	import feathers.events.CollectionEventType;
-
-	import flash.globalization.DateTimeFormatter;
-	import flash.globalization.DateTimeStyle;
-
-	import flash.utils.setTimeout;
 
 	import org.as3commons.lang.StringUtils;
 	import org.igniterealtime.xiff.data.Message;
 
 	import starling.events.Event;
-
 	import starling.events.EventDispatcher;
 
 	public class HistoryCommunicatorMediator extends DefaultCommunicatorMediator
@@ -47,11 +39,6 @@ import com.chat.model.data.citems.CItemMessage;
 
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
-			/*if (item.body == null)
-			{
-				return (item as MessageItem).data.toString();
-			}
-			return item.body.toString();*/
 			return createListItem(item);
 		};
 		readMessages();
@@ -72,26 +59,30 @@ import com.chat.model.data.citems.CItemMessage;
 
 	protected function createListItem(item:ICItem):String
 	{
-		if(item is CItemString) return String(item.body);
+		if(item is CItemString) return item.toString();
 
-		var date:Date = new Date(item.time);
+		var time:String = "";
+		if(item is ICTime){
+			var date:Date = new Date((item as ICTime).time);
+			time = chat.model.dateFormatter.formatUTC(date);
+		}
 
-		var time:String = chat.model.dateFormatter.formatUTC(date);
-
-		if (item is CItemMessage) {
-			var messageItem:CItemMessage = item as CItemMessage;
-			var message:Message = messageItem.data as Message;
+		if (item is ICMessage) {
+			var messageItem:CMessage = item as CMessage;
+			var message:Message = messageItem.data;
 			if (message.body == null) {
 				if (message.state != null) {
-					return StringUtils.substitute("[{0}] {1}: {2}", time, item.from, message.state);
+					return StringUtils.substitute("[{0}] {1}: {2}", time, messageItem.from, message.state);
 				}
 				if (message.receipt != null) {
-					return StringUtils.substitute("[{0}] {1}: {2}", time, item.from, message.receipt);
+					return StringUtils.substitute("[{0}] {1}: {2}", time, messageItem.from, message.receipt);
 				}
+			}else{
+				return StringUtils.substitute("{0}[{1}] {2}: {3}", messageItem.isRead? "" : "*", time, messageItem.from, messageItem.toString());
 			}
 		}
 
-		return StringUtils.substitute("{0}[{1}] {2}: {3}", item.isRead? "" : "*", time, item.from, item.body);
+		return item.toString();
 	}
 
 	protected function scrollToEnd():void
@@ -105,18 +96,6 @@ import com.chat.model.data.citems.CItemMessage;
 		var index:int = int(event.data);
 		var item:ICItem = communicatorData.items.getItemAt(index);
 		markMessageAsReceived(item);
-
-
-		/*if(item is ChatMessage){
-		 var str:String = "";
-		 if (!item.read)
-		 {
-		 str += "! "
-		 }
-		 str += item.from.node + ": " + item.body;
-		 return str;
-		 }
-		 return item.toString();*/
 
 		scrollToEnd();
 	}
