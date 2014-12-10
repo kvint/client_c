@@ -10,7 +10,7 @@ package com.scifi.view.chat.conversations
 	import com.chat.model.data.citems.CItemConversation;
 	import com.chat.model.data.citems.ICItem;
 
-	import feathers.data.ChatListCollection;
+	import feathers.data.CItemListCollection;
 
 	import flash.events.Event;
 
@@ -36,7 +36,7 @@ package com.scifi.view.chat.conversations
 
 		view.conversationsList.itemRendererProperties.labelFunction = conversationListLabelFunction;
 
-		view.conversationsList.dataProvider = new ChatListCollection(_conversations.items);
+		view.conversationsList.dataProvider = new CItemListCollection(_conversations.items);
 
 		mapStarlingEvent(view.conversationsList, starling.events.Event.CHANGE, conversationsList_onChange);
 

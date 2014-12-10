@@ -11,7 +11,7 @@ import com.chat.model.data.citems.CItemMessage;
 	import com.chat.model.data.collections.ICItemCollection;
 	import com.scifi.view.chat.communicator.types.base.DefaultCommunicatorMediator;
 
-	import feathers.data.ChatListCollection;
+	import feathers.data.CItemListCollection;
 
 	import feathers.data.ListCollection;
 	import feathers.events.CollectionEventType;
@@ -38,7 +38,7 @@ import com.chat.model.data.citems.CItemMessage;
 	{
 		super.initializeComplete();
 
-		historyView.eventsList.dataProvider = new ChatListCollection(communicatorData.items);
+		historyView.eventsList.dataProvider = new CItemListCollection(communicatorData.items);
 		historyView.eventsList.isSelectable = false;
 
 		var dispatcher:EventDispatcher = communicatorData.items as EventDispatcher;
