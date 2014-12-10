@@ -33,7 +33,6 @@ import com.chat.model.data.citems.CItemMessage;
 
 	[Inject]
 	public var chat:IChat;
-	private var _dateFormatter:DateTimeFormatter = new DateTimeFormatter(flash.globalization.LocaleID.DEFAULT, DateTimeStyle.SHORT, DateTimeStyle.SHORT);
 
 	override public function initializeComplete():void
 	{
@@ -77,7 +76,7 @@ import com.chat.model.data.citems.CItemMessage;
 
 		var date:Date = new Date(item.time);
 
-		var time:String = _dateFormatter.formatUTC(date);
+		var time:String = chat.model.dateFormatter.formatUTC(date);
 
 		if (item is CItemMessage) {
 			var messageItem:CItemMessage = item as CItemMessage;
