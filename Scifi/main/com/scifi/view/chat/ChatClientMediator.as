@@ -7,7 +7,8 @@ import com.chat.events.CommunicatorFactoryEvent;
 import com.chat.model.communicators.CommunicatorType;
 import com.chat.model.communicators.ICommunicator;
 import com.chat.model.communicators.factory.ICommunicatorFactory;
-import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
+	import com.chat.model.data.citems.CItemCommunicator;
+	import com.scifi.view.chat.communicator.types.direct.DirectCommunicatorView;
 import com.scifi.view.chat.communicator.types.muc.MUCCommunicatorView;
 import com.scifi.view.chat.tabs.CommunicatorTabContainerView;
 import com.scifi.view.chat.tabs.types.DefaultCommunicatorTabView;
@@ -83,11 +84,13 @@ public class ChatClientMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		var iCommunicators:Vector.<ICommunicator> = communicators.getAll();
+		for (var i:int = 0; i < communicators.items.length; i++) {
+			var item:CItemCommunicator = communicators.items.getItemAt(i) as CItemCommunicator;
+			if(item.communicator.active){
+				addTab(item.communicator);
+			}
 
-		for each (var communicator:ICommunicator in iCommunicators)
-			if (communicator.active)
-				addTab(communicator);
+		}
 	}
 
 	private function addTab(communicator:ICommunicator):void
