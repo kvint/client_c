@@ -8,6 +8,7 @@ package com.scifi.view.chat.conversations
 	import com.chat.model.communicators.ICommunicator;
 	import com.chat.model.communicators.IConversationsCommunicator;
 	import com.chat.model.data.citems.CCommunicator;
+	import com.chat.model.data.citems.ICCommunicator;
 	import com.chat.model.data.citems.ICConversation;
 	import com.chat.model.data.citems.ICItem;
 
@@ -35,8 +36,6 @@ package com.scifi.view.chat.conversations
 		super.initializeComplete();
 		_conversations = chat.model.communicators.conversations;
 
-		view.conversationsList.itemRendererProperties.labelFunction = conversationListLabelFunction;
-
 		view.conversationsList.dataProvider = new CItemListCollection(_conversations.items);
 
 		mapStarlingEvent(view.conversationsList, starling.events.Event.CHANGE, conversationsList_onChange);
@@ -44,27 +43,13 @@ package com.scifi.view.chat.conversations
 		dispatch(new flash.events.Event(ChatEvent.LOAD_CONVERSATIONS));
 	}
 
-	private function conversationListLabelFunction(item:ICItem):String {
-		if(item is ICConversation){
-			var conversation:ICConversation = item as ICConversation;
-			var from:AbstractJID = conversation.withJID;
-			var msg:String = "";
-			if(conversation.lastMessage){
-				msg = " " + String(conversation.lastMessage.body);
-			}
-			return from.toString() + msg;
-		}
-		throw new Error("null!");
-		return null;
-	}
-
 	private function conversationsList_onChange():void
 	{
 		if (view.conversationsList.selectedIndex == -1)
 			return;
 
-		var iCommunicator:ICommunicator = chat.model.communicators.getFor(view.conversationsList.selectedItem);
-		iCommunicator.active = true;
+		var selectedItem:ICCommunicator = view.conversationsList.selectedItem as ICCommunicator;
+		selectedItem.communicator.active = true;
 	}
 }
 }
