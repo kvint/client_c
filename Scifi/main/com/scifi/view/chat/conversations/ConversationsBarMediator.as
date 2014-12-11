@@ -32,12 +32,12 @@ public class ConversationsBarMediator extends FeathersMediator
 
 		mapStarlingEvent(view, Event.CHANGE, view_onChange);
 
-		chat.model.conversations.addEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
+		chat.model.communicators.conversations.addEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
 	}
 
 	override public function destroy():void
 	{
-		chat.model.conversations.removeEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
+		chat.model.communicators.conversations.removeEventListener(CommunicatorEvent.UNREAD_UPDATED, communicator_onUnreadUpdate);
 
 		super.destroy();
 	}
@@ -49,8 +49,8 @@ public class ConversationsBarMediator extends FeathersMediator
 
 	private function setCount():void
 	{
-		view.counterView.visible = chat.model.conversations.unreadCount;
-		view.counterView.countProvider.data = chat.model.conversations.unreadCount;
+		view.counterView.visible = chat.model.communicators.conversations.unreadCount;
+		view.counterView.countProvider.data = chat.model.communicators.conversations.unreadCount;
 	}
 
 	private function view_onChange():void

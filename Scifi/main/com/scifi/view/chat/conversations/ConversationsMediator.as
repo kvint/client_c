@@ -7,7 +7,8 @@ package com.scifi.view.chat.conversations
 	import com.chat.events.ChatEvent;
 	import com.chat.model.communicators.ICommunicator;
 	import com.chat.model.communicators.IConversationsCommunicator;
-	import com.chat.model.data.citems.CConversation;
+	import com.chat.model.data.citems.CCommunicator;
+	import com.chat.model.data.citems.ICConversation;
 	import com.chat.model.data.citems.ICItem;
 
 	import feathers.data.CItemListCollection;
@@ -32,7 +33,7 @@ package com.scifi.view.chat.conversations
 
 	override public function initializeComplete():void {
 		super.initializeComplete();
-		_conversations = chat.model.conversations;
+		_conversations = chat.model.communicators.conversations;
 
 		view.conversationsList.itemRendererProperties.labelFunction = conversationListLabelFunction;
 
@@ -44,9 +45,9 @@ package com.scifi.view.chat.conversations
 	}
 
 	private function conversationListLabelFunction(item:ICItem):String {
-		if(item is CConversation){
-			var conversation:CConversation = item as CConversation;
-			var from:AbstractJID = conversation.from as AbstractJID;
+		if(item is ICConversation){
+			var conversation:ICConversation = item as ICConversation;
+			var from:AbstractJID = conversation.withJID;
 			var msg:String = "";
 			if(conversation.lastMessage){
 				msg = " " + String(conversation.lastMessage.body);
