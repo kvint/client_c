@@ -2,6 +2,3 @@
 	path = ChatLib
 	url = git@github.com:kvint/ChatLib.git
 	branch = master
-[submodule "XIFF"]
-	path = XIFF
-	url = git@github.com:kvint/XIFF.git
