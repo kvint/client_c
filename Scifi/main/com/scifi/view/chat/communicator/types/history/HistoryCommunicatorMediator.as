@@ -4,7 +4,7 @@
 package com.scifi.view.chat.communicator.types.history
 {
 	import com.chat.IChat;
-	import com.chat.model.data.citems.CString;
+	import com.chat.model.data.citems.CItem;
 	import com.chat.model.data.citems.CMessage;
 	import com.chat.model.data.citems.ICItem;
 	import com.chat.model.data.citems.ICMessage;
@@ -30,12 +30,12 @@ package com.scifi.view.chat.communicator.types.history
 	{
 		super.initializeComplete();
 
-		historyView.eventsList.dataProvider = new CItemListCollection(communicatorData.items);
+		var itemListCollection:CItemListCollection = new CItemListCollection(communicatorData.items);
+		historyView.eventsList.dataProvider = itemListCollection;
 		historyView.eventsList.isSelectable = false;
 
-		var dispatcher:EventDispatcher = communicatorData.items as EventDispatcher;
-		mapStarlingEvent(dispatcher, CollectionEventType.ADD_ITEM, onItemAdded);
-		mapStarlingEvent(dispatcher, CollectionEventType.RESET, onCommunicatorChanged);
+		mapStarlingEvent(itemListCollection, CollectionEventType.ADD_ITEM, onItemAdded);
+		mapStarlingEvent(itemListCollection, CollectionEventType.RESET, onCommunicatorChanged);
 
 		historyView.eventsList.itemRendererProperties.labelFunction = function (item:ICItem):String
 		{
@@ -59,7 +59,7 @@ package com.scifi.view.chat.communicator.types.history
 
 	protected function createListItem(item:ICItem):String
 	{
-		if(item is CString) return item.toString();
+		if(item is CItem) return item.toString();
 
 		var time:String = "";
 		if(item is ICTime){

@@ -2,6 +2,7 @@
  * Created by AlexanderSla on 05.12.2014.
  */
 package feathers.data {
+	import com.chat.events.CItemCollectionEvent;
 	import com.chat.model.data.collections.ICItemCollection;
 
 	import feathers.events.CollectionEventType;
@@ -30,25 +31,28 @@ package feathers.data {
 		}
 
 		private function addCollectionListeners():void {
-			_data.addEventListener(Event.CHANGE, dispatchEvent);
-			_data.addEventListener(CollectionEventType.ADD_ITEM, dispatchEvent);
-			_data.addEventListener(CollectionEventType.RESET, dispatchEvent);
-			_data.addEventListener(CollectionEventType.REMOVE_ITEM, dispatchEvent);
-			_data.addEventListener(CollectionEventType.REPLACE_ITEM, dispatchEvent);
-			_data.addEventListener(CollectionEventType.UPDATE_ITEM, dispatchEvent);
+			_data.addEventListener(CItemCollectionEvent.CHANGE, redispatchFlashEventLikeStarlingEvent);
+			_data.addEventListener(CItemCollectionEvent.ADD_ITEM, redispatchFlashEventLikeStarlingEvent);
+			_data.addEventListener(CItemCollectionEvent.RESET, redispatchFlashEventLikeStarlingEvent);
+			_data.addEventListener(CItemCollectionEvent.REMOVE_ITEM, redispatchFlashEventLikeStarlingEvent);
+			_data.addEventListener(CItemCollectionEvent.REPLACE_ITEM, redispatchFlashEventLikeStarlingEvent);
+			_data.addEventListener(CItemCollectionEvent.UPDATE_ITEM, redispatchFlashEventLikeStarlingEvent);
 		}
 
 		private function removeCollectionListeners():void {
 			if(_data){
-				_data.removeEventListener(Event.CHANGE, dispatchEvent);
-				_data.removeEventListener(CollectionEventType.ADD_ITEM, dispatchEvent);
-				_data.removeEventListener(CollectionEventType.RESET, dispatchEvent);
-				_data.removeEventListener(CollectionEventType.REMOVE_ITEM, dispatchEvent);
-				_data.removeEventListener(CollectionEventType.REPLACE_ITEM, dispatchEvent);
-				_data.removeEventListener(CollectionEventType.UPDATE_ITEM, dispatchEvent);
+				_data.removeEventListener(CItemCollectionEvent.CHANGE, redispatchFlashEventLikeStarlingEvent);
+				_data.removeEventListener(CItemCollectionEvent.ADD_ITEM, redispatchFlashEventLikeStarlingEvent);
+				_data.removeEventListener(CItemCollectionEvent.RESET, redispatchFlashEventLikeStarlingEvent);
+				_data.removeEventListener(CItemCollectionEvent.REMOVE_ITEM, redispatchFlashEventLikeStarlingEvent);
+				_data.removeEventListener(CItemCollectionEvent.REPLACE_ITEM, redispatchFlashEventLikeStarlingEvent);
+				_data.removeEventListener(CItemCollectionEvent.UPDATE_ITEM, redispatchFlashEventLikeStarlingEvent);
 			}
 		}
 
+		private function redispatchFlashEventLikeStarlingEvent(e:CItemCollectionEvent):void {
+			dispatchEvent(new Event(e.type, e.bubbles, e.data));
+		}
 		override public function addItemAt(item:Object, index:int):void
 		{
 			this._dataDescriptor.addItemAt(this._data, item, index);

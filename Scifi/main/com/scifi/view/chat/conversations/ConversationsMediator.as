@@ -48,7 +48,7 @@ package com.scifi.view.chat.conversations
 		if (view.conversationsList.selectedIndex == -1)
 			return;
 
-		var selectedItem:ICCommunicator = view.conversationsList.selectedItem as ICCommunicator;
+		var selectedItem:ICConversation = view.conversationsList.selectedItem as ICConversation;
 		selectedItem.communicator.active = true;
 	}
 }
