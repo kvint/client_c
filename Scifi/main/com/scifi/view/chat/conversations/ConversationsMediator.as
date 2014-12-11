@@ -34,7 +34,7 @@ package com.scifi.view.chat.conversations
 
 	override public function initializeComplete():void {
 		super.initializeComplete();
-		_conversations = chat.model.communicators.conversations;
+		_conversations = chat.model.conversations;
 
 		view.conversationsList.dataProvider = new CItemListCollection(_conversations.items);
 

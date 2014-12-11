@@ -84,8 +84,8 @@ public class ChatClientMediator extends FeathersMediator
 
 	private function setTabs():void
 	{
-		for (var i:int = 0; i < communicators.conversations.items.length; i++) {
-			var item:CCommunicator = communicators.conversations.items.getItemAt(i) as CCommunicator;
+		for (var i:int = 0; i < communicators.items.length; i++) {
+			var item:CCommunicator = communicators.items.getItemAt(i) as CCommunicator;
 			if(item.communicator.active){
 				addTab(item.communicator);
 			}
