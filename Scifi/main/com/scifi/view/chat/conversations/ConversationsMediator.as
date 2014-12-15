@@ -5,18 +5,12 @@ package com.scifi.view.chat.conversations
 {
 	import com.chat.IChat;
 	import com.chat.events.ChatEvent;
-	import com.chat.model.communicators.ICommunicator;
 	import com.chat.model.communicators.IConversationsCommunicator;
-	import com.chat.model.data.citems.CCommunicator;
-	import com.chat.model.data.citems.ICCommunicator;
 	import com.chat.model.data.citems.ICConversation;
-	import com.chat.model.data.citems.ICItem;
 
 	import feathers.data.CItemListCollection;
 
 	import flash.events.Event;
-
-	import org.igniterealtime.xiff.core.AbstractJID;
 
 	import robotlegs.extensions.starlingFeathers.impl.FeathersMediator;
 
