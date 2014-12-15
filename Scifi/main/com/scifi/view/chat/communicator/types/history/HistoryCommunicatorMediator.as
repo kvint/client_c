@@ -6,6 +6,7 @@ package com.scifi.view.chat.communicator.types.history
 	import com.chat.IChat;
 	import com.chat.model.data.citems.CItem;
 	import com.chat.model.data.citems.CMessage;
+	import com.chat.model.data.citems.CTitle;
 	import com.chat.model.data.citems.ICItem;
 	import com.chat.model.data.citems.ICMessage;
 	import com.chat.model.data.citems.ICTime;
@@ -59,17 +60,15 @@ package com.scifi.view.chat.communicator.types.history
 
 	protected function createListItem(item:ICItem):String
 	{
-		if(item is CItem) return item.toString();
-
 		var time:String = "";
 		if(item is ICTime){
 			var date:Date = new Date((item as ICTime).time);
-			time = chat.model.dateFormatter.formatUTC(date);
+			time = chat.model.dateFormatter.format(date);
 		}
 
 		if (item is ICMessage) {
 			var messageItem:CMessage = item as CMessage;
-			var message:Message = messageItem.data;
+			var message:Message = messageItem.messageData;
 			if (message.body == null) {
 				if (message.state != null) {
 					return StringUtils.substitute("[{0}] {1}: {2}", time, messageItem.from, message.state);
@@ -80,6 +79,9 @@ package com.scifi.view.chat.communicator.types.history
 			}else{
 				return StringUtils.substitute("{0}[{1}] {2}: {3}", messageItem.isRead? "" : "*", time, messageItem.from, messageItem.toString());
 			}
+		}
+		if(item is CTitle){
+			return StringUtils.substitute("==== {0} {1}", time, item);
 		}
 
 		return item.toString();
