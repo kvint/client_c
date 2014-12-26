@@ -2,3 +2,6 @@
 	path = ChatLib
 	url = git@github.com:kvint/ChatLib.git
 	branch = master
+[submodule "LCLogger"]
+	path = LCLogger
+	url = git@github.com:kvint/LCLogger.git
